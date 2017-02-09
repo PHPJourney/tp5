@@ -1,0 +1,84 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong>菜单管理</strong></div>
+	<div class="panel-body">
+		<a href="{:url('Cpanel/menu_add')}" class="button bg-blue">添加菜单</a>
+		<a href="javascript:;" id="orderall" class="button bg-yellow">批量更新排序</a>
+		<a href="javascript:;" id="removeall" class="button bg-red">删除</a>
+	</div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<table class="table table-hover table-bordered text-center table-striped">
+				<thead>
+					<tr>
+						<th>删</th>
+						<th>ID</th>
+						<th>名称</th>
+						<th>排序</th>
+						<th>链接</th>
+						<th>可用</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name="menu" id="vo"}
+						<tr>
+							<td><input type="checkbox" name="delete[]" class="checkbox" value="{$vo.id}"></td>
+							<td>{$vo.id}</td>
+							<td>{$vo.name}</td>
+							<td><input type="text" name="{$vo.id}" value="{$vo.order}" class="input w50"></td>
+							<td>{$vo.link}</td>
+							<td class="used{$vo.id}">{eq name="vo.used" value="1"}<a href="javascript:;" onclick="upused({$vo.id},{$vo.used})" class="text-green"><i class="icon-check"></i></a>{else /}<a href="javascript:;" onclick="upused({$vo.id},{$vo.used})" class="text-red"><i class="icon-times"></i></a>{/eq}</td>
+							<td><a href="{:url('Cpanel/menu_edit?id='.$vo['id'])}" class="text-blue">编辑</a> | <a href="{:url('Cpanel/menu_del?id='.$vo['id'])}" class="text-red">删除</a></td>
+						</tr>
+					{/volist}
+				</tbody>
+			</table>
+		</form>
+		<div class="pageation">{$page}</div>
+	</div>
+</div>
+{include file="public:footer" /}
+<script type="text/javascript">
+$(function(){
+	$("#removeall").click(function(){
+		var id = [];
+		$("input[type='checkbox']:checked").each(function(){
+				id.push($(this).val());
+		});
+		idstr = id.join(",");
+		if(idstr==''){
+			alert("你还没有选择要删除的数据");
+		}else{
+			$.post("{:url('Cpanel/menu_del')}",{id:idstr},function(result){
+				if(result.code==1){
+					$("input[type='checkbox']:checked").each(function(){
+						$(this).parent().parent().remove();
+					});
+				}else{
+					alert("删除失败！");
+				}
+			})
+		}
+	});
+	$("#orderall").click(function(){
+		var order = [];
+		$("input[type='text']").each(function(){
+			order.push($(this).attr("name")+":"+ $(this).val());
+		});
+		$.post("{:url('Cpanel/menu_update')}",{order:order},function(result){
+			alert(result.msg);
+		})
+	})
+});
+	function upused(id,e){
+		var used = e==1 ? 0 : 1;
+		var style = e==1 ? "text-red" : "text-green";
+		var icon = e==1 ? "icon-times" : "icon-check";
+		$.post("{:url('Cpanel/upused')}",{id:id,used:used},function(result){
+			if(result.code==1){
+				$(".used"+id).html("<a href='javascript:;' onclick='upused("+ id +","+ used +")' class='"+ style +"'><i class='"+ icon +"'></i></a>");
+			}
+		})
+	}
+</script>

@@ -1,0 +1,471 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong>性能优化</strong></div>
+	<div class="panel-content">
+		<div class="panel-body">
+			<a href="{:url('Cpanel/nature',array('model'=>'1'))}" class="{eq name='model' value='1'>button bg-red<else />text-big</eq}">站点页面缓存设置</a> 
+			<a href="{:url('Cpanel/nature',array('model'=>'2'))}" class="{eq name='model' value='2'>button bg-red<else />text-big</eq}">服务器优化</a> 
+			<a href="{:url('Cpanel/nature',array('model'=>'3'))}" class="{eq name='model' value='3'>button bg-red<else />text-big</eq}">内存优化</a> 
+		</div>
+		<div class="hide model" id="model1">
+			<form method="post" class="form-x">
+				<table class="table table-striped">
+					<tr>
+						<td cols="2">
+							<strong class="text-red">页面缓存设置</strong>
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							<strong>HTML静态缓存：: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <select class="input" name="data[htmlcache]" size="2">
+										<option value="0" {eq name="setting.htmlcache" value="0"}selected{/eq}>关闭</option>
+										<option value="1" {eq name="setting.htmlcache" value="1"}selected{/eq}>开启</option>
+									  </select>
+									</div>
+								</div>
+								<div class="x7">
+								  <div class="tips padding-left">开启多语言、多风格禁用，关键字“<code class="text-red">htmlcache</code>”</div>
+								</div>
+							  </div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>全局静态缓存有效期: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[htmlcachetime]" value="{$setting.htmlcachetime}">
+									</div>
+								</div>
+								<div class="x7">
+								  <div class="tips padding-left">单位为秒,关键字“<code class="text-red">htmlcachetime</code>”</div>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>设置静态文件后缀: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[htmlfilesuffix]" value="{$setting.htmlfilesuffix}">
+									</div>
+								</div>
+								<div class="x7">
+								  <div class="tips padding-left">设置静态文件后缀，关键字“<code class="text-red">htmlfilesuffix</code>”</div>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>HTML静态化规则：: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <textarea class="input" name="data[htmlcacherules]" style="height:80px">{$setting['htmlcacherules']}</textarea>
+									</div>
+								</div>
+								<div class="x7">
+								  <div class="tips padding-left">每行一条，格式：index:index|index|6000|md5，四个参数使用"|"分开，第一个 index:index 为需要静态化的url，也可以写作index/index，第二个为html静态化模板名称，第三个是缓存时间,第四个为附加规则，可不填，关键字“<code class="text-red">htmlcacherules</code>”</div>
+								</div>
+							  </div>
+						  </p>
+					  </td>
+				  </tr>
+					<tr>
+						<td>
+							<strong>缓存站点首页有效期: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="text" class="input" name="data[cacheindexlife]" value="{$setting.cacheindexlife}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置站点首页缓存更新的时间，单位为秒，0 为关闭(此处关闭以后，缓存系数将不再起作用)，建议设置为 900。此功能只针对游客</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>缓存文章有效期: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="text" class="input" name="data[cachethreadlife]" value="{$setting.cachethreadlife}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置文章页面缓存更新的时间，单位为秒，0 为关闭。请根据实际情况进行调整，建议设置为 900。另外，请通过编辑站点来指定文章页面缓存系数</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>缓存目录: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="text" class="input" name="data[cachethreaddir]" value="{$setting.cachethreaddir}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">默认为 /Runtime/Cache/目录，如果您需要将其指定为其他目录，请确定您指定的目录有可写权限</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td cols="2">
+							<strong class="text-red">缓存系数批量设置</strong>
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							<strong>缓存系数:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="text" class="input" name="data[threadcaches]" value="{$setting.threadcaches}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">页面缓存功能可以将会员经常访问的主题临时缓存起来，缓解大型站点服务器压力。缓存阀值范围 0 - 100，建议设置为 40 ，0 为关闭。在磁盘空间允许的情况下，适当调高缓存系数，可以提高缓存效果</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red"></strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="hide model" id="model2">
+			<form method="post" class="form-x">
+				<table class="table table-striped">
+					<tr>
+						<td cols="2">
+							<strong class="text-red">技巧提示</strong>
+							<p class="text-yellow">以红色虚线标示的选项，表示该选项和系统效率、负载能力与资源消耗有关(提高效率、或降低效率)，建议依据自身服务器情况进行调整。</p>
+						</td>
+					</tr>	
+					<tr>
+						<td cols="2">
+							<strong class="text-red">服务器优化</strong>
+							<p class="text-yellow"></p>
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							<strong>是否优化更新主题浏览量: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="radio" class="radio" name="data[optimizeviews]" value="1" {eq name="setting['optimizeviews']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[optimizeviews]" value="0" {eq name="setting['optimizeviews']" value="0"}checked{/eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red">查看数开启防刷新:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="radio" class="radio" name="data[preventrefresh]" value="1" {eq name="setting['preventrefresh']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[preventrefresh]" value="0" {eq name="setting['preventrefresh']" value="0"}checked{/eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">选择“否”，主题、空间、日志每访问一次，浏览量增1，会增大服务器压力，建议选择“是”</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red">附件下载量延迟更新: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="radio" class="radio" name="data[delayviewcount]" value="1" {eq name="setting['delayviewcount']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[delayviewcount]" value="0" {eq name="setting['delayviewcount']" value="0"}checked{/eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">延迟更新附件的浏览量，可明显降低访问量很大的站点的服务器负担，建议开启本功能</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red">禁止浏览器缓冲:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="radio" class="radio" name="data[nocacheheaders]" value="1" {eq name="setting['nocacheheaders']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[nocacheheaders]" value="0" {eq name="setting['nocacheheaders']" value="0"}checked{/eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">禁止浏览器对站点页面进行缓冲，可用于解决极个别浏览器内容刷新不正常的问题。注意: 本功能会加重服务器负担</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>最大在线人数:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="number" class="input" name="data[maxonlines]" value="{$setting.maxonlines}" min="10" max="65535">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">请设置合理的数值，范围 10～65535，建议设置为平均在线人数的 10 倍左右</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>在线保持时间(分钟):</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="number" class="input" name="data[onlinehold]" value="{$setting.onlinehold}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">请根据访问情况设置合理的数值，访问量大的站点应当调小该数值，设置范围 5 - 60，过大或者过小的设置都有可能会增大服务器资源开销</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>开启图片延时加载:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="radio" class="radio" name="data[lazyload]" value="1" {eq name="setting['lazyload']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[lazyload]" value="0" {eq name="setting['lazyload']" value="0"}checked{/eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">当开启后，页面中的图片在浏览器的当前窗口时再加载，可明显降低访问量很大的站点的服务器负担，建议开启本功能</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red">参与模块聚合数据条数:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="number" class="input" name="data[blockmaxaggregationitem]" value="{$setting.blockmaxaggregationitem}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">此值影响模块聚合时MYSQL检索数据的条数，设置太大将严重影响MYSQL的性能，设置太小将会影响模块聚合结果数据的理想程度。0为关闭此功能</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>是否关闭session机制:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="radio" class="radio" name="data[sessionclose]" value="1" {eq name="setting['sessionclose']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[sessionclose]" value="0" {eq name="setting['sessionclose']" value="0"}checked{/eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">关闭session机制以后，可明显降低站点的服务器负担，建议在线用户数超过2万时开启本功能（注意：游客数和用户的在线时长将不再进行统计，论坛首页和版块列表页面的在线用户列表功能将不可用）</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red"></strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="hide model" id="model3">
+			<form method="post" class="form-auto">
+				<table class="table table-striped">
+					<tr>
+						<td cols="2">
+							<strong class="text-red">技巧提示</strong>
+							<p class="text-yellow">
+								<ul>
+									<li>启用内存优化功能将会大幅度提升程序性能和服务器的负载能力，内存优化功能需要服务器系统以及PHP扩展模块支持</li>
+									<li>系统目前已经支持的缓存类型包括：Apachenote、Apc、Db、Eaccelerator、File、Memcache、Redis、Shmop、Sqlite、Wincache和Xcache，优化系统将会依据当前服务器环境依次选用接口</li>
+									<li>内存接口的主要设置位于 config.php 当中，您可以通过编辑 config.php 进行高级设置</li>
+									<li>如果要让缓存驱动支持缓存队列功能，需要在缓存接口的set操作方法设置成功后添加如下代码<blockquote><pre>
+if($this->options['length']>0) {
+ // 记录缓存队列
+ $this->queue($name);
+}</pre></blockquote></li>
+									<li>要配置当前默认的缓存驱动类型可以使用CACHE_TYPE参数</li>
+								</ul>
+							</p>
+						</td>
+					</tr>	
+					<tr>
+						<td cols="2">
+							<strong class="text-red">当前内存工作状态</strong>
+							<table class="table-bordered table-hover table-striped">
+								<tr>
+									<th>内存接口</th>
+									<th>PHP扩展环境</th>
+									<th>Config设置</th>
+									<th>内存清理</th>
+								</tr>
+								<tr>
+									<td>Redis</td>
+									<td>{eq name="@$cache.redis" value="1"}支持{else /}不支持{/eq}</td>
+									<td>{eq name="@$memory.redis.server" value="1"}开启{else /}关闭{/eq}</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>memcache</td>
+									<td>{eq name="@$cache.memcache" value="1"}支持{else /}不支持{/eq}</td>
+									<td>{eq name="@$memory.memcache.server" value="1"}开启{else /}关闭{/eq}</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>APC</td>
+									<td>{eq name="@$cache.apc" value="1"}支持{else /}不支持{/eq}</td>
+									<td>{eq name="@$memory.apc.server" value="1"}开启{else /}关闭{/eq}</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>Xcache</td>
+									<td>{eq name="@$cache.xcache" value="1"}支持{else /}不支持{/eq}</td>
+									<td>{eq name="@$memory.xcache.server" value="1"}开启{else /}关闭{/eq}</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>eAccelerator</td>
+									<td>{eq name="@$cache.eaccelerator" value="1"}支持{else /}不支持{/eq}</td>
+									<td>{eq name="@$memory.eaccelerator.server" value="1"}开启{else /}关闭{/eq}</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>wincache</td>
+									<td>{eq name="@$cache.wincache" value="1"}支持{else /}不支持{/eq}</td>
+									<td>{eq name="@$memory.wincache.server" value="1"}开启{else /}关闭{/eq}</td>
+									<td>--</td>
+								</tr>
+							</table>
+						</td>
+					</tr>	
+					<tr>
+						<td cols="2">
+							<strong class="text-red">内存优化功能设置</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table class="table table-bordered table-striped">
+								<tr>
+									<th>功能模块</th>
+									<th>是否开启</th>
+									<th>自动更新时间（秒）</th>
+									<th></th>
+								</tr>
+								<tr>
+									<td>用户数据</td>
+									<td><input type="checkbox" class="checkbox" value="1" name="data[memory_member_enable]" {eq name="setting['memory_member_enable']" value="1"}checked{/eq}></td>
+									<td><input type="text" name="data[memory_member_ttl]" value="{$setting.memory_member_ttl}" class="input w50"></td>
+									<td>	推荐开启，时间设置为0，永不过期，UID为单位，表数据更新时缓存数据会同步更新</td>
+								</tr>
+								<tr>
+									<td>主题数据</td>
+									<td><input type="checkbox" class="checkbox" value="1" name="data[memory_thread_enable]" {eq name="setting['memory_thread_enable']" value="1"}checked{/eq}></td>
+									<td><input type="text" name="data[memory_thread_ttl]" value="{$setting.memory_thread_ttl}" class="input w50"></td>
+									<td>	推荐开启，时间设置为172800秒，两天，TID为单位，表数据更新时缓存数据会同步更新</td>
+								</tr>
+								<tr>
+									<td>站点首页</td>
+									<td><input type="checkbox" class="checkbox" value="1" name="data[memory_index_enable]" {eq name="setting['memory_index_enable']" value="1"}checked{/eq}></td>
+									<td><input type="text" name="data[memory_index_ttl]" value="{$setting.memory_index_ttl}" class="input w50"></td>
+									<td>	推荐开启，时间设置为30秒，用户组ID或'for_robot'为单位，缓存时间内数据不更新</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red"></strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".model").hide();
+	$("#model{$model}").show();
+})
+</script>
+{include file="public:footer" /}

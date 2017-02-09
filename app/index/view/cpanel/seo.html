@@ -1,0 +1,285 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong>SEO优化</strong></div>
+	<div class="body-content">
+		<div class="tab border-main">
+			<div class="tab-head">
+				<ul class="tab-nav">
+					<li class="active"><a href="#seo1">伪静态优化</a> </li>
+					<li><a href="#seo2">页面优化</a> </li>
+				</ul>
+			</div>
+			<div class="tab-body">
+				<div class="tab-panel active" id="seo1">
+					<form method="post" class="form form-block">
+						<table class="table table-striped">
+							<tr>
+								<td cols="2">
+									<strong class="text-red">URL 静态化</strong>
+									<span class="text-right"><a href="{:url('Cpanel/rewrite')}" target="_target">查看当前Rewrite 规则</a></span>
+									<p class="text-yellow">URL 静态化可以提高搜索引擎抓取，开启本功能需要对 Web 服务器增加相应的 Rewrite 支持，且会轻微增加服务器负担。同时您还可以调整每个页面的静态格式，但不得删除其中的标记，重置静态格式请留空。注意，修改静态格式后您需要修改服务器的 Rewrite 规则设置</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>开启伪静态</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+												  <input type="radio" class="radio" name="data[rewrite_enable]" value="1" {eq name="setting['rewrite_enable']" value="1"}checked{/eq}> 是
+												  <input type="radio" class="radio" name="data[rewrite_enable]" value="0" {eq name="setting['rewrite_enable']" value="0"}checked{/eq}> 否
+												</div>
+											</div>
+											<div class="x9 padding-left">
+												<small class="text-gray">
+													是否开启全站伪静态
+												</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>伪静态模式</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+												  <select name="data[rewrite_model]" class="input">
+													<option value="0" {eq name="setting['rewrite_model']" value="0">selected</eq}>普通模式</option>
+													<option value="1" {eq name="setting['rewrite_model']" value="1">selected</eq}>PATHINFO 模式</option>
+													<option value="2" {eq name="setting['rewrite_model']" value="2">selected</eq}>REWRITE 模式</option>
+													<option value="3" {eq name="setting['rewrite_model']" value="3">selected</eq}>兼容模式</option>
+												  </select>
+												</div>
+											</div>
+											<div class="x9 padding-left">
+												<small class="text-gray">
+													0 (普通模式); 1 (PATHINFO 模式); 2 (REWRITE  模式); 3 (兼容模式)  默认为PATHINFO 模式
+												</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group margin-large-top">
+										<div class="x12">
+											<div class="label">
+											  <label></label>
+											</div>
+											<div class="field">
+											  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="tab-panel" id="seo2">
+					<form method="post" class="form-x">
+						<table class="table table-striped">
+							<tr>
+								<td cols="2">
+									<strong class="text-red">技巧提示</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>
+										<ul class="text-blue">
+											<li>插入的变量必需包括花括号“<b class="text-yellow">{}</b>”，当应用范围不支持该变量时，该变量将不会在前台显示(变量后边的分隔符也不会显示)，留空为系统默认设置，SEO自定义支持手写。</li>
+											<li>以下是可用SEO变量: </li>
+											<li>站点名称 <b class="text-yellow">{sitename}</b>（应用范围：所有位置） </li>
+											<li>当前频道名称  <b class="text-yellow">{curcat}</b>（应用范围：除首页以外） </li>
+											<li>一级频道名称  <b class="text-yellow">{firstcat}</b>（应用范围：除首页以外）</li>
+											<li>二级频道名称  <b class="text-yellow">{secondcat}</b>（应用范围：除首页以外）</li>
+											<li>文章标题 <b class="text-yellow">{subject}</b>（应用范围：文章内容页） </li>
+											<li>文章摘要 <b class="text-yellow">{summary}</b>（应用范围：文章内容页）</li>
+											<li>文章作者 <b class="text-yellow">{user}</b>（应用范围：文章内容页）</li>
+											<li>分页数 <b class="text-yellow">{page}</b>（应用范围：文章列表页、文章内容页）</li>
+										</ul>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">站点首页</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>title</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_index_title]" value="{$setting.seo_index_title}">
+												<small class="padding-left text-gray">网站首页标题</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>keywords</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_index_keywords]" value="{$setting.seo_index_keywords}">
+												<small class="padding-left text-gray">网站首页关键词</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>description</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_index_description]" value="{$setting.seo_index_description}">
+												<small class="padding-left text-gray">网站首页描述</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">文章列表</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>title</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_newslist_title]" value="{$setting.seo_newslist_title}">
+												<small class="padding-left text-gray">文章列表标题</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>keywords</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_newslist_keywords]" value="{$setting.seo_newslist_keywords}">
+												<small class="padding-left text-gray">文章列表关键词</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>description</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_newslist_description]" value="{$setting.seo_newslist_description}">
+												<small class="padding-left text-gray">文章列表描述</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">文章页面</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>title</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_article_title]" value="{$setting.seo_article_title}">
+												<small class="padding-left text-gray">文章页面标题</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>keywords</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_article_keywords]" value="{$setting.seo_article_keywords}">
+												<small class="padding-left text-gray">文章页面关键词</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>description</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_article_description]" value="{$setting.seo_article_description}">
+												<small class="padding-left text-gray">文章页面描述</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label></label>
+											</div>
+											<div class="field">
+											  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

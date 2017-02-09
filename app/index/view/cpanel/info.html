@@ -1,0 +1,291 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 网站信息</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="{:url('cpanel/info')}" target="ajax">
+      <div class="form-group">
+        <div class="label">
+          <label>网站标题：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[stitle]" value="{$setting['stitle']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">网站标题，关键字“<code class="text-red">stitle</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站LOGO：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" id="url1" name="data[slogo]" class="input tips" style="width:25%; float:left;" value="{$setting['slogo']|@}" data-toggle="hover" data-place="right" data-image="{$setting['slogo']|@|default='http://groupcoin.tech/Public/default/images/y.jpg'}"  />
+			  <a class="button input-file bg-blue margin-left" href="javascript:void(0);">+ 浏览上传
+				<input size="100" id="file" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件"
+					type="file" />
+			</a>
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">网站logo，关键字“<code class="text-red">slogo</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站域名：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[surl]" value="{$setting['surl']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">网站域名，关键字“<code class="text-red">surl</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>副加标题：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[sentitle]" value="{$setting['sentitle']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">附加标题，关键字“<code class="text-red">sentitle</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站关键字：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <textarea class="input" name="data[skeywords]" style="height:80px">{$setting['skeywords']|@}</textarea>
+			</div>
+		</div>
+		<div class="x7">
+          <div class="tips">网站关键词，关键字“<code class="text-red">skeywords</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>网站描述：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <textarea class="input" name="data[sdescription]">{$setting['sdescription']|@}</textarea>
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">网站描述，关键字“<code class="text-red">sdescription</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>联系人：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_name]" value="{$settin['s_name']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">联系人，关键字“<code class="text-red">s_name</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>手机：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_phone]" value="{$setting['s_phone']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">手机，关键字“<code class="text-red">s_phone</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>电话：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_tel]" value="{$setting['s_tel']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">电话，关键字“<code class="text-red">s_tel</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>400电话：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_400]" value="{$setting['s_400']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">400电话，关键字“<code class="text-red">s_400</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>传真：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_fax]" value="{$setting['s_fax']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">传真，关键字“<code class="text-red">s_fax</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>QQ：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_qq]" value="{$setting['s_qq']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">QQ，关键字“<code class="text-red">s_qq</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>QQ群：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_qqu]" value="{$setting['s_qqu']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">QQ群，关键字“<code class="text-red">s_qqu</code>”</div>
+		</div>
+      </div>
+     
+      <div class="form-group">
+        <div class="label">
+          <label>Email：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_email]" value="{$setting['s_email']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">Email，关键字“<code class="text-red">s_email</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>公司名称：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_company]" value="{$setting['s_company']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">公司名称，关键字“<code class="text-red">s_company</code>”</div>
+		</div>
+      </div>  
+      <div class="form-group">
+        <div class="label">
+          <label>地址：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_address]" value="{$setting['s_address']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">地址，关键字“<code class="text-red">s_address</code>”</div>
+		</div>
+      </div>  
+            
+      <div class="form-group">
+        <div class="label">
+          <label>备案号：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <input type="text" class="input" name="data[s_miitbeian]" value="{$setting['s_miitbeian']|@}" />
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">地址，关键字“<code class="text-red">s_miitbeian</code>”</div>
+		</div>
+      </div>  
+              
+      <div class="form-group">
+        <div class="label">
+          <label>底部信息：</label>
+        </div>
+        <div class="x3">
+			<div class="field">
+			  <textarea name="data[scopyright]" class="input" style="height:120px;">{$setting['scopyright']|@}</textarea>
+			</div>
+        </div>
+		<div class="x7">
+          <div class="tips">底部信息，关键字“<code class="text-red">scopyright</code>”</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#url1").change(function(){
+		var src = $(this).val();
+		src != '' ? $(this).attr("data-image",src) : '';
+	})
+	$('#file').change(function(){
+		var xhr = new XMLHttpRequest();
+		var file = $(this)[0].files;
+		var data = new FormData();
+		data.append("attr",file[0]);
+		$(this).val('');
+		xhr.open("POST","{:url('Attach/upload')}",true);
+		xhr.onreadystatechange = function(){
+		console.info(xhr.status);
+			if(xhr.readyState == 4 && xhr.status==200){
+				var xml = xhr.responseXML;
+				var savepath = xml.getElementsByTagName("savepath");
+				savepath = savepath[0].firstChild.nodeValue;
+				var savename = xml.getElementsByTagName("savename");
+				savename = savename[0].firstChild.nodeValue;
+				console.log(savepath);
+				console.log(savename);
+				<!-- if(xml.status == 1){ -->
+					$("#url1").val(savepath+savename);
+					$("#url1").attr("data-image",savepath+savename);
+				<!-- } -->
+			}
+		};
+		xhr.send(data);
+	});
+});
+</script>
+{include file="public:footer" /}

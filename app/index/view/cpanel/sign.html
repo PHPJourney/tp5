@@ -1,0 +1,472 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="tab">
+		<div class="tab-head">
+			<ul class="tab-nav">
+				<li class="active"><a href="#tab-start">注册</a> </li>
+				<li><a href="#tab-css">访问控制</a> </li>
+			</ul>
+		</div>
+		<div class="tab-body">
+			<div class="tab-panel active" id="tab-start">
+				  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 注册</strong></div>
+					<div class="content">
+						<form method="post" class="form form-block" action="">
+							<div class="x12 alert box-shadow-small">
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>允许新用户注册</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="checkbox" class="checkbox" name="data[sign_reg][]" value="0" <?php if(in_array(0,explode(",",$setting['sign_reg']))){ echo "checked"; }?>>开放普通注册
+											</div>
+											<div class="field">
+												<input type="checkbox" class="checkbox" name="data[sign_reg][]" value="1" <?php if(in_array(1,explode(",",$setting['sign_reg']))){ echo "checked"; }?>>开放邀请注册
+											</div>
+											<div class="field">
+											  <input type="checkbox" class="checkbox" name="data[sign_reg][]" value="2" <?php if(in_array(2,explode(",",$setting['sign_reg']))){ echo "checked"; }?>>开放第三方注册
+											</div>
+										</div>
+										<div class="x9 padding-left">
+											<small class="text-gray">设置是否允许游客注册成为站点会员，您可以根据站点需求选择注册方式</small>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>注册提示信息</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <textarea type="text" class="input" name="data[regtips]">{$setting['regtips']}</textarea>
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">当站点关闭注册时的提示信息</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>注册地址</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="text" class="input" name="data[regaddress]" value="{$setting['regaddress']}">
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">设置站点注册地址 mod 值，默认为“register”，修改名称有利于防止灌水软件，有别于 Discuz! X 之前的版本更改了此设置，不需要修改任何文件名称，只在此修改即可</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>通过邮件发送注册链接</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="radio" class="radio" name="data[maillink]" value="0" {eq name="setting['maillink']" value="0"}checked{/eq}> 否
+											  <input type="radio" class="radio" name="data[maillink]" value="1" {eq name="setting['maillink']" value="1"}checked{/eq}> 是
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">开启后系统会发一条注册的地址到用户的邮箱，从该地址链接过来的允许注册，同时建议开启一个邮箱只允许注册一个帐户</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>注册链接文字</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<input type="text" class="input" name="data[regtext]" value="{$setting['regtext']}">
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">设置站点注册页的链接文字，默认为“立即注册”</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>用户信息保留关键字</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<textarea type="text" class="input" name="data[userkey]">{$setting['userkey']}</textarea>
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">用户在其用户信息中无法使用这些关键字。每个关键字一行，可使用通配符 "*" 如 "*管理员*"(不含引号)</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>密码最小长度</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<input type="text" class="input" name="data[pwdlength]" value="{$setting['pwdlength']}">
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">新用户注册时密码最小长度，0或不填为不限制</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>强制密码复杂度</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="checkbox" class="checkbox" name="data[strongpw][]" value="0" <?php if(in_array(0,explode(",",$setting['strongpw']))){ echo "checked"; }?>>数字
+											</div>
+											<div class="field">
+												<input type="checkbox" class="checkbox" name="data[strongpw][]" value="1" <?php if(in_array(1,explode(",",$setting['strongpw']))){ echo "checked"; }?>>小写字母
+											</div>
+											<div class="field">
+											  <input type="checkbox" class="checkbox" name="data[strongpw][]" value="2" <?php if(in_array(2,explode(",",$setting['strongpw']))){ echo "checked"; }?>>大写字母
+											</div>
+											<div class="field">
+											  <input type="checkbox" class="checkbox" name="data[strongpw][]" value="3" <?php if(in_array(3,explode(",",$setting['strongpw']))){ echo "checked"; }?>>符号
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">新用户注册时密码中必须存在所选字符类型，不选则为无限制</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>新用户注册验证</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="radio" class="radio" name="data[regverify]" value="0" {eq name="setting['regverify']" value="0"}checked{/eq}>无
+											</div>
+											<div class="field">
+												<input type="radio" class="radio" name="data[regverify]" value="1" {eq name="setting['regverify']" value="1"}checked{/eq}>Email验证
+											</div>
+											<div class="field">
+											  <input type="radio" class="radio" name="data[regverify]" value="2" {eq name="setting['regverify']" value="2"}checked{/eq}>人工审核
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">选择“无”用户可直接注册成功；选择“Email 验证”将向用户注册 Email 发送一封验证邮件以确认邮箱的有效性（开启“通过邮件发送注册链接”该设置自动通过验证）；选择“人工审核”将由管理员人工逐个确定是否允许新用户注册</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>注册邮箱域名限制</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="radio" class="radio" name="data[regmaildomain]" value="0" {eq name="setting['regmaildomain']" value="0"}checked{/eq}>无
+											</div>
+											<div class="field">
+												<input type="radio" class="radio" name="data[regmaildomain]" value="1" {eq name="setting['regmaildomain']" value="1"}checked{/eq}>白名单模式
+											</div>
+											<div class="field">
+											  <input type="radio" class="radio" name="data[regmaildomain]" value="2" {eq name="setting['regmaildomain']" value="2"}checked{/eq}>黑名单模式
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">选择“无”直接关闭本功能；选择“白名单模式”，只有限制名单中的邮箱域名可以注册；选择“黑名单模式”，限制名单中的邮箱域名不能注册。</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>限制名单</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<textarea type="text" class="input" name="data[maildomainlist]">{$setting['maildomainlist']}</textarea>
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">当邮箱的域名处于本列表中的地址时，将根据上述选项进行相应限制操作。输入要限制的邮箱域名即可，例如屏蔽 xxx@xxx.com 的域，只需输入 xxx.com。每行一个域名。</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>同一 IP 注册间隔限制(小时)</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<input type="text" class="input" name="data[regctrl]" value="{$setting['regctrl']}">
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">同一 IP 在本时间间隔内将只能注册一个帐号，0 为不限制</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>同一 IP 在 24 小时允许注册的最大次数</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<input type="text" class="input" name="data[regfloodctrl]" value="{$setting['regfloodctrl']}">
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">同一 IP 地址在 24 小时内尝试注册的次数限制，建议在 30 - 100 范围内取值，0 为不限制</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>限时注册IP注册间隔限制(小时)</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<input type="text" class="input" name="data[ipregctrltime]" value="{$setting['ipregctrltime']}">
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">用户处于限时注册的 IP 列表中的 IP 地址时，同一 IP 在本时间间隔内将只能注册一个帐号</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>限时注册的 IP 列表</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<textarea type="text" class="input" name="data[ipregctrl]">{$setting['ipregctrl']}</textarea>
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">当用户处于本列表中的 IP 地址时，在限时注册IP注册间隔限制内将至多只允许注册一个帐号。每个 IP 一行，既可输入完整地址，也可只输入 IP 开头，例如 "192.168."(不含引号) 可匹配 192.168.0.0～192.168.255.255 范围内的所有地址，留空为不设置
+				双击输入框可扩大/缩小</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>发送欢迎信息</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="checkbox" class="checkbox" name="data[welcomemsg][]" value="0" <?php if(in_array(0,explode(",",$setting['welcomemsg']))){ echo "checked"; }?>>发送欢迎信息
+											</div>
+											<div class="field">
+												<input type="checkbox" class="checkbox" name="data[welcomemsg][]" value="1" <?php if(in_array(1,explode(",",$setting['welcomemsg']))){ echo "checked"; }?>>发送欢迎Email
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">可选择是否自动向新注册用户发送一条欢迎信息</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>欢迎信息标题</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<input type="text" class="input" name="data[welcomemsgtitle]" value="{$setting['welcomemsgtitle']}">
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">系统发送的欢迎信息的标题，不支持 HTML，不超过 75 字节。</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>欢迎信息内容</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<textarea type="text" class="input" name="data[welcomemsgtxt]">{$setting['welcomemsgtxt']}</textarea>
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">
+										系统发送的欢迎信息的内容。标题内容均支持变量替换，可以使用如下变量:<br>
+										{username} : 用户名<br>
+										{time} : 发送时间<br>
+										{sitename} : 网站名称（显示在页面底部的联系方式处的名称）<br>
+										{bbname} : 站点名称（显示在浏览器窗口标题等位置的名称）<br>
+										{adminemail} : 管理员 Email
+										</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>显示网站服务条款</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="radio" class="radio" name="data[bbrules]" value="0" {eq name="setting['bbrules']" value="0"}checked{/eq}> 否
+											  <input type="radio" class="radio" name="data[bbrules]" value="1" {eq name="setting['bbrules']" value="1"}checked{/eq}> 是
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">新用户注册时显示网站服务条款</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>是否强制显示网站服务条款</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+											  <input type="radio" class="radio" name="data[bbrulesforce]" value="0" {eq name="setting['bbrulesforce']" value="0"}checked{/eq}> 否
+											  <input type="radio" class="radio" name="data[bbrulesforce]" value="1" {eq name="setting['bbrulesforce']" value="1"}checked{/eq}> 是
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">选择是则在用户注册时，首先将看到网站服务条款全文，必须同意才可以继续注册</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="x12">
+										<div class="label">
+										  <strong>服务条款内容</strong>
+										</div>
+										<div class="x3">
+											<div class="field">
+												<textarea type="text" class="input" name="data[bbrulestxt]">{$setting['bbrulestxt']}</textarea>
+											</div>
+										</div>
+									  <div class="x9 padding-left">
+										<small class="text-gray">
+										网站服务条款的详细内容
+										</small>
+									  </div>
+									</div>
+								</div>
+								<div class="form-group margin-large-top">
+									<div class="x12">
+										<div class="label">
+										  <label></label>
+										</div>
+										<div class="field">
+										  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+										</div>
+									</div>
+								</div>
+						  </div>
+						</form>
+					</div>
+			</div>
+			<div class="tab-panel" id="tab-css">
+				<div class="panel-head"><strong><span class="icon-pencil-square-o"></span> 注册</strong></div>
+				<div class="content">
+					<form method="post" class="form form-block" action="">
+						<div class="x12 alert box-shadow-small">
+							<div class="form-group">
+								<div class="x12">
+									<div class="label">
+									  <strong>新手见习期限(分钟)</strong>
+									</div>
+									<div class="x3">
+										<div class="field">
+											<input type="text" class="input" name="data[newbiespan]" value="{$setting['newbiespan']}">
+										</div>
+									</div>
+								  <div class="x9 padding-left">
+									<small class="text-gray">
+									新注册用户在本期限内将无法发帖和短消息，不影响版主和管理员，0 为不限制
+									</small>
+								  </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="x12">
+									<div class="label">
+									  <strong>允许访问站点的 IP 列表</strong>
+									</div>
+									<div class="x3">
+										<div class="field">
+											<textarea class="input" name="data[ipaccess]">{$setting['ipaccess']}</textarea>
+										</div>
+									</div>
+									<div class="x9 padding-left">
+										<small class="text-gray">只有当用户处于本列表中的 IP 地址时才可以访问本站点，列表以外的地址访问将视为 IP 被禁止，仅适用于诸如企业、学校内部站点等极个别场合。本功能对管理员没有特例，如果管理员不在此列表范围内将同样不能登录，请务必慎重使用本功能。每个 IP 一行，既可输入完整地址，也可只输入 IP 开头，例如 "192.168."(不含引号) 可匹配 192.168.0.0～192.168.255.255 范围内的所有地址，留空为所有 IP 除明确禁止的以外均可访问</small>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="x12">
+									<div class="label">
+									  <strong>允许访问管理中心的 IP 列表</strong>
+									</div>
+									<div class="x3">
+										<div class="field">
+											<textarea class="input" name="data[adminipaccess]">{$setting['adminipaccess']}</textarea>
+										</div>
+									</div>
+									<div class="x9 padding-left">
+										<small class="text-gray">只有当用户处于本列表中的 IP 地址时才可以访问站点管理中心，列表以外的地址访问将无法访问，但仍可访问站点前端用户界面，请务必慎重使用本功能。每个 IP 一行，既可输入完整地址，也可只输入 IP 开头，例如 "192.168."(不含引号) 可匹配 192.168.0.0～192.168.255.255 范围内的所有地址，留空为所有 IP 除明确禁止的以外均可访问管理中心</small>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="x12">
+									<div class="label">
+									  <strong>允许发表的域名列表</strong>
+									</div>
+									<div class="x3">
+										<div class="field">
+											<textarea class="input" name="data[domainwhitelist]">{$setting['domainwhitelist']}</textarea>
+										</div>
+									</div>
+									<div class="x9 padding-left">
+										<small class="text-gray">当用户组禁止发表 URL ，或者 URL 不解析时，处于本列表中的域名下的 URL 仍然可以正常发表，正常解析，每行一个域名，默认为本站域名可以正常发表</small>
+									</div>
+								</div>
+							</div>
+							<div class="form-group margin-large-top">
+								<div class="x12">
+									<div class="label">
+									  <label></label>
+									</div>
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

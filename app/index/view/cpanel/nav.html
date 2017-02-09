@@ -1,0 +1,245 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">导航设置</strong></div>
+	<div class="body-content">
+		<div class="tab border-main">
+			<div class="tab-head">
+				<ul class="tab-nav">
+					<li class="active"><a href="#nav1">主导航</a> </li>
+					<li><a href="#nav2">顶部导航</a> </li>
+					<li><a href="#nav3">底部导航</a> </li>
+					<li><a href="#nav4">快捷导航</a> </li>
+				</ul>
+			</div>
+			<div class="tab-body">
+				<div class="tab-panel active" id="nav1">
+					<form method="post" class="form-x">
+						<input type="hidden" name="cate" value="home">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>显示排序</th>
+									<th>名称</th>
+									<th>二级导航样式</th>
+									<th>链接</th>
+									<th>类型</th>
+									<th>首页</th>
+									<th>可用</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							{volist name="nav.home" id="vo"}
+								<tr>
+									<td><input type="checkbox" class="checkbox" name="delete[]" value="{$vo.id}" {eq name="vo.delete" value="0"}disabled{/eq}></td>
+									<td><input type="text" class="input" name="displayordernew[{$vo.id}]" value="{$vo.order}"></td>
+									<td><input type="text" class="input" name="namenew[{$vo.id}]" value="{$vo.name}"></td>
+									<td>
+										<select name="subtypenew[{$vo.id}]" class="input">
+											<option value="0" {eq name="vo.menu" value="0"}selected{/eq}>菜单样式</option>
+											<option value="1" {eq name="vo.menu" value="1"}selected{/eq}>横排样式</option>
+										</select>
+									</td>
+									<td>{$vo.link}</td>
+									<td>自定义</td>
+									<td><input type="radio" class="radio" name="defaultindex" value="{$vo.link}"></td>
+									<td><input type="checkbox" class="input" name="availablenew[{$vo.id}]" value="1"></td>
+									<td><a href="{:url('Cpanel/nav_editor?id='.$vo['id'])}" class="text-blue">编辑</a></td>
+								</tr>
+							{/volist}
+								<tbody id="home">
+								</tbody>
+								<tr>
+									<td></td>
+									<td colspan="8">
+										<a href="javascript:;" class="add" data-nav="home"><i class="text-white icon-plus bg-yellow padding-small-left padding-small-right"></i><strong class="text-yellow padding-left">添加主导航</strong></a>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="chkall" class="checkbox"><label>删？</label></td>
+									<td colspan="15"><input type="submit" class="button button-blue" value="提交"></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="tab-panel" id="nav2">
+					<form method="post" class="form-x">
+						<input type="hidden" name="cate" value="top">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>显示排序</th>
+									<th>名称</th>
+									<th>二级导航样式</th>
+									<th>链接</th>
+									<th>类型</th>
+									<th>可用</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							{volist name="nav.top" id="vo"}
+								<tr>
+									<td><input type="checkbox" class="checkbox" name="delete[]" value="{$vo.id}" {eq name="vo.delete" value="0"}disabled{/eq}></td>
+									<td><input type="text" class="input" name="displayordernew[{$vo.id}]" value="{$vo.order}"></td>
+									<td><input type="text" class="input" name="namenew[{$vo.id}]" value="{$vo.name}"></td>
+									<td>
+										<select name="subtypenew[{$vo.id}]" class="input">
+											<option value="0" {eq name="vo.menu" value="0"}selected{/eq}>菜单样式</option>
+											<option value="1" {eq name="vo.menu" value="1"}selected{/eq}>横排样式</option>
+										</select>
+									</td>
+									<td>{$vo.link}</td>
+									<td>自定义</td>
+									<td><input type="checkbox" class="input" name="availablenew[{$vo.id}]" value="1"></td>
+									<td><a href="{:url('Cpanel/nav_editor?id='.$vo['id'])}" class="text-blue">编辑</a></td>
+								</tr>
+							{/volist}
+								<tbody id="top">
+								</tbody>
+								<tr>
+									<td></td>
+									<td colspan="8">
+										<a href="javascript:;" class="add" data-nav="top"><i class="text-white icon-plus bg-yellow padding-small-left padding-small-right"></i><strong class="text-yellow padding-left">添加主导航</strong></a>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="chkall" class="checkbox"><label>删？</label></td>
+									<td colspan="15"><input type="submit" class="button button-blue" value="提交"></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="tab-panel" id="nav3">
+					<form method="post" class="form-x">
+						<input type="hidden" name="cate" value="footer">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>显示排序</th>
+									<th>名称</th>
+									<th>二级导航样式</th>
+									<th>链接</th>
+									<th>类型</th>
+									<th>可用</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							{volist name="nav.footer" id="vo"}
+								<tr>
+									<td><input type="checkbox" class="checkbox" name="delete[]" value="{$vo.id}" {eq name="vo.delete" value="0"}disabled{/eq}></td>
+									<td><input type="text" class="input" name="displayordernew[{$vo.id}]" value="{$vo.order}"></td>
+									<td><input type="text" class="input" name="namenew[{$vo.id}]" value="{$vo.name}"></td>
+									<td>
+										<select name="subtypenew[{$vo.id}]" class="input">
+											<option value="0" {eq name="vo.menu" value="0"}selected{/eq}>菜单样式</option>
+											<option value="1" {eq name="vo.menu" value="1"}selected{/eq}>横排样式</option>
+										</select>
+									</td>
+									<td>{$vo.link}</td>
+									<td>自定义</td>
+									<td><input type="checkbox" class="input" name="availablenew[{$vo.id}]" value="1"></td>
+									<td><a href="{:url('Cpanel/nav_editor?id='.$vo['id'])}" class="text-blue">编辑</a></td>
+								</tr>
+							{/volist}
+								<tbody id="footer">
+								</tbody>
+								<tr>
+									<td></td>
+									<td colspan="8">
+										<a href="javascript:;" class="add" data-nav="footer"><i class="text-white icon-plus bg-yellow padding-small-left padding-small-right"></i><strong class="text-yellow padding-left">添加底部导航</strong></a>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="chkall" class="checkbox"><label>删？</label></td>
+									<td colspan="15"><input type="submit" class="button button-blue" value="提交"></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="tab-panel" id="nav4">
+					<form method="post" class="form-x">
+						<input type="hidden" name="cate" value="quick">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>显示排序</th>
+									<th>名称</th>
+									<th>二级导航样式</th>
+									<th>链接</th>
+									<th>类型</th>
+									<th>可用</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							{volist name="nav.quick" id="vo"}
+								<tr>
+									<td><input type="checkbox" class="checkbox" name="delete[]" value="{$vo.id}" {eq name="vo.delete" value="0"}disabled{/eq}></td>
+									<td><input type="text" class="input" name="displayordernew[{$vo.id}]" value="{$vo.order}"></td>
+									<td><input type="text" class="input" name="namenew[{$vo.id}]" value="{$vo.name}"></td>
+									<td>
+										<select name="subtypenew[{$vo.id}]" class="input">
+											<option value="0" {eq name="vo.menu" value="0"}selected{/eq}>菜单样式</option>
+											<option value="1" {eq name="vo.menu" value="1"}selected{/eq}>横排样式</option>
+										</select>
+									</td>
+									<td>{$vo.link}</td>
+									<td>自定义</td>
+									<td><input type="checkbox" class="input" name="availablenew[{$vo.id}]" value="1"></td>
+									<td><a href="{:url('Cpanel/nav_editor?id='.$vo['id'])}" class="text-blue">编辑</a></td>
+								</tr>
+							{/volist}
+								<tbody id="quick">
+								</tbody>
+								<tr>	
+									<td></td>
+									<td colspan="8">
+										<a href="javascript:;" class="add" data-nav="quick"><i class="text-white icon-plus bg-yellow padding-small-left padding-small-right"></i><strong class="text-yellow padding-left">添加快捷导航</strong></a>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="chkall" class="checkbox"><label>删？</label></td>
+									<td colspan="15"><input type="submit" class="button button-blue" value="提交"></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+	</div>
+</div>
+<script type="text/html" id="template">
+<tr>
+	<td></td>
+	<td><input type="text" class="input" name="displayordernew[]"></td>
+	<td><input type="text" class="input" name="newname[]"></td>
+	<td>
+		<select name="subtypenew[]" class="input">
+			<option value="0">菜单样式</option>
+			<option value="1">横排样式</option>
+		</select>
+	</td>
+	<td>
+		<input type="text" class="input" name="newurl[]">
+	</td>
+	<td colspan="5"></td>
+</tr>
+</script>
+{include file="public:footer" /}
+<script type="text/javascript">
+$(function(){
+	$(".add").click(function(){
+		var nav = $(this).data("nav");
+		$("#"+nav).append($("#template").html());
+	})
+})
+</script>

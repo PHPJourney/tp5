@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>GCCMS FOR 5.0.5 安装说明</title>
+		<link rel="stylesheet" href="https://redsnow.cn/public/static/node_modules/normalize.css/normalize.css" />
+		<link rel="stylesheet" href="https://redsnow.cn/public/static/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://redsnow.cn/public/static/vendor/twbs/bootstrap/dist/css/bootstrap-theme.css" />
+		<link rel="stylesheet" href="https://redsnow.cn/public/static/vendor/twbs/bootstrap/dist/css/bootstrap-theme.css.map" />
+		<style type="text/css">
+			body{
+				background: #EDEDED;
+			}
+			.navbar-a-font li a{font-size: 22px;font-weight:700;color:#333}
+			.navbar-a-font .active a{color: #FF5722;}
+			.G_screen-bar{
+				min-width: 1000px;
+				height: 8px;
+				background-color: #F60;
+				overflow: hidden;
+			}
+			.G_screen-bar i {
+				display: block;
+				width: 1000px;
+			}
+			.panel-title{font-weight:700}
+			.text-small{font-size: 16px}
+			.text-middle{font-size: 24px}
+			.text-large{font-size: 36px}
+			.more {line-height: 24px}
+			.border{  
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-o-border-radius: 5px;
+				-moz-border-radius: 5px;
+				padding: 0 6px 0 6px;
+			}
+			.border-main{border: 1px solid #8BC34A}
+			.border-default{border: 1px solid #ccc}
+			.border-primary{border: 1px solid #2196F3}
+			.border-danger{border: 1px solid #FF5722}
+			.border-info{border: 1px solid #5bc0de}
+			.border-success{border: 1px solid #5cb85c}
+			.border-error{border: 1px solid #607D8B}
+			.panel-title{
+				border-bottom: 1px solid #CCC;
+			}
+			.panel-body p{
+				margin: 20px auto;
+				text-indent: 2em;
+				line-height: 1.8;
+				color: #666
+			}
+			dl>dd{
+				border-bottom: 1px dashed #CCC;
+				margin:10px auto;
+				line-height: 3.428;
+			}
+			dl>dd>.active{
+				color:#FF5722;
+			}
+
+			.panel-title h3{font-weight:700;color: #FF5722}
+			a{color: #666}
+			.media-body p a,samp{
+				margin:0 5px;
+				font-size: 14px;
+				line-height: 1.428;
+				color: #666;
+			}
+			th{
+				color: #FF5722;
+				font-weight:700;
+				font-size: 24px;
+			}
+			.careertable{
+					width: 100%;
+					max-width: 100%;
+					margin-bottom: 20px;
+			}
+			.careertable>tbody>tr>td{
+				padding: 8px;
+				line-height: 3.428;
+				vertical-align: top;
+				border-bottom: 1px dashed #ccc;
+			}
+			.carreer-sort{
+				padding: 20px;
+			}
+			.carreer-sort>a{
+				padding: 6px;
+				margin: 0 15px auto;
+				font-size: 20px;
+				line-height: 40px;
+				font-weight: 700;
+				
+			}
+			.carreer-sort .active{
+				background: #FF5722;
+				color: #FFF
+			}
+			.careertable>thead>tr>th{
+				border-bottom: 1px dashed #ccc;
+				vertical-align: bottom;
+				line-height: 3.428;
+			}
+			.footer{
+				background: #D3D3D3;
+			}
+			.link{
+				line-height: 2.5;
+				padding: 30px 0;
+			}
+			.panel-body table tbody tr td a{
+				text-decoration: underline;
+				color: #8bc34a
+			}
+			version{
+				color: #FF5722;
+			}
+		</style>
+	</head>
+	<body>
+<header style="height:120px">
+	<div class="container" style="line-height:81px;padding-top:40px;">
+		<div class="row">
+			<div class="col-md-12 col-xs-18 col-sm-10">
+				<div class="col-md-2 col-xs-3 col-sm-10">
+					<div class="logo">
+						<a href="#"><img src="https://www.redsnow.cn/public/static/uploads/5899dee8b491b.png" height="80" class="img-responsive" alt=""></a>
+					</div>
+				</div>
+				<div class="col-md-10 col-xs-15 col-sm-10">
+					<div class="collapse navbar-collapse pull-right">
+						<ul class="nav navbar-a-font navbar-nav clear">
+							<li class="active"><a href="#start">开始安装</a></li>
+							<li class=""><a href="#database" class="">数据库配置</a></li>
+							<li class=""><a href="#manage" class="">后台管理</a></li>
+							<li class=""><a href="#rewrite" class="">伪静态修改</a></li>
+							<li class=""><a href="#about" class="">关于项目</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="G_screen-bar"><i></i></div>
+<section>
+	<article>
+		<div class="panel" style="margin:0">
+			<div class="container">
+				<div class="panel-title" id="start">
+					<h3>开始安装</h3>
+				</div>
+				<div class="panel-body">
+					<p>
+						在开始安装之前，我得说一些废话，首先非常感谢您选择使用我们的项目，您愿意使用本系统就是对我们最大的肯定，本系统开发框架内核采用THINKPHP，版本号<version>V5.05</version>，目前为您预设了2个模块。更多系统详情请参考后面的表单。好了，废话就这么多，既然你能访问到本页面看到这些文字，就表示你已经把文件架设到了服务器上面，没错，这里是一篇简单的安装使用文档，由于本项目乃是为用户提供后台解决方案，因此默认入口我们特意为您留空，以方便你依托本系统进行再次开发
+					</p>
+					<p>
+						我们相信，我们所推出的一切产品都源于个人的惰性，我们为了偷懒而研发了各式各样的产品，表面上看这是为了给大家提供方便，根本上就是让大家变得更懒，因此，作为开发者、生产者、厂商、等等诸如此类角色的我们，那就是懒惰之源，所以，作为懒惰之源的我们，十分讨厌被打扰，如果一定要去打扰，那就做好打扰的准备工作
+					</p>
+					<p>
+						<table class="table table-hover table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>参数</th>
+									<th>说明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>系统名</td>
+									<td>GCCMS</td>
+									<td>GCCMS 是在GroupCoin.tech进行首次开发，寓意为GroupCoin content manage system的缩写</td>
+								</tr>
+								<tr>
+									<td>版本</td>
+									<td>V5.1.0</td>
+									<td>版本号的又来，5取内核框架的主版本号，1为GCCMS主版本号，0为后期更新次数</td>
+								</tr>
+								<tr>
+									<td>内核框架</td>
+									<td>THINKPHP</td>
+									<td>采用国内非常流行的PHP框架进行开发</td>
+								</tr>
+								<tr>
+									<td>内核框架版本号</td>
+									<td>V5.0.5</td>
+									<td>内核框架版本号由内核框架开发团队设定提供</td>
+								</tr>
+								<tr>
+									<td>开发团队</td>
+									<td>GroupCoin</td>
+									<td>GCCMS开发团队由<a href="http://groupcoin.tech" target='_blank'>GroupCoin.tech</a>创始团队负责开发维护</td>
+								</tr>
+								<tr>
+									<td>项目主页</td>
+									<td>Github</td>
+									<td>点击访问：<a href="https://github.com/PHPJourney/gccms.git" target="_blank">GCCMS FOR TP3.2.3</a> | <a href="https://github.com/PHPJourney/gccms/tp5.git" target="_blank">GCCMS FOR TP5.0.5</a></td>
+								</tr>
+								<tr>
+									<td>模块列表</td>
+									<td>home、index、common</td>
+									<td>home为默认根目录模块，index为后台模块，common为公共模块，禁止直接访问</td>
+								</tr>
+								<tr>
+									<td>数据库备份目录</td>
+									<td><kbd>DbbakfkEu6Eqt3SRMjMCTM3uELK4StyMjWAOJ</kbd></td>
+									<td>如果需要修改，请在入口文件同步更新，文件目录需开放读写权限</td>
+								</tr>
+								<tr>
+									<td>文件上传目录</td>
+									<td><kbd>public/static/uploads</kbd></td>
+									<td>后台设置的上传目录默认上传至此</td>
+								</tr>
+								<tr>
+									<td>字体文件路径</td>
+									<td><kbd>public/attach/fonts</kbd></td>
+									<td>后台设置的上传目录默认上传至此</td>
+								</tr>
+								<tr>
+									<td>项目路径</td>
+									<td><kbd>app</kbd></td>
+									<td>整个项目都统一在该文件夹内</td>
+								</tr>
+								<tr>
+									<td>NGINX伪静态文件</td>
+									<td><kbd>rewrite.conf</kbd></td>
+									<td>仅提供nginx的伪静态，其它类型规则请自行查询</td>
+								</tr>
+								<tr>
+									<td>后台入口文件</td>
+									<td><kbd>admin/index.php</kbd></td>
+									<td>可任意修改，修改后请将伪静态规则中的子目录同步修改</td>
+								</tr>
+							</tbody>
+						</table>
+					</p>
+				</div>
+				<div class="panel-title" id="database">
+					<h3>数据库配置</h3>
+				</div>
+				<div class="panel-body">
+					<p>
+						<blockquote>
+							<p>请在根目录下打开目录 <kbd>app</kbd></p>
+							<p>
+								找到并且打开 <kbd>database.php</kbd> 文件
+							</p>
+							<p>
+								在<kbd>hostname</kbd>中填写您的数据库服务器地址，默认<kbd>localhost</kbd>或者<kbd>127.0.0.1</kbd>
+							</p>
+							<p>
+								在<kbd>database</kbd>中填写您的数据库名称， 
+							</p>
+							<p>
+								在<kbd>username</kbd>中填写数据库用户名
+							</p>
+							<p>
+								在<kbd>password</kbd>中填写数据库密码
+							</p>
+							<p>
+								在<kbd>hostport</kbd>中填写数据库链接端口号
+							</p>
+							<p>
+								表前缀如果没有修改，那么直接忽略，
+							</p>
+						</blockquote>
+					</p>
+					<p>在开发过程中，如果您需要对数据库的访问进行改变，在部署主从服务器或者分布式数据库的时候，有什么不明白的地方，请自行前往THINKPHP官网查询手册，由于开发者水平不一，我们不提供任何的后期支持，还请大家谅解，
+					</p>
+				</div>
+				<div class="panel-title" id="manage">
+					<h3>后台管理</h3>
+				</div>
+				<div class="panel-body">
+					<p>
+						其实文档写起来还是很快的，我本以为要写个长篇大论给各位讲解，但是后来一想，各位都是同行，想必开发水平也不会很低，所以一些基础性的东西就点到为止了。
+					</p>
+					<p>
+						后台管理这一块实际上没有太多笔墨好写，如果说真的有需要讲解的东西呢，也就如下几点
+					</p>
+					<p>
+						<blockquote>
+							<p>1. 将数据库备份目录中的备份文件导入目标数据库</p>
+							<p>2. 根据数据库配置的介绍把数据库链接信息配置好</p>
+							<p>3. 后台登陆账号为 <kbd>admin</kbd>，默认密码为 <kbd>abcd1234</kbd></p>
+							<p>4. 打开后台管理地址 <kbd>http://yourdomain/admin/</kbd>，当然，如果你已经修改过后台入口目录，域名中的 <kbd>admin</kbd>改为你修改后的名称</p>
+						</blockquote>
+					</p>
+					<p>
+						本次发布的出版后台集成了一些常用功能，总体分为<kbd>8</kbd>个大分类，分别是<kbd>全局管理</kbd>、<kbd>网站设置</kbd>、<kbd>文章管理</kbd>、<kbd>工具</kbd>、<kbd>用户管理</kbd>、<kbd>模板管理</kbd>、<kbd>插件管理</kbd>、<kbd>电子商务</kbd>，一些无效分类我进行了菜单隐藏，如果你需要让他显示，可以在<kbd>工具</kbd>=》<kbd>菜单管理</kbd>中修改可用状态，
+					</p>
+					<p>
+						<div class="panel-title"><h3>提示：</h3>在进行二次开发过程中，请一定对代码进行严格编写，否则会报错</div>
+					</p>
+				</div>
+				<div class="panel-title" id="rewrite">
+					<h3>伪静态修改</h3>
+				</div>
+				<div class="panel-body">
+					<p>
+						说到伪静态，老司机可以直接略过，由于tp5的版本还不太完善，所以伪静态我也就大致上做了下简单设置，没有对路由进行深度处理
+					</p>
+					<p>
+						如果你是继续使用当前的两个模块，在不进行任何修改的前提下，可以直接引用rewrite.conf伪静态文件，
+					</p>
+					<p>
+						后台入口目录修改，伪静态文件<kbd>location /admin/ </kbd>代码块中的admin也需要同步更新，并且重启你的服务器让设置生效
+					</p>
+				</div>
+				<div class="panel-title" id="about">
+					<h3>关于项目</h3>
+				</div>
+				<div class="panel-body">
+					<p>	17年1月初，公司开工后，我们在开发一个新项目过程中，考虑到每次开发项目的后台框架都不统一，浪费了大量的时间和精力，因此专门花了几天时间单独开发我们的通用后台框架，实际上开发该框架的想法在很早之前就有，只不过手头的工作一直不断，没有时间来编写这么一套系统的东西，
+					</p>
+					<p>
+					该版本<kbd>V5.1.0</kbd>实际上应该说是第二版，我们的第一版采用的内核是THINKPHP3.2.3 的，最近这几天计划做一个官网，由于官网的工作量小，没有太多的业务，所以也算是提前熟悉下tp5框架的作业流程，因此呢，顺便也把GCCMS的内核进行了升级，也就是我们现在开到的GCCMS版本，当然，由于时间关系，接触tp5也才只有几天，所以我只使用了一些基础性的功能，例如<kbd>模型</kbd>、<kbd>验证码</kbd>、<kbd>上传</kbd>之类的</p>
+					</p>
+				</div>
+			</div>
+		</div>
+	</article>
+</section>
+<footer>
+	<div class="footer">
+		<div class="container text-center">
+			<div class="link">
+				<p>
+				@copyright 2017 - 2027 版权所有
+				<a href="https://github.com/PHPJourney/gccms.git" target="_blank">Github.com</a>
+				&nbsp;|&nbsp;
+				<a href="https://github.com/PHPJourney/gccms/tp5.git" target="_blank">GCCMS FOR TP5.0.5</a>
+				&nbsp;|&nbsp;
+				<a href="https://www.redsnow.cn" target="_blank">Redsnow</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+	</body>
+</html>

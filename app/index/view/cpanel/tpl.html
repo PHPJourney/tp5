@@ -1,0 +1,77 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">模板在线管理</strong></div>
+	<div class="body-content">
+		{neq name="tplsecpass" value=""}
+			<div class="panel-body">
+				<img src="/public/static/floderIcon/last.gif" width="20"> <a href="?path={$prev}&group={$group}" class="text-blue">上级目录</a> 当前目录: <span class="text-blue">{$path}</span>
+				<p class="float-right">
+					<input type="text" id="filename" class="input" placeholder="请输入文件名">
+					<a class="text-blue" href="?path={$path}&act=mkdir" onclick="return rename(this)"><img src="/public/static/floderIcon/folder.gif" width="20">&nbsp;创建文件夹</a>
+					<a class="text-blue" href="?path={$path}&act=mkfile" onclick="return rename(this)"><img src="/public/static/floderIcon/file.png" width="20">&nbsp;创建文件</a>
+				</p>
+			</div>
+			<table class="table table-hover table-bordered table-striped">
+				<thead>
+					<tr>
+						<th><span class="float-left">网站模板管理</span><span>文件夹/文件名</span></th>
+						<th>文件描述</th>
+						<th>文件大小</th>
+						<th>读写权限</th>
+						<th>修改时间</th>
+						<th>相关操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				{volist name="folder" id="vo"}
+					{notin name="vo.name" value="controller,Runtime,common,conf,model,widget"}
+						<?php $name =explode('.',$vo['name']); $ext = end($name);?>
+						{neq name="ext" value="php"}
+							<tr>
+								<td><img src="{$vo.img}" width="20">&nbsp;&nbsp; <a class="text-blue" href="{eq name='vo.type' value='file'}?path={$path}/{$vo.name}&act=edit{else /}?path={$path}/{$vo.name}&group={$group|default=$vo['name']}{/eq}">{$vo.name}</a></td>
+								<td>{$vo.des}</td>
+								<td>{$vo.size}</td>
+								<td>{$vo.mode}</td>
+								<td <?php if(date('Y-m-d', strtotime($vo['time']))==date('Y-m-d',time())){ ?> class="text-red"<?php } ?>>{$vo.time}</td>
+								<td>{eq name='vo.type' value='folder'}<a class="text-blue" href="?path={$path}/{$vo.name}&group={$group|default=$vo['name']}">下级目录</a>{else /}<a class="text-blue" href="?path={$path}/{$vo.name}&act=edit">编辑</a> | <a href="?act=delete&path={$path}/{$vo.name}" class="text-red">删除</a>{/eq}</td>
+							</tr>
+						{/neq}
+					{/notin}
+				{/volist}
+				</tbody>
+			</table>
+		{else /}
+			<div class="panel-body">
+				<form method="post" target="ajax" action="{:url('Cpanel/tpl')}" class="form-x">
+					<div class="x12">
+						<div class="form-group">
+							<div class="x3"></div>
+							<div class="label"><strong>安全密码</strong></div>
+							<div class="x6">
+								<div class="field">
+									<input type="password" name="tplsecpass" class="input" value="" placeholder="请输入安全密码继续模板访问">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="x3"></div>
+							<div class="label"><strong></strong></div>
+						<div class="x6"><input type="submit" class="button bg-blue" value="访问"></div>
+					</div>
+				</form>
+			</div>
+		{/neq}
+	</div>
+</div>
+{include file="public:footer" /}
+<script type="text/javascript">
+function rename(e){
+	var name = $("#filename").val();
+	if(name==''){
+		alert("请输入文件夹或文件名称");
+		return false;
+	}
+	$(e).attr("href",$(e).attr("href")+"&filename="+name);
+}
+</script>

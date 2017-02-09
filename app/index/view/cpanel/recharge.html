@@ -1,0 +1,86 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">充值类型</strong></div>
+	<div class="body-content">
+		<div class="panel-body">
+			<a href="{:url('Cpanel/recharge_add')}" target="right" class="button bg-blue">添加充值类型</a>
+			<a href="javascript:;" target="right" id="open" class="button bg-green">开通</a>
+			<a href="javascript:;" target="right" id="deny" class="button bg-green">关闭</a>
+		</div>
+		<table class="table table-hover table-bordered table-striped">
+			<thead>
+				<tr>
+					<th><input type="checkbox" class="checkbox" id="selectall"></th>
+					<th>ID</th>
+					<th>名称</th>
+					<th>备注</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="pay.list" id="vo"}
+					<tr>
+						<td><input type="checkbox" class="checkbox" name="deny[]" value="{$vo.id}"></td>
+						<td>{$vo.id}</td>
+						<td>{$vo.name}</td>
+						<td>{$vo.remark}</td>
+						<td class="info">{eq name="vo.status" value="0"}未开通{else /}已开通{/eq}</td>
+						<td><a href="{:url('Cpanel/pay_config?tags='.$vo['tags'])}" class="text-blue">配置参数</a> | <a href="{:url('Cpanel/pay_del?id='.$vo['id'])}" class="text-red">删除</a></td>
+					</tr>
+				{/volist}
+			</tbody>
+		</table>
+		<div class="pageation">
+			{$pay.page}
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}
+
+<script type="text/javascript">
+$(function(){
+	$("#open").click(function(){
+		var id = [];
+		$("input[type='checkbox']:checked").each(function(){
+				id.push($(this).val());
+		});
+		idstr = id.join(",");
+		if(idstr==''){
+			updateAlert("你还没有选择要删除的数据",3000);
+		}else{
+			$.post("{:url('Cpanel/oempay')}",{id:idstr},function(result){
+				if(result.code==1){
+					updateAlert("开通成功",3000);
+					$("input[type='checkbox']:checked").each(function(){
+						$(this).parent().parent().find("td").eq(4).text("已开通");
+					});
+				}else{
+					updateAlert("开通失败！",3000);
+				}
+			})
+		}
+	});
+	$("#deny").click(function(){
+		var id = [];
+		$("input[type='checkbox']:checked").each(function(){
+				id.push($(this).val());
+		});
+		idstr = id.join(",");
+		if(idstr==''){
+			updateAlert("你还没有选择要删除的数据",3000);
+		}else{
+			$.post("{:url('Cpanel/denypay')}",{id:idstr},function(result){
+				if(result.code==1){
+					updateAlert("关闭成功",3000);
+					$("input[type='checkbox']:checked").each(function(){
+						$(this).parent().parent().find("td").eq(4).text("未开通");
+					});
+				}else{
+					updateAlert("关闭失败！",3000);
+				}
+			})
+		}
+	});
+})
+</script>

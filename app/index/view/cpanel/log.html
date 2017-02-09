@@ -1,0 +1,24 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">网站日志</strong></div>
+	<div class="body-content">
+		<table class="table table-hover table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>索引</th>
+					<th>记录时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="log.list" id="vo"}
+					<tr>
+						<td><a href="{:url('Cpanel/logshow?tags='.$vo['logtags'])}" class="text-blue" target="_logtags">{$vo.logtags}</a></td>
+						<td>{$vo.logtime}</td>
+					</tr>
+				{/volist}
+			</tbody>
+		</table>
+		<div class="pageation">{$log.page}</div>
+	</div>
+</div>
+{include file="public:footer" /}

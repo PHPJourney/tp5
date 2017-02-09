@@ -1,0 +1,48 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">充值记录</strong></div>
+	<div class="body-content">
+		<div class="panel-body">
+			<table class="table table-hover table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>用户名</th>
+						<th>充值金额</th>
+						<th>充值方式</th>
+						<th>充值订单</th>
+						<th>充值时间</th>
+						<th>充值状态</th>
+						<th>订单检查</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				{volist name="recharge.list" id="vo"}
+					<tr>
+						<td>{$vo.id}</td>
+						<td>{$vo.nick}</td>
+						<td>{$vo.amount}</td>
+						<td>{$payconfig[$vo['method']]}</td>
+						<td>{$vo.order}</td>
+						<td>{$vo.time}</td>
+						<td>{$rechargestatus[$vo['status']]}</td>
+						<td>{eq name="vo.status" value="1"}
+							{eq name="vo.mer_no" value=""}
+								<i class="icon-times text-red text-big"></i>
+							[else /}
+								<i class="icon-check text-green text-big"></i>
+							{/eq}
+							{else /}
+								<i class="icon-check text-green text-big"></i>
+						{/eq}</td>
+						<td>{neq name="vo.status" value="1"}<a href="{:url('Cpanel/rechargestatus?id='.$vo['id'])}" class="text-blue">已到账</a>{/neq}</td>
+					</tr>
+				{/volist}
+				</tbody>
+			</table>
+			<div class="pageation">{$recharge.page}</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

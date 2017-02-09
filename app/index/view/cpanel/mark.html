@@ -1,0 +1,1041 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">水印设置</strong></div>
+	<div class="panel-body">
+	<a href="javascript:;" data-template="article" class="button bg-blue article">文章</a>
+	<a href="javascript:;" data-template="website" class="article">网站</a>
+	</div>
+	<div class="body-content" data-cate="article" id="template">
+		<form method="post" class="form-x">
+			<div class="x12">
+				<div class="form-group bg-blue-light">
+					<div class="label">
+						<strong class="text-blue">文章图片水印设置</strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>水印</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							  <input type="radio" class="radio" name="data[watermarkstatus_article]" value="0" <?php if(in_array(0,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>不启用水印功能
+							</div>
+							<div class="field">
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="1" <?php if(in_array(1,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#1
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="2" <?php if(in_array(2,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#2
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="3" <?php if(in_array(3,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#3
+							</div>
+							<div class="field">
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="4" <?php if(in_array(4,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#4
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="5" <?php if(in_array(5,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#5
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="6" <?php if(in_array(6,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#6
+							</div>
+							<div class="field">
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="7" <?php if(in_array(7,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#7
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="8" <?php if(in_array(8,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#8
+								<input type="radio" class="radio" name="data[watermarkstatus_article]" value="9" <?php if(in_array(9,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#9
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">您可以设置自动为用户上传的 JPG/PNG/GIF 图片附件添加水印，请在此选择水印添加的位置(3x3 共 9 个位置可选)。不支持动画 GIF 格式</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>水印添加条件</strong>
+						</div>
+						<div class="x3">
+							<div class="x5">
+								<div class="field">
+									<input type="text" class="input" name="data[watermarkminwidth_article]" value="{$setting.watermarkminwidth_article}">
+								</div>
+							</div>
+							<div class="x1">
+								<div class="field">
+									<strong class="text-red">&times;</strong>
+								</div>
+							</div>
+							<div class="x5">
+								<div class="field">
+									<input type="text" class="input" name="data[watermarkminheight_article]" value="{$setting.watermarkminheight_article}">
+								</div>
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">设置水印添加的条件，小于此尺寸的图片附件将不添加水印</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>水印图片类型</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[watermarktype_article]" value="0" <?php if(in_array(0,explode(",",$setting['watermarktype_article']))){ echo "checked"; }?>>GIF类型水印
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[watermarktype_article]" value="1" <?php if(in_array(1,explode(",",$setting['watermarktype_article']))){ echo "checked"; }?>>PNG类型水印
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[watermarktype_article]" value="2" <?php if(in_array(2,explode(",",$setting['watermarktype_article']))){ echo "checked"; }?>>文本类型水印
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">如果设置 GIF 类型的文件作为水印，水印图片为 Attachment/water/watermark.gif，如果设置 PNG 类型的文件作为水印，水印图片为 Attachment/water/watermark.png，您可替换水印文件以实现不同的水印效果。如果设置文本类型的水印并且使用 GD 图片处理库，那么还需要 FreeType 库支持才能使用</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>水印融合度</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[watermarktrans_article]" value="{$setting.watermarktrans_article}">
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">设置 GIF 类型水印图片与原始图片的融合度，范围为 1～100 的整数，数值越大水印图片透明度越低。PNG 类型水印本身具有真彩透明效果，无须此设置。本功能需要开启水印功能后才有效</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>JPEG 水印质量</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[watermarkquality_article]" value="{$setting.watermarkquality_article}">
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">设置 JPEG 类型的图片附件添加水印后的质量参数，范围为 0～100 的整数，数值越大结果图片效果越好，但尺寸也越大。本功能需要开启水印功能后才有效</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印文字</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <textarea class="input" name="data[watermarktext_article]">{$setting.watermarktext_article}</textarea>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">如果您指定的 TrueType 字体为中文字体文件，那么您可以在文本水印中书写中文</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印 TrueType 字体文件名</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<select name="data[watermarktext_fontpath_article]" class="input">
+									{volist name="fontpath" id="path"}
+										<option value="{$path}" {eq name="setting.watermarktext_fontpath_article" value="$path"}selected{/eq}>{$path}</option>
+									{/volist}
+								</select>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">填写存放在 Public/attach/fonts/ 目录下的 TTF 字体文件，支持中文字体。如使用中文 TTF 字体请使用包含完整中文汉字的字体文件</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印字体大小</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <input class="input" name="data[watermarktext_size_article]" value="{$setting.watermarktext_size_article}">
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">设置文本水印字体大小，请按照字体设置相应的大小</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印显示角度</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <input type="text" class="input" name="data[watermarktext_angle_article]" value="{$setting.watermarktext_angle_article}">
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">0 度为从左向右阅读文本</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印字体颜色</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" data-iframe="btncolor" data-id="color" id="color" style="color:{$setting.watermarktext_color_article}" name="data[watermarktext_color_article]" value="{$setting.watermarktext_color_article}">
+								</div>
+							</div>
+							<div class="field" id="btncolor"></div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">输入 16 进制颜色代表文本水印字体颜色</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印阴影横向偏移量</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" name="data[watermarktext_shadowx_article]" value="{$setting.watermarktext_shadowx_article}">
+								</div>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">设置文本水印阴影横向偏移量，此数值不宜设置的太大</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印阴影纵向偏移量</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" name="data[watermarktext_shadowy_article]" value="{$setting.watermarktext_shadowy_article}">
+								</div>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">设置文本水印阴影纵向偏移量，此数值不宜设置的太大</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印阴影颜色</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" id="textcolor" style="color:{$setting.watermarktext_shadowcolor_article}" data-iframe="shadow" data-id="textcolor" name="data[watermarktext_shadowcolor_article]" value="{$setting.watermarktext_shadowcolor_article}">
+								</div>
+							</div>
+							<div class="field" id="shadow"></div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">输入 16 进制颜色代表文本水印阴影字体颜色</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印横向偏移量(ImageMagick)</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" name="data[watermarktext_translatex_article]" value="{$setting.watermarktext_translatex_article}">
+								</div>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">设置水印文本输出后向屏幕中央的横向的偏移值。本设置只适用于 ImageMagick 图片处理库</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印纵向偏移量(ImageMagick)</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" name="data[watermarktext_translatey_article]" value="{$setting.watermarktext_translatey_article}">
+								</div>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">设置水印文本输出后向屏幕中央的纵向的偏移值。本设置只适用于 ImageMagick 图片处理库</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印横向倾斜角度(ImageMagick)</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" name="data[watermarktext_skewx_article]" value="{$setting.watermarktext_skewx_article}">
+								</div>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">设置水印文本横向的倾斜角度。本设置只适用于 ImageMagick 图片处理库</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文本水印纵向倾斜角度(ImageMagick)</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<div class="x12">
+									<input class="input" name="data[watermarktext_skewy_article]" value="{$setting.watermarktext_skewy_article}">
+								</div>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">	设置水印文本纵向的倾斜角度。本设置只适用于 ImageMagick 图片处理库</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group margin-large-top">
+					<div class="x12">
+						<div class="label">
+						  <label></label>
+						</div>
+						<div class="field">
+						  <button class="button bg-main" type="submit">提交</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+<script type="text/html" id="article">
+<form method="post" class="form-x">
+	<div class="x12">
+		<div class="form-group bg-blue-light">
+			<div class="label">
+				<strong class="text-blue">文章图片水印设置</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>水印</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					  <input type="radio" class="radio" name="data[watermarkstatus_article]" value="0" <?php if(in_array(0,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>不启用水印功能
+					</div>
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="1" <?php if(in_array(1,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#1
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="2" <?php if(in_array(2,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#2
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="3" <?php if(in_array(3,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#3
+					</div>
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="4" <?php if(in_array(4,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#4
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="5" <?php if(in_array(5,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#5
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="6" <?php if(in_array(6,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#6
+					</div>
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="7" <?php if(in_array(7,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#7
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="8" <?php if(in_array(8,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#8
+						<input type="radio" class="radio" name="data[watermarkstatus_article]" value="9" <?php if(in_array(9,explode(",",$setting['watermarkstatus_article']))){ echo "checked"; }?>>#9
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">您可以设置自动为用户上传的 JPG/PNG/GIF 图片附件添加水印，请在此选择水印添加的位置(3x3 共 9 个位置可选)。不支持动画 GIF 格式</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+					<strong>水印添加条件</strong>
+				</div>
+				<div class="x3">
+					<div class="x5">
+						<div class="field">
+							<input type="text" class="input" name="data[watermarkminwidth_article]" value="{$setting.watermarkminwidth_article}">
+						</div>
+					</div>
+					<div class="x1">
+						<div class="field">
+							<strong class="text-red">&times;</strong>
+						</div>
+					</div>
+					<div class="x5">
+						<div class="field">
+							<input type="text" class="input" name="data[watermarkminheight_article]" value="{$setting.watermarkminheight_article}">
+						</div>
+					</div>
+				</div>
+				<div class="x7">
+					<small class="text-gray padding-left">设置水印添加的条件，小于此尺寸的图片附件将不添加水印</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>水印图片类型</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarktype_article]" value="0" <?php if(in_array(0,explode(",",$setting['watermarktype_article']))){ echo "checked"; }?>>GIF类型水印
+					</div>
+					<div class="field">
+					  <input type="radio" class="radio" name="data[watermarktype_article]" value="1" <?php if(in_array(1,explode(",",$setting['watermarktype_article']))){ echo "checked"; }?>>PNG类型水印
+					</div>
+					<div class="field">
+					  <input type="radio" class="radio" name="data[watermarktype_article]" value="2" <?php if(in_array(2,explode(",",$setting['watermarktype_article']))){ echo "checked"; }?>>文本类型水印
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">如果设置 GIF 类型的文件作为水印，水印图片为 Attachment/water/watermark.gif，如果设置 PNG 类型的文件作为水印，水印图片为 Attachment/water/watermark.png，您可替换水印文件以实现不同的水印效果。如果设置文本类型的水印并且使用 GD 图片处理库，那么还需要 FreeType 库支持才能使用</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+					<strong>水印融合度</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<input type="text" class="input" name="data[watermarktrans_article]" value="{$setting.watermarktrans_article}">
+					</div>
+				</div>
+				<div class="x7">
+					<small class="text-gray padding-left">设置 GIF 类型水印图片与原始图片的融合度，范围为 1～100 的整数，数值越大水印图片透明度越低。PNG 类型水印本身具有真彩透明效果，无须此设置。本功能需要开启水印功能后才有效</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+					<strong>JPEG 水印质量</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<input type="text" class="input" name="data[watermarkquality_article]" value="{$setting.watermarkquality_article}">
+					</div>
+				</div>
+				<div class="x7">
+					<small class="text-gray padding-left">设置 JPEG 类型的图片附件添加水印后的质量参数，范围为 0～100 的整数，数值越大结果图片效果越好，但尺寸也越大。本功能需要开启水印功能后才有效</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印文字</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					 <textarea class="input" name="data[watermarktext_article]">{$setting.watermarktext_article}</textarea>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">如果您指定的 TrueType 字体为中文字体文件，那么您可以在文本水印中书写中文</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印 TrueType 字体文件名</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<select name="data[watermarktext_fontpath_article]" class="input">
+							<volist name="fontpath" id="path">
+								<option value="{$path}" <eq name="setting.watermarktext_fontpath_article" value="$path">selected</eq>>{$path}</option>
+							</volist>
+						</select>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">填写存放在 Public/attach/fonts/ 目录下的 TTF 字体文件，支持中文字体。如使用中文 TTF 字体请使用包含完整中文汉字的字体文件</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印字体大小</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					 <input class="input" name="data[watermarktext_size_article]" value="{$setting.watermarktext_size_article}">
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置文本水印字体大小，请按照字体设置相应的大小</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印显示角度</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					 <input type="text" class="input" name="data[watermarktext_angle_article]" value="{$setting.watermarktext_angle_article}">
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">0 度为从左向右阅读文本</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印字体颜色</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" data-iframe="btncolor" data-id="color" id="color" style="color:{$setting.watermarktext_color_article}" name="data[watermarktext_color_article]" value="{$setting.watermarktext_color_article}">
+						</div>
+					</div>
+					<div class="field" id="btncolor"></div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">输入 16 进制颜色代表文本水印字体颜色</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印阴影横向偏移量</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_shadowx_article]" value="{$setting.watermarktext_shadowx_article}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置文本水印阴影横向偏移量，此数值不宜设置的太大</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印阴影纵向偏移量</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_shadowy_article]" value="{$setting.watermarktext_shadowy_article}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置文本水印阴影纵向偏移量，此数值不宜设置的太大</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印阴影颜色</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" id="textcolor" style="color:{$setting.watermarktext_shadowcolor_article}" data-iframe="shadow" data-id="textcolor" name="data[watermarktext_shadowcolor_article]" value="{$setting.watermarktext_shadowcolor_article}">
+						</div>
+					</div>
+					<div class="field" id="shadow"></div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">输入 16 进制颜色代表文本水印阴影字体颜色</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印横向偏移量(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_translatex_article]" value="{$setting.watermarktext_translatex_article}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置水印文本输出后向屏幕中央的横向的偏移值。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印纵向偏移量(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_translatey_article]" value="{$setting.watermarktext_translatey_article}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置水印文本输出后向屏幕中央的纵向的偏移值。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印横向倾斜角度(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_skewx_article]" value="{$setting.watermarktext_skewx_article}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置水印文本横向的倾斜角度。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印纵向倾斜角度(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_skewy_article]" value="{$setting.watermarktext_skewy_article}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">	设置水印文本纵向的倾斜角度。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group margin-large-top">
+			<div class="x12">
+				<div class="label">
+				  <label></label>
+				</div>
+				<div class="field">
+				  <button class="button bg-main" type="submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+</script>
+<script type="text/html" id="website">
+<form method="post" class="form-x">
+	<div class="x12">
+		<div class="form-group bg-blue-light">
+			<div class="label">
+				<strong class="text-blue">文章图片水印设置</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>水印</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					  <input type="radio" class="radio" name="data[watermarkstatus_website]" value="0" <?php if(in_array(0,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>不启用水印功能
+					</div>
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="1" <?php if(in_array(1,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#1
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="2" <?php if(in_array(2,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#2
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="3" <?php if(in_array(3,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#3
+					</div>
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="4" <?php if(in_array(4,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#4
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="5" <?php if(in_array(5,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#5
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="6" <?php if(in_array(6,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#6
+					</div>
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="7" <?php if(in_array(7,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#7
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="8" <?php if(in_array(8,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#8
+						<input type="radio" class="radio" name="data[watermarkstatus_website]" value="9" <?php if(in_array(9,explode(",",$setting['watermarkstatus_website']))){ echo "checked"; }?>>#9
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">您可以设置自动为用户上传的 JPG/PNG/GIF 图片附件添加水印，请在此选择水印添加的位置(3x3 共 9 个位置可选)。不支持动画 GIF 格式</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+					<strong>水印添加条件</strong>
+				</div>
+				<div class="x3">
+					<div class="x5">
+						<div class="field">
+							<input type="text" class="input" name="data[watermarkminwidth_website]" value="{$setting.watermarkminwidth_website}">
+						</div>
+					</div>
+					<div class="x1">
+						<div class="field">
+							<strong class="text-red">&times;</strong>
+						</div>
+					</div>
+					<div class="x5">
+						<div class="field">
+							<input type="text" class="input" name="data[watermarkminheight_website]" value="{$setting.watermarkminheight_website}">
+						</div>
+					</div>
+				</div>
+				<div class="x7">
+					<small class="text-gray padding-left">设置水印添加的条件，小于此尺寸的图片附件将不添加水印</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>水印图片类型</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<input type="radio" class="radio" name="data[watermarktype_website]" value="0" <?php if(in_array(0,explode(",",$setting['watermarktype_website']))){ echo "checked"; }?>>GIF类型水印
+					</div>
+					<div class="field">
+					  <input type="radio" class="radio" name="data[watermarktype_website]" value="1" <?php if(in_array(1,explode(",",$setting['watermarktype_website']))){ echo "checked"; }?>>PNG类型水印
+					</div>
+					<div class="field">
+					  <input type="radio" class="radio" name="data[watermarktype_website]" value="2" <?php if(in_array(2,explode(",",$setting['watermarktype_website']))){ echo "checked"; }?>>文本类型水印
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">如果设置 GIF 类型的文件作为水印，水印图片为 Attachment/water/watermark.gif，如果设置 PNG 类型的文件作为水印，水印图片为 Attachment/water/watermark.png，您可替换水印文件以实现不同的水印效果。如果设置文本类型的水印并且使用 GD 图片处理库，那么还需要 FreeType 库支持才能使用</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+					<strong>水印融合度</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<input type="text" class="input" name="data[watermarktrans_website]" value="{$setting.watermarktrans_website}">
+					</div>
+				</div>
+				<div class="x7">
+					<small class="text-gray padding-left">设置 GIF 类型水印图片与原始图片的融合度，范围为 1～100 的整数，数值越大水印图片透明度越低。PNG 类型水印本身具有真彩透明效果，无须此设置。本功能需要开启水印功能后才有效</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+					<strong>JPEG 水印质量</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<input type="text" class="input" name="data[watermarkquality_website]" value="{$setting.watermarkquality_website}">
+					</div>
+				</div>
+				<div class="x7">
+					<small class="text-gray padding-left">设置 JPEG 类型的图片附件添加水印后的质量参数，范围为 0～100 的整数，数值越大结果图片效果越好，但尺寸也越大。本功能需要开启水印功能后才有效</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印文字</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					 <textarea class="input" name="data[watermarktext_website]">{$setting.watermarktext_website}</textarea>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">如果您指定的 TrueType 字体为中文字体文件，那么您可以在文本水印中书写中文</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印 TrueType 字体文件名</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<select name="data[watermarktext_fontpath_website]" class="input">
+							<volist name="fontpath" id="path">
+								<option value="{$path}" <eq name="setting.watermarktext_fontpath_website" value="$path">selected</eq>>{$path}</option>
+							</volist>
+						</select>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">填写存放在 Public/attach/fonts/目录下的 TTF 字体文件，支持中文字体。如使用中文 TTF 字体请使用包含完整中文汉字的字体文件</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印字体大小</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					 <input class="input" name="data[watermarktext_size_website]" value="{$setting.watermarktext_size_website}">
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置文本水印字体大小，请按照字体设置相应的大小</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印显示角度</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+					 <input type="text" class="input" name="data[watermarktext_angle_website]" value="{$setting.watermarktext_angle_website}">
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">0 度为从左向右阅读文本</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印字体颜色</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" data-iframe="btncolor" data-id="color" id="color" style="color:{$setting.watermarktext_color_website}" name="data[watermarktext_color_website]" value="{$setting.watermarktext_color_website}">
+						</div>
+					</div>
+					<div class="field" id="btncolor"></div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">输入 16 进制颜色代表文本水印字体颜色</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印阴影横向偏移量</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_shadowx_website]" value="{$setting.watermarktext_shadowx_website}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置文本水印阴影横向偏移量，此数值不宜设置的太大</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印阴影纵向偏移量</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_shadowy_website]" value="{$setting.watermarktext_shadowy_website}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置文本水印阴影纵向偏移量，此数值不宜设置的太大</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印阴影颜色</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" id="textcolor" style="color:{$setting.watermarktext_shadowcolor_website}" data-iframe="shadow" data-id="textcolor" name="data[watermarktext_shadowcolor_website]" value="{$setting.watermarktext_shadowcolor_website}">
+						</div>
+					</div>
+					<div class="field" id="shadow"></div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">输入 16 进制颜色代表文本水印阴影字体颜色</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印横向偏移量(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_translatex_website]" value="{$setting.watermarktext_translatex_website}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置水印文本输出后向屏幕中央的横向的偏移值。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印纵向偏移量(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_translatey_website]" value="{$setting.watermarktext_translatey_website}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置水印文本输出后向屏幕中央的纵向的偏移值。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印横向倾斜角度(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_skewx_website]" value="{$setting.watermarktext_skewx_website}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">设置水印文本横向的倾斜角度。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="x12">
+				<div class="label">
+				  <strong>文本水印纵向倾斜角度(ImageMagick)</strong>
+				</div>
+				<div class="x3">
+					<div class="field">
+						<div class="x12">
+							<input class="input" name="data[watermarktext_skewy_website]" value="{$setting.watermarktext_skewy_website}">
+						</div>
+					</div>
+				</div>
+				<div class="x7 padding-left">
+					<small class="text-gray">	设置水印文本纵向的倾斜角度。本设置只适用于 ImageMagick 图片处理库</small>
+				</div>
+			</div>
+		</div>
+		<div class="form-group margin-large-top">
+			<div class="x12">
+				<div class="label">
+				  <label></label>
+				</div>
+				<div class="field">
+				  <button class="button bg-main" type="submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+</script>
+<script type="text/javascript">
+$(function(){
+	$(".article").click(function(){
+		$(".article").removeClass("button bg-blue");
+		$(this).addClass("button bg-blue");
+		$("#template").html($("#"+$(this).data("template")).html());
+		$("#template").attr("data-cate",$(this).data("template"));
+	})
+	$("input").focus(function(){
+		$("input").each(function(){
+			if($(this).data("iframe") != ''){
+				var id = $(this).data("id");
+				$("#"+ $(this).data('iframe')).html("<iframe src=\"{:url('Cpanel/color')}?setvalue="+ id +"\" width='210'></ifarme>");
+			}
+		})
+	})
+	$("input").blur(function(){
+		$("input").each(function(){
+			if($(this).data("iframe") != ''){
+				$("#"+ $(this).data('iframe')).html("");
+			}
+		})
+	})
+})
+
+<!-- function onfocus(e){ -->
+	<!-- var id = e.data("id"); -->
+	<!-- $("#"+ e.data('iframe')).html("<iframe src=\"{:url('Cpanel/color')}?setvalue="+ id +"\" width='210'></ifarme>"); -->
+<!-- } -->
+
+<!-- function onblur(e){ -->
+	<!-- $("#"+ e.data("iframe")).html(''); -->
+<!-- } -->
+
+function setvalue(e,v){
+	$("#"+e).val(v);
+	$("#"+e).css({"color":v});
+}
+</script>
+</div>
+{include file="public:footer" /}

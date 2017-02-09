@@ -1,0 +1,165 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head">
+		<strong>添加菜单</strong>
+	</div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						菜单名称
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" name="data[name]" class="input" value="{$menuitem.name}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请填写要添加的菜单名称</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						菜单链接
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" name="data[link]" class="input" value="{$menuitem.link}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请填写要添加的菜单链接地址</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						上级菜单
+					</div>
+					<div class="x3">
+						<div class="field">
+							<select name="data[pid]" class="input w50">
+								<option value="0"> --顶级菜单-- </option>
+							{volist name="menu" id="vo"}
+								<option value="{$vo.id}" {eq name="menuitem.pid" value="$vo['id']"}selected{/eq}>{$vo.name}</option>
+							{/volist}
+							</select>
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请选择菜单上级分类</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						菜单图标
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="radio" name="data[icon]" class="radio" value="user" {eq name="menuitem.icon" value="user"}checked{/eq}><i class="icon-user text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="cog" {eq name="menuitem.icon" value="cog"}checked{/eq}><i class="icon-cog text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="hacker-news" {eq name="menuitem.icon" value="hacker-news"}checked{/eq}><i class="icon-hacker-news text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="wrench" {eq name="menuitem.icon" value="wrench"}checked{/eq}><i class="icon-wrench text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="adjust" {eq name="menuitem.icon" value="adjust"}checked{/eq}><i class="icon-adjust text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="anchor" {eq name="menuitem.icon" value="anchor"}checked{/eq}><i class="icon-anchor text-large"></i>
+						</div>
+						<div class="field">
+							<input type="radio" name="data[icon]" class="radio" value="archive" {eq name="menuitem.icon" value="archive"}checked{/eq}><i class="icon-archive text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="arrows" {eq name="menuitem.icon" value="arrows"}checked{/eq}><i class="icon-arrows text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="arrows-h" {eq name="menuitem.icon" value="arrows-h"}checked{/eq}><i class="icon-arrows-h text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="arrows-v" {eq name="menuitem.icon" value="arrows-v"}checked{/eq}><i class="icon-arrows-v text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="asterisk" {eq name="menuitem.icon" value="asterisk"}checked{/eq}><i class="icon-asterisk text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="automobile " {eq name="menuitem.icon" value="automobile "}checked{/eq}><i class="icon-automobile  text-large"></i>
+						</div>
+						<div class="field">
+							<input type="radio" name="data[icon]" class="radio" value="ban" {eq name="menuitem.icon" value="ban"}checked{/eq}><i class="icon-ban text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bank" {eq name="menuitem.icon" value="bank"}checked{/eq}><i class="icon-bank text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bar-chart-o" {eq name="menuitem.icon" value="bar-chart-o"}checked{/eq}><i class="icon-bar-chart-o text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="barcode" {eq name="menuitem.icon" value="barcode"}checked{/eq}><i class="icon-barcode text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bars" {eq name="menuitem.icon" value="bars"}checked{/eq}><i class="icon-bars text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="beer" {eq name="menuitem.icon" value="beer"}checked{/eq}><i class="icon-beer text-large"></i>
+						</div>
+						<div class="field">
+							<input type="radio" name="data[icon]" class="radio" value="bell" {eq name="menuitem.icon" value="bell"}checked{/eq}><i class="icon-bell text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bell-o" {eq name="menuitem.icon" value="bell-o"}checked{/eq}><i class="icon-bell-o text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bomb" {eq name="menuitem.icon" value="bomb"}checked{/eq}><i class="icon-bomb text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="book" {eq name="menuitem.icon" value="book"}checked{/eq}><i class="icon-book text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bookmark" {eq name="menuitem.icon" value="bookmark"}checked{/eq}><i class="icon-bookmark text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bookmark-o" {eq name="menuitem.icon" value="bookmark-o"}checked{/eq}><i class="icon-bookmark-o text-large"></i>
+						</div>
+						<div class="field">
+							<input type="radio" name="data[icon]" class="radio" value="briefcase" {eq name="menuitem.icon" value="briefcase"}checked{/eq}><i class="icon-briefcase text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bug" {eq name="menuitem.icon" value="bug"}checked{/eq}><i class="icon-bug text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="building" {eq name="menuitem.icon" value="building"}checked{/eq}><i class="icon-building text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="building-o" {eq name="menuitem.icon" value="building-o"}checked{/eq}><i class="icon-building-o text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bullhorn" {eq name="menuitem.icon" value="bullhorn"}checked{/eq}><i class="icon-bullhorn text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="bullseye" {eq name="menuitem.icon" value="bullseye"}checked{/eq}><i class="icon-bullseye text-large"></i>
+						</div>
+						<div class="field">
+							<input type="radio" name="data[icon]" class="radio" value="cab" {eq name="menuitem.icon" value="cab"}checked{/eq}><i class="icon-cab text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="calendar" {eq name="menuitem.icon" value="calendar"}checked{/eq}><i class="icon-calendar text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="calendar-o" {eq name="menuitem.icon" value="calendar-o"}checked{/eq}><i class="icon-calendar-o text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="camera" {eq name="menuitem.icon" value="camera"}checked{/eq}><i class="icon-camera text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="camera-retro" {eq name="menuitem.icon" value="camera-retro"}checked{/eq}><i class="icon-camera-retro text-large"></i>
+							<input type="radio" name="data[icon]" class="radio" value="car" {eq name="menuitem.icon" value="car"}checked{/eq}><i class="icon-car text-large"></i>
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请选择顶级菜单图标，子菜单无效,其他图标可以自行添加，使用拼图文本图标</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						排序
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" name="data[order]" class="input" value="{$menuitem.order}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">菜单排序从小到大排列</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						启用状态
+					</div>
+					<div class="x3">
+						<div class="field">
+							<select name="data[used]" class="input w50">
+								<option value="1" {eq name="menuitem.used" value="1"}selected{/eq}>启用</option>
+								<option value="0" {eq name="menuitem.used" value="0"}selected{/eq}>禁用</option>
+							</select>
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">菜单开放状态选择</small>
+					</div>
+				</div>
+			</div>
+			 <div class="form-group">
+				<div class="label">
+				  <label></label>
+				</div>
+				<div class="field">
+					{notempty name="menuitem"}
+					<input type="hidden" name="id" value="{$menuitem.id}">
+					{/notempty}
+				  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+				</div>
+			  </div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}

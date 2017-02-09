@@ -1,0 +1,139 @@
+{include file="public:head" /}
+<script type="text/javascript" src="/public/static/editor/xhEditor/xheditor.js"></script>
+<script type="text/javascript" src="/public/static/editor/xhEditor/xheditor_lang/zh-cn.js"></script>
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">添加文章内容</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong class="text-red">文章标题</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[title]" value="">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请填写文章标题</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong class="text-red">文章封面</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							 <input type="text" id="url1" name="data[imgurl]" class="input tips" style="width:50%; float:left;" value="" data-toggle="hover" data-place="right" data-image=""  />
+							  <a class="button input-file bg-blue margin-left" href="javascript:void(0);">+ 浏览上传
+								<input size="100" id="file" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件"
+									type="file" />
+							</a>
+							<input type="hidden" id="urlthumb" class="input" name="data[thumbnail]" value="">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请上传文章封面</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong class="text-red">分类</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<select name="data[sid]" class="input" size="5">
+								{volist name="sort" id="vo"}
+									<option value="{$vo.id}">{$vo.name}</option>
+								{/volist}
+							</select>
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请选择文章分类</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong class="text-red">简介</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<textarea type="text" class="input" name="data[intro]"></textarea>
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请填写文章简短介绍</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong class="text-red">文章内容</strong>
+					</div>
+					<div class="x7">
+						<div class="field">
+							<textarea name="data[detail]" rows="16" id="detail" class="input"></textarea> 
+						</div>
+					</div>
+					<div class="x3">
+						<small class="text-gray">请填写文章内容</small>
+					</div>
+				</div>
+			</div>
+			 <div class="form-group">
+				<div class="label">
+				  <label></label>
+				</div>
+				<div class="field">
+				  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+				</div>
+			  </div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}
+<script type="text/javascript">
+$('#detail').xheditor({tools:'mfull',upImgUrl:"{:url('Attach/upload_editor_thumb')}",upImgExt:"jpg,jpeg,gif,png"});
+$(function(){
+	$("#url1").change(function(){
+		var src = $(this).val();
+		src != '' ? $(this).attr("data-image",src) : '';
+	})
+	$('#file').change(function(){
+		var xhr = new XMLHttpRequest();
+		var file = $(this)[0].files;
+		var data = new FormData();
+		data.append("attr",file[0]);
+		$(this).val('');
+		xhr.open("POST","{:url('Attach/upload_thumb')}",true);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status==200){
+				var xml = xhr.responseXML;
+				var savepath = xml.getElementsByTagName("savepath");
+				savepath = savepath[0].firstChild.nodeValue;
+				var savename = xml.getElementsByTagName("savename");
+				savename = savename[0].firstChild.nodeValue;
+				var thumbimg = xml.getElementsByTagName("thumbimg");
+				thumbimg = thumbimg[0].firstChild.nodeValue;
+				console.log(savepath);
+				console.log(savename);
+				<!-- if(xml.status == 1){ -->
+					$("#url1").val(savepath+savename);
+					$("#urlthumb").val(thumbimg);
+					$("#url1").attr("data-image",savepath+savename);
+				<!-- } -->
+			}
+		};
+		xhr.send(data);
+	});
+});
+</script>

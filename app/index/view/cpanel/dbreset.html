@@ -1,0 +1,38 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head">
+		<strong class="text-blue">还原数据库</strong>
+	</div>
+	<div class="body-content">
+		<table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th width="200">备份名称</th>
+                    <th width="80">卷数</th>
+                    
+                    <th width="80">数据大小</th>
+                    <th width="200">备份时间</th>
+                    <th>状态</th>
+                    <th width="120">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="dbreset" id="data"}
+                    <tr>
+                        <td>{$data.time|date='Ymd-His',###}</td>
+                        <td>{$data.part}</td>
+                       
+                        <td>{$data.size|format_bytes}</td>
+                        <td>{$key}</td>
+                        <td>-</td>
+                        <td class="action">
+                          <a class="db-import" href="{:url('Cpanel/import?time='.$data['time'])}">还原</a> | 
+                            <a class="ajax-get confirm" href="{:url('Cpanel/dbdel?time='.$data['time'])}">删除</a>
+                        </td>
+                    </tr>
+                {/volist}
+            </tbody>
+        </table>
+	</div>
+</div>
+{include file="public:footer" /}

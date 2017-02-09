@@ -1,0 +1,101 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head">
+		<strong class="text-blue">更新统计</strong>
+	</div>
+	<div class="body-content">
+		<div class="panel-body">
+			<p>当下列数据不正常时，可以使用此功能对数据进行更新校正。请尽量避开会员访问的高峰时间</p>
+			<p>每个循环更新数量：数值请在一个合理范围，不要过大，否则会给服务器带来负载压力</p>
+			<div class="x12">
+				<div class="x4">
+					<form method="post" class="form-x">
+						<table class="table table-hover border table-striped">
+							<thead>
+								<th></th>
+								<th>每个循环更新数量</th>
+								<th></th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>重建用户积分</td>
+									<td>
+										<input type="hidden" class="input" name="pertask" value="">
+										<input type="text" class="input" name="pertask1" value="100">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask1.value" value="提交">
+									</td>
+								</tr>
+								<tr>
+									<td>重建用户积分</td>
+									<td>
+										<input type="text" class="input" name="pertask2" value="100">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask2.value" value="提交">
+									</td>
+								</tr>
+								<tr>
+									<td>重建文章数</td>
+									<td>
+										<input type="text" class="input" name="pertask3" value="1000">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask3.value" value="提交">
+									</td>
+								</tr>
+								<tr>
+									<td>重建分组数</td>
+									<td>
+										<input type="text" class="input" name="pertask4" value="10">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask4.value" value="提交">
+									</td>
+								</tr>
+								<tr>
+									<td>重建群组成员数</td>
+									<td>
+										<input type="text" class="input" name="pertask5" value="500">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask5.value" value="提交">
+									</td>
+								</tr>
+								<tr>
+									<td>重建附件数</td>
+									<td>
+										<input type="text" class="input" name="pertask6" value="300">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask6.value" value="提交">
+									</td>
+								</tr>
+								<tr>
+									<td>重建相册图片数</td>
+									<td>
+										<input type="text" class="input" name="pertask7" value="100">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask7.value" value="提交">
+									</td>
+								</tr>
+								<tr>
+									<td>分类信息整理</td>
+									<td>
+										<input type="text" class="input" name="pertask8" value="1">
+									</td>
+									<td>
+										<input type="submit" class="button bg-blue" name="resumsubmit" onclick="this.form.pertask.value=this.form.pertask8.value" value="提交">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

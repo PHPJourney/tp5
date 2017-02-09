@@ -1,0 +1,653 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{$site.name}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf8" />
+		<meta name="keywords" content="{$site.keywords}" />
+		<meta name="desctription" content="{$site.desc}" />
+		{load href="/public/static/css/pintuer.css,/public/static/css/admin.css,/public/static/js/jquery.js,/public/static/js/pintuer.js" /}
+	</head>
+	<body>
+	{/* 模板注释一 */}
+	{// 模板注释二}
+	{/* 模板注释三 
+	多行注释*/}
+	{/* taglib name="html"  导入标签库
+		 taglib name="html,article"  导入多个标签库
+		 article:read name="hello" id="data"  闭合标签
+		 $data.id: $data.title  读取标签
+		 article:read
+		'taglib_build_in'    =>    'cx,article' 把其他标签定义为内置标签 省去标签库前缀
+		'taglib_pre_load'    =>    'article,html' 标签库预加载 */}
+		{/*
+		内置标签
+			标签名	作用	包含属性
+			include	包含外部模板文件（闭合）	file
+			load	导入资源文件（闭合 包括js css import别名）	file,href,type,value,basepath
+			volist	循环数组数据输出	name,id,offset,length,key,mod
+			foreach	数组或对象遍历输出	name,item,key
+			for	For循环数据输出	name,from,to,before,step
+			switch	分支判断输出	name
+			case	分支判断输出（必须和switch配套使用）	value,break
+			default	默认情况输出（闭合 必须和switch配套使用）	无
+			compare	比较输出（包括eq neq lt gt egt elt heq nheq等别名）	name,value,type
+			range	范围判断输出（包括in notin between notbetween别名）	name,value,type
+			present	判断是否赋值	name
+			notpresent	判断是否尚未赋值	name
+			empty	判断数据是否为空	name
+			notempty	判断数据是否不为空	name
+			defined	判断常量是否定义	name
+			notdefined	判断常量是否未定义	name
+			define	常量定义（闭合）	name,value
+			assign	变量赋值（闭合）	name,value
+			if	条件判断输出	condition
+			elseif	条件判断输出（闭合 必须和if标签配套使用）	condition
+			else	条件不成立输出（闭合 可用于其他标签）	无
+			php	使用php代码	无
+
+			volist name="list" id="vo" offset="5" length='10' 输出指定条数 5-15条
+			volist name="list" id="vo" mod="2" 输出偶数
+			volist name="list" id="vo" empty="暂时没有数据" 为空的时候输出提示	
+			volist name="list" id="vo" empty="$empty" 通过变量支持传入html代码
+			volist name=":fun('arg')" id="vo" 直接通过函数输出数据集
+			foreach $list as $vo 最简洁的foreach
+			foreach name="list" item="vo"  name数据源 item 循环变量
+			for start="开始值" end="结束值" comparison="" step="步进值" name="循环变量名" for循环
+			for start="1" end="100"  默认步进值1
+			比较标签
+			标签	含义
+			eq或者 equal	等于
+			neq 或者notequal	不等于
+			gt	大于
+			egt	大于等于
+			lt	小于
+			elt	小于等于
+			heq	恒等于
+			nheq	不恒等于
+
+			Switch 循环
+			switch name="变量" 
+				case value="值1" break="0或1" 输出内容1 case
+				default 默认情况
+			switch
+			switch name="Think.get.userId|abs" switch name可带函数方法和系统变量
+			case value="gif|png|jpg" case value可以支持多个条件判断 用“|”进行分割
+			case value="1" break="0" 取消break
+			switch $User.userId 简洁用法
+			if 点语法$user.name和对象语法$user:name
+			between name="id" value="A,Z" 范围判断
+			between name="Think.post.id" value="$range" name支持系统变量 value支持变量
+			present name="name" 判断变量已定义
+			notpresent name="name" 判断变量没赋值
+			defined name="NAME" 判断常量是否已定义
+			notdefined name="NAME" 判断常量未定义
+			资源加载标签 load js css 均可加载多个资源文件
+			assign name="var" value="1,2,3" assign 用于模板定义变量
+			define name="MY_DEFINE_NAME" value="3" 模板中定义常量
+			
+			
+			常量参考
+				DS 当前系统的目录分隔符
+				THINK_PATH 框架系统目录 
+				ROOT_PATH 框架应用根目录
+				APP_PATH 应用目录（默认为application）
+				CONF_PATH 配置目录（默认为APP_PATH）
+				LIB_PATH 系统类库目录（默认为 THINK_PATH.'library、'）
+				CORE_PATH 系统核心类库目录 （默认为 LIB_PATH.'think、'）
+				TRAIT_PATH 系统trait目录（默认为 LIB_PATH.'traits、'）
+				EXTEND_PATH 扩展类库目录（默认为 ROOT_PATH . 'extend、')
+				VENDOR_PATH 第三方类库目录（默认为 ROOT_PATH . 'vendor、'）
+				RUNTIME_PATH 应用运行时目录（默认为 ROOT_PATH.'runtime、'）
+				LOG_PATH 应用日志目录 （默认为 RUNTIME_PATH.'log、'）
+				CACHE_PATH 项目模板缓存目录（默认为 RUNTIME_PATH.'cache、'）
+				TEMP_PATH 应用缓存目录（默认为 RUNTIME_PATH.'temp、'）
+			系统常量
+				IS_WIN 是否属于Windows 环境  
+				IS_CLI 是否属于命令行模式  
+				THINK_START_TIME 开始运行时间（时间戳）
+				THINK_START_MEM 开始运行时候的内存占用
+				ENV_PREFIX 环境变量配置前缀
+			助手函数
+				abort	中断执行并发送HTTP状态码
+				action	调用控制器类的操作
+				cache	缓存管理
+				config	获取和设置配置参数
+				controller	实例化控制器
+				cookie	Cookie管理
+				db	实例化数据库类
+				debug	调试时间和内存占用
+				dump	浏览器友好的变量输出
+				exception	抛出异常处理
+				halt	变量调试输出并中断执行
+				import	导入所需的类库
+				input	获取输入数据 支持默认值和过滤
+				json	JSON数据输出
+				jsonp	JSONP数据输出
+				lang	获取语言变量值
+				load_trait	快速导入Traits PHP5.5以上无需调用
+				model	实例化Model
+				redirect	重定向输出
+				request	实例化Request对象
+				response	实例化Response对象
+				session	Session管理
+				trace	记录日志信息
+				token	生成表单令牌输出
+				url	Url生成
+				validate	实例化验证器
+				vendor	快速导入第三方框架类库
+				view	渲染模板输出
+				widget	渲染输出Widget
+				xml	XML数据输出
+			5.0助手函数和3.2版本的单字母函数对比如下：
+				3.2版本	5.0版本
+				C	config
+				E	exception
+				G	debug
+				L	lang
+				T	废除
+				I	input
+				N	废除
+				D	model
+				M	db
+				A	controller
+				R	action
+				B	废除
+				U	url
+				W	widget
+				S	cache
+				F	废除
+			数据库原生操作
+				Db::query('select * from think_user where id=?',[8]); 支持参数绑定
+				Db::execute('insert into think_user (id, name) values (?, ?)',[8,'thinkphp']); 支持多个参数绑定
+				Db::query('select * from think_user where id=:id',['id'=>8]); 命名占位符绑定
+				Db::execute('insert into think_user (id, name) values (:id, :name)',['id'=>8,'name'=>'thinkphp']); 多条命名占位符绑定
+				Db::connect($config)->query('select * from think_user where id=:id',['id'=>8]); 使用多个数据库链接，config是一个单独的数据库配置，支持数组和字符串，也可以是一个数据库连接的配置参数名。
+			基本查询
+				查询一个数据使用：
+				
+				 table方法必须指定完整的数据表名
+				Db::table('think_user')->where('id',1)->find();
+				find 方法查询结果不存在，返回 null
+				查询数据集使用：
+
+				Db::table('think_user')->where('status',1)->select();
+				select 方法查询结果不存在，返回空数组
+				如果设置了数据表前缀参数的话，可以使用
+
+				Db::name('user')->where('id',1)->find();
+				Db::name('user')->where('status',1)->select();
+				如果你的数据表没有使用表前缀功能，那么name和table方法的一样的效果。
+				在find和select方法之前可以使用所有的链式操作方法。
+
+				默认情况下，find和select方法返回的都是数组。
+				助手函数
+
+				系统提供了一个db助手函数，可以更方便的查询：
+
+				db('user')->where('id',1)->find();
+				db('user')->where('status',1)->select();
+				注意：使用db助手函数默认每次都会重新连接数据库，而使用Db::name或者Db::table方法的话都是单例的。db函数如果需要采用相同的链接，可以传入第三个参数，例如：
+
+				db('user',[],false)->where('id',1)->find();
+				db('user',[],false)->where('status',1)->select();
+				上面的方式会使用同一个数据库连接，第二个参数为数据库的连接参数，留空表示采用数据库配置文件的配置。
+				使用Query对象或闭包查询
+				或者使用查询对象进行查询，例如：
+
+				$query = new \think\db\Query();
+				$query->table('think_user')->where('status',1);
+				Db::find($query);
+				Db::select($query);
+				或者直接使用闭包函数查询，例如：
+
+				Db::select(function($query)
+					$query->table('think_user')->where('status',1);
+				);
+				值和列查询
+				查询某个字段的值可以用
+
+				 返回某个字段的值
+				Db::table('think_user')->where('id',1)->value('name');
+				value 方法查询结果不存在，返回 null
+				查询某一列的值可以用
+
+				 返回数组
+				Db::table('think_user')->where('status',1)->column('name');
+				 指定索引
+				Db::table('think_user')->where('status',1)->column('name','id');
+				column 方法查询结果不存在，返回空数组
+				数据集分批处理
+				如果你需要处理成千上百条数据库记录，可以考虑使用chunk方法，该方法一次获取结果集的一小块，然后填充每一小块数据到要处理的闭包，该方法在编写处理大量数据库记录的时候非常有用。
+
+				比如，我们可以全部用户表数据进行分批处理，每次处理 100 个用户记录：
+
+				Db::table('think_user')->chunk(100, function($users) 
+					foreach ($users as $user) 
+						
+					
+				);
+				 或者交给回调方法myUserIterator处理
+				Db::table('think_user')->chunk(100, 'myUserIterator');
+				你可以通过从闭包函数中返回false来中止对数据集的处理：
+
+				Db::table('think_user')->chunk(100, function($users) 
+					 处理结果集...
+					return false;
+				);
+				也支持在chunk方法之前调用其它的查询方法，例如：
+
+				Db::table('think_user')->where('score','>',80)->chunk(100, function($users) {
+					foreach ($users as $user) 
+						
+					
+				);
+				JSON类型数据查询（mysql V5.0.1）
+				 查询JSON类型字段 （info字段为json类型）
+				Db::table('think_user')->where('info$.email','thinkphp@qq.com')->find();
+			添加一条数据
+				使用 Db 类的 insert 方法向数据库提交数据
+
+				$data = ['foo' => 'bar', 'bar' => 'foo'];
+				Db::table('think_user')->insert($data);
+				如果你在database.php配置文件中配置了数据库前缀(prefix)，那么可以直接使用 Db 类的 name 方法提交数据
+
+				Db::name('user')->insert($data);
+				insert 方法添加数据成功返回添加成功的条数，insert 正常情况返回 1
+				添加数据后如果需要返回新增数据的自增主键，可以使用getLastInsID方法：
+
+				Db::name('user')->insert($data);
+				$userId = Db::name('user')->getLastInsID();
+				或者直接使用insertGetId方法新增数据并返回主键值：
+
+				Db::name('user')->insertGetId($data);
+				insertGetId 方法添加数据成功返回添加数据的自增主键
+				添加多条数据
+				添加多条数据直接向 Db 类的 insertAll 方法传入需要添加的数据即可
+
+				$data = [
+					['foo' => 'bar', 'bar' => 'foo'],
+					['foo' => 'bar1', 'bar' => 'foo1'],
+					['foo' => 'bar2', 'bar' => 'foo2']
+				];
+				Db::name('user')->insertAll($data);
+				insertAll 方法添加数据成功返回添加成功的条数
+				助手函数
+
+				 添加单条数据
+				db('user')->insert($data);
+
+				 添加多条数据
+				db('user')->insertAll($list);
+				快捷更新
+
+				V5.0.5+以上版本封装的快捷更新方法data，可以配合insert使用。
+
+				下面举个例子说明用法：
+
+				Db::table('data')
+					->data(['name'=>'tp','score'=>1000])
+					->insert();
+			更新数据表中的数据
+			
+				Db::table('think_user')
+					->where('id', 1)
+					->update(['name' => 'thinkphp']);
+				如果数据中包含主键，可以直接使用：
+
+				Db::table('think_user')
+					->update(['name' => 'thinkphp','id'=>1]);
+				update 方法返回影响数据的条数，没修改任何数据返回 0
+				如果要更新的数据需要使用SQL函数或者其它字段，可以使用下面的方式：
+
+				Db::table('think_user')
+					->where('id', 1)
+					->update([
+						'login_time'  => ['exp','now()'],
+						'login_times' => ['exp','login_times+1'],
+					]);
+				更新某个字段的值：
+				Db::table('think_user')
+					->where('id',1)
+					->setField('name', 'thinkphp');
+				setField 方法返回影响数据的条数，没修改任何数据字段返回 0
+				自增或自减一个字段的值
+				setInc、setDec 如不加第二个参数，默认值为1
+
+				  score 字段加 1
+				Db::table('think_user')
+					->where('id', 1)
+					->setInc('score');
+				 score 字段加 5
+				Db::table('think_user')
+					->where('id', 1)
+					->setInc('score', 5);
+				 score 字段减 1
+				Db::table('think_user')
+					->where('id', 1)
+					->setDec('score');
+				 score 字段减 5
+				Db::table('think_user')
+					->where('id', 1)
+					->setDec('score', 5);
+				延迟更新
+				setInc、setDec支持延时更新，如果需要延时更新则传入第三个参数
+				下例中延时10秒，给score字段增加1
+
+				Db::table('think_user')->where('id', 1)->setInc('score', 1, 10);
+				setInc、setDec 方法返回影响数据的条数
+				助手函数
+				 更新数据表中的数据
+				db('user')->where('id',1)->update(['name' => 'thinkphp']);
+				 更新某个字段的值
+				db('user')->where('id',1)->setField('name','thinkphp');
+				 自增 score 字段
+				db('user')->where('id', 1)->setInc('score');
+				 自减 score 字段
+				db('user')->where('id', 1)->setDec('score');
+				快捷更新（V5.0.5+）
+				V5.0.5+以上版本封装的data、inc、dec和exp方法属于链式操作方法，可以配合update使用。
+
+				下面举个例子说明用法：
+
+				Db::table('data')
+					->where('id',1)
+					->inc('read')
+					->dec('score',3)
+					->exp('name','UPPER(name)')
+					->update();
+			删除数据表中的数据
+				 根据主键删除
+				Db::table('think_user')->delete(1);
+				Db::table('think_user')->delete([1,2,3]);
+
+				 条件删除    
+				Db::table('think_user')->where('id',1)->delete();
+				Db::table('think_user')->where('id','<',10)->delete();
+				delete 方法返回影响数据的条数，没有删除返回 0
+				助手函数
+
+				 根据主键删除
+				db('user')->delete(1);
+				 条件删除    
+				db('user')->where('id',1)->delete();
+			条件查询方法
+				where方法
+
+				可以使用where方法进行AND条件查询：
+
+				Db::table('think_user')
+					->where('name','like','%thinkphp')
+					->where('status',1)
+					->find();
+				多字段相同条件的AND查询可以简化为如下方式：
+
+				Db::table('think_user')
+					->where('name&title','like','%thinkphp')
+					->find();
+				whereOr方法
+
+				使用whereOr方法进行OR查询：
+
+				Db::table('think_user')
+					->where('name','like','%thinkphp')
+					->whereOr('title','like','%thinkphp')
+					->find();
+				多字段相同条件的OR查询可以简化为如下方式：
+
+				Db::table('think_user')
+					->where('name|title','like','%thinkphp')
+					->find();
+				混合查询
+
+				where方法和whereOr方法在复杂的查询条件中经常需要配合一起混合使用，下面举个例子：
+
+				$result = Db::table('think_user')->where(function ($query) 
+					$query->where('id', 1)->whereor('id', 2);
+				
+				
+				)->whereOr(function ($query) 
+					$query->where('name', 'like', 'think')->whereOr('name', 'like', 'thinkphp');
+				)->select();
+				生成的sql语句类似于下面：
+
+				SELECT * FROM `think_user` WHERE  (  `id` = 1 OR `id` = 2 ) OR (  `name` LIKE 'think' OR `name` LIKE 'thinkphp' )
+				注意闭包查询里面的顺序，而且第一个查询方法用where或者whereOr是没有区别的。
+				getTableInfo方法
+
+				使用getTableInfo可以获取表信息，信息类型 包括 fields,type,bind,pk，以数组的形式展示，可以指定某个信息进行获取
+
+				 获取`think_user`表所有信息
+				Db::getTableInfo('think_user');
+				 获取`think_user`表所有字段
+				Db::getTableInfo('think_user', 'fields');
+				 获取`think_user`表所有字段的类型
+				Db::getTableInfo('think_user', 'type');
+				 获取`think_user`表的主键
+				Db::getTableInfo('think_user', 'pk');
+			查询表达式
+				查询表达式支持大部分的SQL查询语法，也是ThinkPHP查询语言的精髓，查询表达式的使用格式：
+
+				where('字段名','表达式','查询条件');
+				whereOr('字段名','表达式','查询条件');
+				版本	新增功能
+				5.0.4	支持对同一个字段多次调用查询方法
+				表达式不分大小写，支持的查询表达式有下面几种，分别表示的含义是：
+
+				表达式	含义
+				EQ、=	等于（=）
+				NEQ、<>	不等于（<>）
+				GT、>	大于（>）
+				EGT、>=	大于等于（>=）
+				LT、<	小于（<）
+				ELT、<=	小于等于（<=）
+				LIKE	模糊查询
+				[NOT] BETWEEN	（不在）区间查询
+				[NOT] IN	（不在）IN 查询
+				[NOT] NULL	查询字段是否（不）是NULL
+				[NOT] EXISTS	EXISTS查询
+				EXP	表达式查询，支持SQL语法
+				> time	时间比较
+				< time	时间比较
+				between time	时间比较
+				notbetween time	时间比较
+				表达式查询的用法示例如下：
+
+				EQ ：等于（=）
+				例如：
+
+				where('id','eq',100);
+				where('id','=',100);
+				和下面的查询等效
+
+				where('id',100);
+				表示的查询条件就是 id = 100
+
+				NEQ： 不等于（<>）
+				例如：
+
+				where('id','neq',100);
+				where('id','<>',100);
+				表示的查询条件就是 id <> 100
+
+				GT：大于（>）
+				例如：
+
+				where('id','gt',100);
+				where('id','>',100);
+				表示的查询条件就是 id > 100
+
+				EGT：大于等于（>=）
+				例如：
+
+				where('id','egt',100);
+				where('id','>=',100);
+				表示的查询条件就是 id >= 100
+
+				LT：小于（ <）
+				例如：
+
+				where('id','lt',100);
+				where('id','<',100);
+				表示的查询条件就是 id < 100
+
+				ELT： 小于等于（<=）
+				例如：
+
+				where('id','elt',100);
+				where('id','<=',100);
+				表示的查询条件就是 id <= 100
+
+				[NOT] LIKE： 同sql的LIKE
+				例如：
+
+				where('name','like','thinkphp%');
+				查询条件就变成 name like 'thinkphp%' 
+
+				V5.0.5+版本开始，like查询支持使用数组
+
+				where('name','like',['%think','php%'],'OR');
+				``
+
+				[NOT] BETWEEN ：同sql的[not] between
+				查询条件支持字符串或者数组，例如：
+
+				where('id','between','1,8');
+				和下面的等效：
+
+				where('id','between',[1,8]);
+				查询条件就变成 id BETWEEN 1 AND 8
+
+				[NOT] IN： 同sql的[not] in
+				查询条件支持字符串或者数组，例如：
+
+				where('id','not in','1,5,8');
+				和下面的等效：
+
+				where('id','not in',[1,5,8]);
+				查询条件就变成 id NOT IN (1,5, 8)
+
+				[NOT] IN查询支持使用闭包方式
+				[NOT] NULL ：
+				查询字段是否（不）是Null，例如：
+
+				where('name', null);
+				where('title','null');
+				where('name','not null');
+				如果你需要查询一个字段的值为字符串null或者not null，应该使用：
+
+				where('title','=', 'null');
+				where('name','=', 'not null');
+				EXP：表达式
+				支持更复杂的查询情况 例如：
+
+				where('id','in','1,3,8');
+				可以改成：
+
+				where('id','exp',' IN (1,3,8) ');
+				exp查询的条件不会被当成字符串，所以后面的查询条件可以使用任何SQL支持的语法，包括使用函数和字段名称。
+			系统支持的链式操作方法有：
+
+				连贯操作	作用	支持的参数类型
+				where*	用于AND查询	字符串、数组和对象
+				whereOr*	用于OR查询	字符串、数组和对象
+				wheretime*	用于时间日期的快捷查询	字符串
+				table	用于定义要操作的数据表名称	字符串和数组
+				alias	用于给当前数据表定义别名	字符串
+				field*	用于定义要查询的字段（支持字段排除）	字符串和数组
+				order	用于对结果排序	字符串和数组
+				limit	用于限制查询结果数量	字符串和数字
+				page	用于查询分页（内部会转换成limit）	字符串和数字
+				group	用于对查询的group支持	字符串
+				having	用于对查询的having支持	字符串
+				join*	用于对查询的join支持	字符串和数组
+				union*	用于对查询的union支持	字符串、数组和对象
+				view	用于视图查询	字符串、数组
+				distinct	用于查询的distinct支持	布尔值
+				lock	用于数据库的锁机制	布尔值
+				cache	用于查询缓存	支持多个参数
+				relation	用于关联查询	字符串
+				with	用于关联预载入	字符串、数组
+				bind*	用于数据绑定操作	数组或多个参数
+				comment	用于SQL注释	字符串
+				force	用于数据集的强制索引	字符串
+				master	用于设置主服务器读取数据	布尔值
+				strict	用于设置是否严格检测字段名是否存在	布尔值
+				sequence	用于设置Pgsql的自增序列名	字符串
+				failException	用于设置没有查询到数据是否抛出异常	布尔值
+				partition	用于设置分表信息	数组 字符串
+				所有的连贯操作都返回当前的模型实例对象（this），其中带*标识的表示支持多次调用。
+				Db::table('think_user')->where("id=:id and username=:name")->bind(['id'=>[1,\PDO::PARAM_INT],'name'=>'thinkphp'])->select(); 预处理机制
+			多表操作
+				Db::field('user.name,role.title')
+				->table(['think_user'=>'user','think_role'=>'role'])
+				->limit(10)->select();
+				
+				三元运算 $site['name'] ? '正常' : '错误'
+			路由参数是指可以设置一些路由匹配的条件参数，主要用于验证当前的路由规则是否有效，主要包括：
+
+				参数	说明
+				method	请求类型检测，支持多个请求类型
+				ext	URL后缀检测，支持匹配多个后缀
+				deny_ext	URL禁止后缀检测，支持匹配多个后缀
+				https	检测是否https请求
+				domain	域名检测
+				before_behavior	前置行为（检测）
+				after_behavior	后置行为（执行）
+				callback	自定义检测方法
+				merge_extra_vars	合并额外参数
+				bind_model	绑定模型（V5.0.1+）
+				cache	请求缓存（V5.0.1+）
+				param_depr	路由参数分隔符（V5.0.2+）
+				ajax	Ajax检测（V5.0.2+）
+				pjax	Pjax检测（V5.0.2+）
+*/}
+<div class="bg"></div>
+<div class="container">
+    <div class="line bouncein">
+        <div class="xs6 xm4 xs3-move xm4-move">
+            <div style="height:150px;"></div>
+            <div class="media media-y margin-big-bottom">           
+            </div>         
+            <form action="{:url('Login/index')}" method="post">
+            <div class="panel loginbox">
+                <div class="text-center margin-big padding-big-top"><h1>后台管理中心</h1></div>
+                <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
+                    <div class="form-group">
+                        <div class="field field-icon-right">
+                            <input type="text" class="input input-big" name="name" placeholder="登录账号" data-validate="required:请填写账号" />
+                            <span class="icon icon-user margin-small"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field field-icon-right">
+                            <input type="password" class="input input-big" name="password" placeholder="登录密码" data-validate="required:请填写密码" />
+                            <span class="icon icon-key margin-small"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field">
+                            <input type="text" class="input input-big" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                           <img src="{:captcha_src()}" alt="captcha" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'+Math.random()">                
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field">
+                            <input type="text" class="input input-big" name="dynamic" placeholder="填写动态验证码，没有留空" />
+                        </div>
+                    </div>
+                </div>
+                <div style="padding:30px;"><input type="submit" class="button button-block bg-main text-big input-big" value="登录"></div>
+            </div>
+            </form>          
+        </div>
+    </div>
+</div>
+{/*
+渲染视图
+volist name="data" id="vo"
+	<h1>名字：$vo.name</h1>
+	<h1>作者：$vo.author</h1>
+volist
+	</body>
+</html>
+*/}

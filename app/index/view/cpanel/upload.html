@@ -1,0 +1,330 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">上传设置</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="x12">
+				<div class="form-group bg-blue-light">
+					<div class="label">
+						<strong class="text-blue">基本设置</strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>本地附件保存位置</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[attachdir]" value="{$setting.attachdir}">
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">服务器路径，属性 777，必须为 web 可访问到的目录，结尾不加 "/"，相对目录务必以 "./" 开头</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>本地附件 URL 地址</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[attachurl]" value="{$setting.attachurl}">
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">可为当前 URL 下的相对地址或 http:// 开头的绝对地址，结尾不加 "/"，不能把这个设为远程附件URL地址</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>图片处理库类型</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							  <input type="radio" class="radio" name="data[imagelib]" value="0" <?php if(in_array(0,explode(",",$setting['imagelib']))){ echo "checked"; }?>>GD
+							</div>
+							<div class="field">
+								<input type="radio" class="radio" name="data[imagelib]" value="1" <?php if(in_array(1,explode(",",$setting['imagelib']))){ echo "checked"; }?>>ImageMagick
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">请选择用来处理缩略图和水印的图像处理库。GD 是最广泛的处理库但是使用的系统资源较多。ImageMagick 速度快系统资源占用少，但需要服务器有执行命令行命令的权限。如果您的服务器有条件安装此程序，请到 http://www.imagemagick.org 下载，安装后在下面指定安装的路径</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" id="imagelib">
+					<div class="x12">
+						<div class="label">
+							<small>ImageMagick 程序安装路径</small>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[imageimpath]" value="{$setting.imageimpath}">
+							</div>
+						</div>
+						<div class="x3">
+							<small class="text-gray padding-left">ImageMagick 程序的安装路径。如果服务器的操作系统为 Windows，路径不要使用长文件名</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>缩略图质量</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[thumbquality]" value="{$setting.thumbquality}">
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">设置图片附件缩略图的质量参数，范围为 0～100 的整数，数值越大结果图片效果越好，但尺寸也越大</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group bg-blue-light">
+					<div class="label">
+						<strong class="text-blue">远程附件</strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>启用远程附件</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[ftpon]" value="1" <?php if(in_array(1,explode(",",$setting['ftpon']))){ echo "checked"; }?>>是
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[ftpon]" value="0" <?php if(in_array(0,explode(",",$setting['ftpon']))){ echo "checked"; }?>>否
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray"></small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>允许的附件扩展名</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <textarea class="input" name="data[ftp_allowedexts]">{$setting.ftp_allowedexts}</textarea>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">只允许这些扩展名结尾的附件使用远程附件功能，每行一个，不区分大小写，留空为不限制</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>禁止的附件扩展名</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <textarea class="input" name="data[ftp_disallowedexts]">{$setting.ftp_disallowedexts}</textarea>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">禁止这些扩展名结尾的附件使用远程附件功能，每行一个，不区分大小写，留空为不限制</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>附件尺寸下限</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[ftp_minsize]" value="{$setting.ftp_minsize}">
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">单位：KB，只有尺寸大于当前设置的附件才使用远程附件功能，0 或留空为不限制</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>隐藏远程附件真实路径</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[ftp_hideurl]" value="1" <?php if(in_array(1,explode(",",$setting['ftp_hideurl']))){ echo "checked"; }?>>是
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[ftp_hideurl]" value="0" <?php if(in_array(0,explode(",",$setting['ftp_hideurl']))){ echo "checked"; }?>>否
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">选择是，将加重本地服务器负担，并明显增加本地服务器流量；选择否，下载的附件与上传的附件文件名将会不一致</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group bg-blue-light">
+					<div class="label">
+						<strong class="text-blue">网站附件</strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文章显示图片附件</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[attachimgpost]" value="1" <?php if(in_array(1,explode(",",$setting['attachimgpost']))){ echo "checked"; }?>>是
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[attachimgpost]" value="0" <?php if(in_array(0,explode(",",$setting['attachimgpost']))){ echo "checked"; }?>>否
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">在文章中直接将图片或动画附件显示出来，而不需要点击附件链接</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>附件 URL 地址、媒体附件播放</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[allowattachurl]" value="1" <?php if(in_array(1,explode(",",$setting['allowattachurl']))){ echo "checked"; }?>>是
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[allowattachurl]" value="0" <?php if(in_array(0,explode(",",$setting['allowattachurl']))){ echo "checked"; }?>>否
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">开启附件 URL 地址后，上传附件的地址可通过 "attach://aid" 方式在任何帖内引用，并支持媒体类附件的直接播放，此项设置需要在 用户组 - 帖子相关 中允许用户组使用多媒体代码方可生效</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>文章附件缩略图设置</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[thumbstatus]" value="0" <?php if(in_array(0,explode(",",$setting['thumbstatus']))){ echo "checked"; }?>>不启用
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[thumbstatus]" value="1" <?php if(in_array(1,explode(",",$setting['thumbstatus']))){ echo "checked"; }?>>小于指定大小、保持比率
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[thumbstatus]" value="2" <?php if(in_array(2,explode(",",$setting['thumbstatus']))){ echo "checked"; }?>>与指定大小相同、保持比率，超出部分剪切
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">您可以设置自动为用户上传的 JPG/PNG/GIF 图片附件添加缩略图或将图片附件缩到指定的大小。不支持动画 GIF 格式</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>缩略图大小</strong>
+						</div>
+						<div class="x3">
+							<div class="x5">
+								<div class="field">
+									<input type="text" class="input" name="data[thumbwidth]" value="{$setting.thumbwidth}">
+								</div>
+							</div>
+							<div class="x1">
+								<div class="field">
+									<strong class="text-red">&times;</strong>
+								</div>
+							</div>
+							<div class="x5">
+								<div class="field">
+									<input type="text" class="input" name="data[thumbheight]" value="{$setting.thumbheight}">
+								</div>
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">设置缩略图的大小，小于此尺寸的图片附件将不生成缩略图</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>直接缩放原图</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[thumbsource]" value="1" <?php if(in_array(1,explode(",",$setting['thumbsource']))){ echo "checked"; }?>>是
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[thumbsource]" value="0" <?php if(in_array(0,explode(",",$setting['thumbsource']))){ echo "checked"; }?>>否
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">选择“是”，将直接缩放原图，而不生成缩略图文件</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>附件链接有效期</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[attachexpire]" value="{$setting.attachexpire}">
+							</div>
+						</div>
+						<div class="x7">
+							<small class="text-gray padding-left">单位：小时，0 或留空表示附件链接永久有效，过期后链接自动更新。本功能可有效防止附件被盗链或附件被软件批量下载，但是会给会员的正常下载带来不便</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>下载附件来路检查</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="radio" class="radio" name="data[attachrefcheck]" value="1" <?php if(in_array(1,explode(",",$setting['attachrefcheck']))){ echo "checked"; }?>>是
+							</div>
+							<div class="field">
+							  <input type="radio" class="radio" name="data[attachrefcheck]" value="0" <?php if(in_array(0,explode(",",$setting['attachrefcheck']))){ echo "checked"; }?>>否
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">选择“是”将检查下载附件的来路，来自其他网站或站点的下载请求将被禁止。注意: 本功能在开启“帖子中显示图片附件”时，会加重服务器负担</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group margin-large-top">
+					<div class="x12">
+						<div class="label">
+						  <label></label>
+						</div>
+						<div class="field">
+						  <button class="button bg-main" type="submit">提交</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}

@@ -1,0 +1,65 @@
+{include file="public:head" /}
+<div class="body-content">
+	 <div class="panel">
+		<div class="panel-head"><strong>修改密码</strong></div>
+		<div class="panel-body">
+			<form method="post" class="form-x">
+				<div class="form-group">
+					<div class="label">
+					  <label>当前密码</label>
+					</div>
+					<div class="field">
+					  <input type="password" class="input w50" name="data[pass]" value="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+					  <label>新密码</label>
+					</div>
+					<div class="field">
+					  <input type="password" class="input w50" name="data[pwd]" value="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+					  <label>确认新密码</label>
+					</div>
+					<div class="field">
+					  <input type="password" class="input w50" name="data[repwd]" value="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+					  <label>绑定动态码</label>
+					</div>
+					<div class="field">
+					  <select name="data[secrand]" id="secrand" class="input w50">
+						<option value="0">禁用</option>
+						<option value="1">启用</option>
+					  </select>
+					</div>
+				</div>
+				  <div class="form-group">
+					<div class="label">
+					  <label></label>
+					</div>
+					<div class="field">
+					  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+					</div>
+				  </div>
+			</form>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}
+<script type="text/javascript">
+$(function(){
+	$("#secrand").change(function(){
+		var secrand = $(this).val();
+		if(secrand==1){
+			alert("功能暂未开放");
+			 $("#secrand").find("option[value='0']").attr("selected",true);
+		}
+	})
+})
+</script>

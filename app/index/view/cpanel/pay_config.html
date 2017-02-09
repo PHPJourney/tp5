@@ -1,0 +1,152 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">配置参数</strong></div>
+	<div class="body-content">
+		<form method="post" target="ajax" action="{:url('Cpanel/pay_config')}" class="form-x">
+			<div class="form-group bg-blue-light">
+				<div class="x12">
+					<div class="label">
+						<strong class="text-blue">技巧提示</strong>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong></strong>
+					</div>
+					<div class="x7">
+						<small class="text-gray">
+							<p>电子商务参数配置项统一使用数据库 <code class="text-red">`setting`</code> 表</p>
+							<p>前台继承公共方法控制器类 <code class="text-red">CommonController</code></p>
+							<p>参数查询方式为 <code class="text-red">$setting.key</code></p>
+						</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<label>商户号/收款账号</label>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<?php $tagskey = $tags."_merchno"; ?>
+							<input type="text" class="input" name="data[{$tagskey}]" value="{$setting[$tagskey]|@}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">从支付接口提供商派发过来的商户号，查询关键字（<code class="text-red">{$tagskey}</code>）</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<label>网关</label>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<?php $tagskey = $tags."_uri"; ?>
+							<input type="text" class="input" name="data[{$tagskey}]" value="{$setting[$tagskey]|@}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">支付接口提交入口地址，查询关键字（<code class="text-red">{$tagskey}</code>）</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<label>同步通知</label>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<?php $tagskey = $tags."_return_uri"; ?>
+							<input type="text" class="input" name="data[{$tagskey}]" value="{$setting[$tagskey]|@}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">支付接口支付完成同步跳转接口地址，查询关键字（<code class="text-red">{$tagskey}</code>）</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<label>异步通知</label>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<?php $tagskey = $tags."_callback_uri"; ?>
+							<input type="text" class="input" name="data[{$tagskey}]" value="{$setting[$tagskey]|@}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">支付接口支付完成异步通知接口地址，查询关键字（<code class="text-red">{$tagskey}</code>）</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<label>密匙</label>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<?php $tagskey = $tags."_encodingaeskey"; ?>
+							<input type="text" class="input" name="data[{$tagskey}]" value="{$setting[$tagskey]|@}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">从支付接口提供商派发过来的密匙，查询关键字（<code class="text-red">{$tagskey}</code>）</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<label>appkey/合作者身份ID</label>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<?php $tagskey = $tags."_appkey"; ?>
+							<input type="text" class="input" name="data[{$tagskey}]" value="{$setting[$tagskey]|@}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">商户提供的appkey，查询关键字（<code class="text-red">{$tagskey}</code>）</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<label>appsecret/交易安全效验码</label>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<?php $tagskey = $tags."_appsecret"; ?>
+							<input type="text" class="input" name="data[{$tagskey}]" value="{$setting[$tagskey]|@}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">从支付接口提供商派发过来的appsecret，查询关键字（<code class="text-red">{$tagskey}</code>）</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group margin-large-top">
+				<div class="x12">
+					<div class="label">
+					  <label></label>
+					</div>
+					<div class="field">
+					  <button class="button bg-main" type="submit">提交</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}

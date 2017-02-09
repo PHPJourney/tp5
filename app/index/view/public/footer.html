@@ -1,0 +1,63 @@
+{load href="/public/static/js/managefoot.js" /}
+<script type="text/javascript">
+jQuery.fangdo = {
+    //forms_selector: form的选择器
+    checkboxField: function(forms_selector){
+        $(forms_selector).each(function(){
+            var cur_form = $(this);
+            cur_form.submit(function(){
+                $(this).find(":checkbox").each(function(i){
+                    if (!$(this).attr("checked")) {
+						$("input[type='checkbox']").not("input:checked").val(0);
+						$("input[type='checkbox']").not("input:checked").prop("checked",true);
+                    }
+                });
+            });
+        });
+    }
+};
+$(function(){
+	var $selectall = $("#selectall");
+	$selectall.click(function(){
+		if($(this).attr("checked")) 
+		{ 
+		$("input[type='checkbox']").removeAttr("checked"); 
+		} 
+		else
+		{ 
+		$("input[type='checkbox']").prop("checked", this.checked);
+		}
+	});
+    //第一种，引用Form表单的id,注意，这里是id，不是name值
+    <!-- $.fangdo.checkboxField("#registerForm"); -->
+    //第二种，引用所有Form表单，这种情况用于有多个Form都要设置checkbox在非选中状态生成隐藏域
+    $.fangdo.checkboxField("Form");
+});
+var top_alert = $('#top-alert');
+top_alert.find('.close').on('click', function () {
+	top_alert.removeClass('block').slideUp(800);
+	// content.animate({paddingTop:'-=55'},200);
+});
+
+ function updateAlert(text,c) {
+		text = text||'default';
+		c = c||false;
+		if ( text!='default' ) {
+            top_alert.find('.alert-content').text(text);
+			if (top_alert.hasClass('block')) {
+			} else {
+				top_alert.addClass('block').slideDown(200);
+				// content.animate({paddingTop:'+=55'},200);
+			}
+		} else {
+			if (top_alert.hasClass('block')) {
+				top_alert.removeClass('block').slideUp(200);
+				// content.animate({paddingTop:'-=55'},200);
+			}
+		}
+		if ( c!=false ) {
+            top_alert.removeClass('alert-error alert-warn alert-info alert-success').addClass(c);
+		}
+	};
+</script>
+</body></html>

@@ -1,0 +1,336 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong>积分设置</strong></div>
+	<div class="body-content">
+		<div class="tab border-main">
+			<div class="tab-head">
+				<ul class="tab-nav">
+					<li class="active"><a href="#seo1">基本设置</a> </li>
+					<li><a href="#seo2">积分策略</a> </li>
+				</ul>
+			</div>
+			<div class="tab-body">
+				<div class="tab-panel active" id="seo1">
+					<form method="post" class="form-x">
+						<table class="table table-striped">
+							<tr>
+								<td colspan="10">
+									<strong class="text-red">兑换比例说明</strong>
+									<span class="text-right"><a href="{:url('Cpanel/rewrite')}" target="_target">查看当前Rewrite 规则</a></span>
+									<p class="text-yellow">兑换比率为单项积分对应一个单位标准积分的值，例如 extcredits1 的比率为 1.5(相当于 1.5 个单位标准积分)、extcredits2 的比率为 3(相当于 3 个单位标准积分)、extcredits3 的比率为 15(相当于 15 个单位标准积分)，则 extcredits3 的 1 分相当于 extcredits2 的 5 分或 extcredits1 的 10 分。一旦设置兑换比率，则用户将可以在个人中心自行兑换各项设置了兑换比率的积分，如不希望实行积分自由兑换，请将其兑换比率设置为 0</p>
+								</td>
+							</tr>
+							<tr>
+								<th>积分名称</th>
+								<th>积分单位</th>
+								<th>积分图标</th>
+								<th>初始积分</th>
+								<th>积分下限</th>
+								<th>兑换比率</th>
+								<th>积分兑出</th>
+								<th>积分兑入</th>
+								<th>积分变量</th>
+								<th>操作</th>
+							</tr>
+							<tbody id="tbody">
+							{empty name="point"}
+								<tr>
+									<td><input type="text" class="input" name="data[name][]" value=""></td>
+									<td><input type="text" class="input" name="data[unit][]" value=""></td>
+									<td><input type="text" class="input" name="data[ico][]" value=""></td>
+									<td><input type="text" class="input" name="data[initpoint][]" value=""></td>
+									<td><input type="text" class="input" name="data[lowpoint][]" value=""></td>
+									<td><input type="text" class="input" name="data[exchange][]" value=""></td>
+									<td style="width:6%"><input type="checkbox" class="checkbox" name="data[exout][]" value="1"></td>
+									<td style="width:6%"><input type="checkbox" class="checkbox" name="data[exin][]" value="1"></td>
+									<td><input type="text" class="input" name="data[variable][]" value=""></td>
+									<td style="width:6%"><a href="">删除</a> | <a href="javascript:;" id="append">增加</a></td>
+								</tr>
+							{else /}
+								{volist name="point" id="invate"}
+								<tr>
+									<td><input type="text" class="input" name="data[name][]" value="{$invate.name}"></td>
+									<td><input type="text" class="input" name="data[unit][]" value="{$invate.unit}"></td>
+									<td><input type="text" class="input" name="data[ico][]" value="{$invate.ico}"></td>
+									<td><input type="text" class="input" name="data[initpoint][]" value="{$invate.initpoint}"></td>
+									<td><input type="text" class="input" name="data[lowpoint][]" value="{$invate.lowpoint}"></td>
+									<td><input type="text" class="input" name="data[exchange][]" value="{$invate.exchange}"></td>
+									<td style="width:6%"><input type="checkbox" class="checkbox" name="data[exout][]" value="1" {eq name="invate.exout" value="1"}checked{/eq}></td>
+									<td style="width:6%"><input type="checkbox" class="checkbox" name="data[exin][]" value="1" {eq name="invate.exin" value="1"}checked{/eq}></td>
+									<td><input type="text" class="input" name="data[variable][]" value="{$invate.variable}"></td>
+									<td style="width:6%"><a href="javascript:;" data-prikey="{$invate.variable}" class="removeOnline">删除</a>{eq name="key" value="0"} | <a href="javascript:;" id="append">增加</a>{/eq}</td>
+								</tr>
+								{/volist}
+							{/empty}
+							</tbody>
+<script type="text/html" id="template">
+<tr>
+	<td><input type="text" class="input" name="data[name][]" value=""></td>
+	<td><input type="text" class="input" name="data[unit][]" value=""></td>
+	<td><input type="text" class="input" name="data[ico][]" value=""></td>
+	<td><input type="text" class="input" name="data[initpoint][]" value=""></td>
+	<td><input type="text" class="input" name="data[lowpoint][]" value=""></td>
+	<td><input type="text" class="input" name="data[exchange][]" value=""></td>
+	<td><input type="checkbox" class="checkbox" name="data[exout][]" value="1"></td>
+	<td><input type="checkbox" class="checkbox" name="data[exin][]" value="1"></td>
+	<td><input type="text" class="input" name="data[variable][]" value=""></td>
+	<td style="width:6%"><a href="javascript:;" onclick="removeLine($(this));">删除</a></td>
+</tr>
+</script>					<tr>
+								<td colspan="10">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>交易积分设置</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+												  <select name="setting[pointcreditstrans]" class="input">
+													<option value="" {eq name="setting.pointcreditstrans" value=''}selected{/eq}>无</option>
+													{volist name="point" id="invate"}
+													<option value="{$invate.variable}" {eq name="setting.pointcreditstrans" value='$invate.variable'}selected{/eq}>{$invate.variable}({$invate.name})</option>
+													{/volist}
+												  </select>
+												</div>
+											</div>
+											<div class="x7">
+												<small class="padding-left text-gray">交易积分是一种可以由用户间自行转让、买卖交易、发布悬赏主题的积分类型，您可以指定一种积分作为交易积分。如果不指定交易积分，则用户间积分交易功能将不能使用。注意: 交易积分必须是已启用的积分，一旦确定请尽量不要更改，否则以往记录及交易可能会产生问题</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>积分转账使用的积分</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+												  <select name="setting[pointcreditstrans1]" class="input">
+													<option value="" {eq name="setting.pointcreditstrans1" value=''}selected{/eq}>无</option>
+													<option value="pointtranspoint" {eq name="setting.pointcreditstrans1" value='pointtranspoint'}selected{/eq}>使用交易积分</option>
+													{volist name="point" id="invate"}
+													<option value="{$invate.variable}" {eq name="setting.pointcreditstrans1" value='$invate.variable'}selected{/eq}>{$invate.variable}({$invate.name})</option>
+													{/volist}
+												  </select>
+												  </div>
+											  </div>
+											<div class="x7">
+												<small class="padding-left text-gray">设置积分转账时使用的积分</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>商品主题使用的积分</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+												  <select name="setting[pointcreditstrans2]" class="input">
+													<option value="" {eq name="setting.pointcreditstrans2" value=''}selected{/eq}>不使用积分</option>
+													<option value="pointtranspoint" {eq name="setting.pointcreditstrans2" value='pointtranspoint'}selected{/eq}>使用交易积分</option>
+													{volist name="point" id="invate"}
+													<option value="{$invate.variable}" {eq name="setting.pointcreditstrans2" value='$invate.variable'}selected{/eq}>{$invate.variable}({$invate.name})</option>
+													{/volist}
+												  </select>
+												  </div>
+											  </div>
+											<div class="x7">
+												<small class="padding-left text-gray">设置商品主题使用的积分</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>用户举报奖惩使用的积分</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+												  <select name="setting[pointcreditstrans3]" class="input">
+													<option value="pointtranspoint" {eq name="setting.pointcreditstrans3" value='pointtranspoint'}selected{/eq}>使用交易积分</option>
+													{volist name="point" id="invate"}
+													<option value="{$invate.variable}" {eq name="setting.pointcreditstrans3" value='$invate.variable'}selected{/eq}>{$invate.variable}({$invate.name})</option>
+													{/volist}
+												  </select>
+												  </div>
+											  </div>
+											<div class="x7">
+												<small class="padding-left text-gray">设置用户举报后对用户奖惩时使用的积分</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>积分交易税</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+												  <input type="text" name="setting[pointcreditfee]" class="input" value="{$setting['pointcreditfee']}">
+												</div>
+											</div>
+											<div class="x7">
+												<small class="padding-left text-gray">积分交易税(损失率)为用户在利用积分进行转让、兑换、买卖时扣除的税率，范围为 0～1 之间的浮点数，例如设置为 0.2，则用户在转换 100 个单位积分时，损失掉的积分为 20 个单位，0 为不损失</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>转账最低余额</label>
+											</div>
+											<div class="x3">
+												<div class="field">
+													<input type="text" name="setting[pointlowtransamount]" class="input" value="{$setting['pointlowtransamount']}">
+												</div>
+											</div>
+											<div class="x7">
+												<small class="padding-left text-gray">积分转账后要求用户所拥有的余额最小数值。利用此功能，您可以设置较大的余额限制，使积分小于这个数值的用户无法转账；也可以将余额限制设置为负数，使得转账在限额内可以透支</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>兑换最低余额</label>
+											</div>
+												<div class="x3">
+													<div class="field">
+													  <input type="text" name="setting[pointlowexchangeamount]" class="input" value="{$setting['pointlowexchangeamount']}">
+													</div>
+												</div>
+											<div class="x7">
+												<small class="padding-left text-gray">积分兑换后要求用户所拥有的余额最小数值。利用此功能，您可以设置较大的余额限制，使积分小于这个数值的用户无法兑换；也可以将余额限制设置为负数，使得兑换在限额内可以透支</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<div class="form-group margin-large-top">
+										<div class="x12">
+											<div class="label">
+											  <label></label>
+											</div>
+											<div class="field">
+											  <button class="button bg-main" type="submit">提交</button>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="tab-panel" id="seo2">
+					<form method="post" class="form-x">
+						<table class="table table-striped">
+							<tr>
+								<td colspan="<?=$rows = count($point)+4; ?>">
+									<strong class="text-red">积分策略</strong>
+								</td>
+							</tr>
+							<tr>
+								<th>策略名称</th>
+								<th>周期</th>
+								<th>奖励次数</th>
+								{volist name="point" id="invate"}
+								<th>{$invate.name}</th>
+								{/volist}
+								<th>操作</th>
+							</tr>
+							{volist name="policy" id="lic"}
+							<tr>
+								<td>{$lic.name}</td>
+								<td>{$lic.valid}</td>
+								<td>{$lic.rewardnum}</td>
+								{volist name="point" id="invate"}
+								<?php $variable = $invate['variable'].$lic['variable']; ?>
+								<td><input type="text" name="policy[{$variable}]" class="input" value="{$setting[$variable]}"></td>
+								{/volist}
+								<td><a href="{:url('Cpanel/point_credits',array('id'=>$lic['id']))}">编辑</a></td>
+							</tr>
+							{/volist}
+							<tr>
+								<td colspan="{$rows}">
+									<strong class="text-red">各项积分增减允许的范围为 -99～+99。如果为更多的操作设置积分策略，系统就需要更频繁的更新用户积分，同时意味着消耗更多的系统资源，因此请根据实际情况酌情设置。查看积分规则</strong>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="{$rows}">
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label></label>
+											</div>
+											<div class="field">
+											  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#append").click(function(){
+		var html = $("#template").html();
+		$("#tbody").append(html);
+	});
+	$(".removeOnline").click(function(){
+		var variable = $(this).data("prikey");
+		var thisline = $(this);
+		$.ajax({
+			type: "POST",
+			url : "{:url('Cpanel/pointd')}",
+			data: {variable:variable},
+			success:function(result){
+				console.info(result);
+				console.log(result.info);
+				if(result.status==1){
+					alert(result.info);
+					removeLine(thisline);
+				}else{
+					alert(result.info);
+				}
+			}
+		});
+	})
+})
+	function removeLine(e){
+		e.parent().parent().remove();
+	}
+</script>
+{include file="public:footer" /}

@@ -1,0 +1,58 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">内容管理</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="x12">
+				<div class="x4">
+					<table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								<td>删</td>
+								<td>ID</td>
+								<td>分类名称</td>
+								<td>操作</td>
+							</tr>
+						</thead>
+						<tbody>
+						{volist name="news.list" id="vo"}
+							<tr>
+								<td><input type="checkbox" class="checkbox" name="delete[]" value="{$vo.id}"></td>
+								<td><a href="{:url('cpanel/news?id='.$vo['id'])}" title="管理下级分类">{$vo.id}</a></td>
+								<td><a href="{:url('cpanel/news?id='.$vo['id'])}" title="管理下级分类">{$vo.name}</a></td>
+								<td><a href="{:url('cpanel/news_editor?id='.$vo['id'])}" class="text-blue">编辑</a> | <a href="{:url('cpanel/news_del?id='.$vo['id'])}" class="text-blue">删除</a></td>
+							</tr>
+						{/volist}
+						</tbody>
+					</table>
+					<div class="pagination">{$news.page}</div>
+				</div>
+				<div class="x1"></div>
+				<div class="x7">
+					<table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								<td>删</td>
+								<td>ID</td>
+								<td>标题</td>
+								<td>操作</td>
+							</tr>
+						</thead>
+						<tbody>
+						{volist name="article.list" id="vo"}
+							<tr>
+								<td><input type="checkbox" class="checkbox" name="delete[]" value="{$vo.id}"></td>
+								<td><a href="{:url('cpanel/news?id='.$vo['id'])}" title="管理下级分类">{$vo.id}</a></td>
+								<td><a href="{:url('cpanel/news?id='.$vo['id'])}" title="管理下级分类">{$vo.title}</a></td>
+								<td><a href="{:url('cpanel/news_editor?id='.$vo['id'])}" class="text-blue">编辑</a> | <a href="{:url('cpanel/news_del?id='.$vo['id'])}" class="text-blue">删除</a></td>
+							</tr>
+						{/volist}
+						</tbody>
+					</table>
+					<div class="pagination">{$article.page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

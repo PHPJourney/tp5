@@ -1,0 +1,85 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">添加充值类型</strong></div>
+	<div class="body-content">
+		<div class="panel-body">
+			<a href="{:url('Cpanel/recharge')}" target="right" class="button bg-blue">充值类型</a>
+		</div>
+		<form method="post" target="ajax" action="{:url('Cpanel/recharge_add')}" class="form-x">
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>名称</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[name]" value="">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请填写充值渠道名称，如“支付宝”、“财付通”</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>渠道标识</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[tags]" value="">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">渠道标识作用于项目充值过程中类型分辨，如支付宝为“alipay”</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>备注</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[remark]" value="">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">记录该充值渠道的一些关键信息</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>状态</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<select name="data[status]" class="input" size="2">
+								<option value="0">关闭</option>
+								<option value="1" selected>启用</option>
+							</select>
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">请选择当前渠道是否启用</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group margin-large-top">
+				<div class="x12">
+					<div class="label">
+					  <label></label>
+					</div>
+					<div class="field">
+					  <button class="button bg-main" type="submit">提交</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}

@@ -1,0 +1,581 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">访客统计</strong></div>
+	<div class="body-content border">
+		<div class="x12 padding">
+			<div class="x6 padding-right">
+				<div class="x12">
+					<div id="echarts_explode" style="height:300px">
+					
+					</div>
+				</div>
+				<div class="x12">
+					<table class="table table-hover table-bordered table-striped margin-top">
+						<thead>
+							<tr>
+								<th>共 {$explorer|count} 项</th>
+								<th>访问量</th>
+								<th>比例</th>
+							</tr>
+						</thead>
+						<tbody>
+						{volist name="explorer" id="vo"}
+							<tr>
+								<td><i class="icon-circle" style="color:{$color[$key]}"></i> {$vo.explorer}</td>
+								<td>{$vo.explorer_sum}</td>
+								<td>
+									<div class="progress">
+										<div class="progress-bar" style="background:{$color[$key]};width: {$vo['explorer_sum'] / $countsum * 100|round=2}%;">{$vo['explorer_sum'] / $countsum * 100|round=2}%</div>
+									</div>
+								</td>
+							</tr>
+							<?php
+								$explorername[] = $vo['explorer'];
+								$ecolor[] = $color[$key];
+								$sname[] = "{value:".$vo['explorer_sum'].", name:'".$vo['explorer']."'}";
+							?>
+						{/volist}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="x6 padding-left">
+				<div class="x12">
+					<div style="height:300px" id="echarts_system">
+					</div>
+				</div>
+				<div class="x12">
+					<table class="table table-hover table-bordered table-striped margin-top">
+						<thead>
+							<tr>
+								<th>共 {$system|count} 项</th>
+								<th>访问量</th>
+								<th>比例</th>
+							</tr>
+						</thead>
+						<tbody>
+						{volist name="system" id="vo"}
+							<tr>
+								<td><i class="icon-circle" style="color:{$color[$key]}"></i> {$vo.system}</td>
+								<td>{$vo.system_sum}</td>
+								<td>	
+									<div class="progress">
+										<div class="progress-bar"  style="background:{$color[$key]};width: {$vo['system_sum'] / $countsum * 100|round=2}%;">{$vo['system_sum'] / $countsum * 100|round=2}%</div>
+									</div>
+								</td>
+							</tr>
+						<?php
+							$systemname[] = $vo['system'];
+							$scolor[] = $color[$key];
+							$yname[] = "{value:".$vo['system_sum'].", name:'".$vo['system']."'}";
+						?>
+						{/volist}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="x12 padding">
+			<div class="x6 padding-right">
+				<div class="x12">
+					<div style="height:500px" id="echarts_city">
+					</div>
+				</div>
+				<div class="x12">
+					<table class="table table-hover table-bordered table-striped margin-top">
+						<thead>
+							<tr>
+								<th>共 {$citysum|count} 项</th>
+								<th>访问量</th>
+								<th>比例</th>
+							</tr>
+						</thead>
+						<tbody>
+						{volist name="citysum" id="vo"}
+							<tr>
+								<td><i class="icon-circle" style="color:{$color[$key]}"></i> {$vo.state}</td>
+								<td>{$vo.city_sum}</td>
+								<td>	
+									<div class="progress">
+										<div class="progress-bar" style="background:{$color[$key]};width: {$vo['city_sum'] / $countsum * 100|round=2}%;">{$vo['city_sum'] / $countsum * 100|round=2}%</div>
+									</div>
+								</td>
+							</tr>
+						{/volist}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="x6 padding-right">
+				<div class="x12">
+					<div style="height:500px" id="echarts_country">
+					</div>
+				</div>
+				<div class="x12">
+					<table class="table table-hover table-bordered table-striped margin-top">
+						<thead>
+							<tr>
+								<th>共 {$countrysum|count} 项</th>
+								<th>访问量</th>
+								<th>比例</th>
+							</tr>
+						</thead>
+						<tbody>
+						{volist name="countrysum" id="vo"}
+							<tr>
+								<td><i class="icon-circle" style="color:{$color[$key]}"></i> {$vo.country}</td>
+								<td>{$vo.country_sum}</td>
+								<td>	
+									<div class="progress">
+										<div class="progress-bar" style="background:{$color[$key]};width: {$vo['country_sum'] / $countsum * 100|round=2}%;">{$vo['country_sum'] / $countsum * 100|round=2}%</div>
+									</div>
+								</td>
+							</tr>
+						{/volist}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="x12 padding">
+			<table class="table table-hover table-bordered table-striped" id="list">
+				<thead>
+					<tr>
+						<th>IP</th>
+						<th>请求方式</th>
+						<th>站内地址</th>
+						<th>来路网址</th>
+						<th>请求协议</th>
+						<th>HTTP状态</th>
+						<th>浏览器</th>
+						<th>操作系统</th>
+						<th>浏览器内核</th>
+						<th>版本号</th>
+						<th>国家</th>
+						<th>省份</th>
+						<th>运营商</th>
+						<th>到访时间</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{js href="/public/static/js/echarts.min.js" /}
+{css href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" /}
+{load href="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" /}
+{load href="/public/static/js/china.js?_v_=1479966781202" /}
+{load href="/public/static/js/world.js?_v_=1479966781202" /}
+{include file="public:footer" /}
+<script type="text/javascript">
+var countrydata = [
+{volist name="countrysum" id="vo"}
+{in name="vo.country" value="$country"}
+	{name: '{$vo.country}', value: {$vo['country_sum']}},
+	<?php $maxdata[] = $vo['country_sum']; ?>
+{/in}
+{/volist}
+];
+var citydata = [
+{volist name="citysum" id="vo"}
+	<?php
+		 $maxcdata[] = $vo['city_sum'];
+		 $state = $vo['state'];
+		 foreach($city as $s){
+			if(strpos($state,$s) !== false){
+	 ?>
+				{name:'{$s}',value: {$vo['city_sum']}},
+	 <?php
+			}
+		}
+	 ?>
+{/volist}
+];
+</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+	$('#list').DataTable({
+		ajax: "{:url('Cpanel/visitorList')}",
+		columns: [
+			{data:"ip"},
+			{data:"method"},
+			{data:"path"},
+			{data:"url"},
+			{data:"protocol"},
+			{data:"status"},
+			{data:"explorer"},
+			{data:"system"},
+			{data:"core"},
+			{data:"version"},
+			{data:"country"},
+			{data:"state"},
+			{data:"area"},
+			{data:"time"},
+		]
+	});
+});
+var mycharts = echarts.init(document.getElementById("echarts_explode"));
+var system = echarts.init(document.getElementById("echarts_system"));
+var country = echarts.init(document.getElementById("echarts_country"));
+var city = echarts.init(document.getElementById("echarts_city"));
+var ldata = ['{$explorername|implode="','"}'];
+var lcolor = ['{$ecolor|implode="','"}'];
+var sdata = [{$sname|implode=","}];
+var rdata = ['{$systemname|implode="','"}'];
+var rcolor = ['{$scolor|implode="','"}'];
+var ydata = [{$yname|implode=","}];
+var maxdata = {$maxdata|max};
+var maxcdata = {$maxcdata|max};
+var option = {
+		title : {
+			text: '浏览器访问统计',
+			subtext: '站点浏览器访问细节',
+			x:'right'
+		},
+		tooltip : {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend: {
+			orient: 'vertical',
+			left: 'left',
+			data: ldata
+		},
+		color : lcolor,
+		series : [
+			{
+				name: '访客浏览器',
+				type: 'pie',
+				radius : '55%',
+				center: ['50%', '60%'],
+				data:sdata,
+				itemStyle: {
+					emphasis: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}
+		]
+	};
+var soption = {
+	title : {
+		text : "操作系统到访统计",
+		subtext: "站点操作系统访问细节",
+		x:'right'
+	},
+	tooltip : {
+		trigger: 'item',
+		formatter: "{a} <br/>{b} : {c} ({d}%)"
+	},
+	legend:{
+		orient: 'vertical',
+		left: 'left',
+		data: rdata
+	},
+	color : rcolor,
+	series : [
+		{
+			name : '访客系统',
+			type : "pie",
+			radius : '55%',
+			center: ['50%','60%'],
+			data:ydata,
+			itemStyle: {
+				emphasis: {
+					shadowBlur: 10,
+					shadowOffsetX: 0,
+					shadowColor: 'rgba(0,0,0, 0.5)'
+				}
+			}
+		}
+	]
+};
+var cityoption = {
+    title: {
+        text: '中国各省访问统计图',
+        subtext: '城市访问细节',
+        left: 'right'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data:['iphone3']
+    },
+    visualMap: {
+        min: 0,
+        max: maxcdata,
+        left: 'left',
+        top: 'bottom',
+        text: ['高','低'],           // 文本，默认为数值文本
+        calculable: true
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'center',
+        top: 'center',
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    series: [
+        {
+            name: '访客城市',
+            type: 'map',
+            mapType: 'china',
+            roam: false,
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:citydata
+        }
+    ]
+};
+world = {
+    title: {
+        text: '全球2017用户访问图表',
+        subtext: '项目开发团队',
+        sublink: 'http://groupcoin.tech',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            var value = (params.value + '').split('.');
+            value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,') + '.' + value[1];
+            return params.seriesName + '<br/>' + params.name + ' : ' + params.value;
+        }
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    visualMap: {
+        min: 0,
+        max: maxdata,
+        text:['High','Low'],
+        realtime: false,
+        calculable: true,
+        inRange: {
+            color: ['lightskyblue','yellow', 'orangered']
+        }
+    },
+    series: [
+        {
+            name: '全球用户访问',
+            type: 'map',
+            mapType: 'world',
+            roam: true,
+            itemStyle:{
+                emphasis:{label:{show:true}}
+            },
+			nameMap : {
+                'Afghanistan':'阿富汗',
+                'Angola':'安哥拉',
+                'Albania':'阿尔巴尼亚',
+                'United Arab Emirates':'阿联酋',
+                'Argentina':'阿根廷',
+                'Armenia':'亚美尼亚',
+                'French Southern and Antarctic Lands':'法属南半球和南极领地',
+                'Australia':'澳大利亚',
+                'Austria':'奥地利',
+                'Azerbaijan':'阿塞拜疆',
+                'Burundi':'布隆迪',
+                'Belgium':'比利时',
+                'Benin':'贝宁',
+                'Burkina Faso':'布基纳法索',
+                'Bangladesh':'孟加拉国',
+                'Bulgaria':'保加利亚',
+                'The Bahamas':'巴哈马',
+                'Bosnia and Herzegovina':'波斯尼亚和黑塞哥维那',
+                'Belarus':'白俄罗斯',
+                'Belize':'伯利兹',
+                'Bermuda':'百慕大',
+                'Bolivia':'玻利维亚',
+                'Brazil':'巴西',
+                'Brunei':'文莱',
+                'Bhutan':'不丹',
+                'Botswana':'博茨瓦纳',
+                'Central African Republic':'中非共和国',
+                'Canada':'加拿大',
+                'Switzerland':'瑞士',
+                'Chile':'智利',
+                'China':'中国',
+                'Ivory Coast':'象牙海岸',
+                'Cameroon':'喀麦隆',
+                'Democratic Republic of the Congo':'刚果民主共和国',
+                'Republic of the Congo':'刚果共和国',
+                'Colombia':'哥伦比亚',
+                'Costa Rica':'哥斯达黎加',
+                'Cuba':'古巴',
+                'Northern Cyprus':'北塞浦路斯',
+                'Cyprus':'塞浦路斯',
+                'Czech Republic':'捷克共和国',
+                'Germany':'德国',
+                'Djibouti':'吉布提',
+                'Denmark':'丹麦',
+                'Dominican Republic':'多明尼加共和国',
+                'Algeria':'阿尔及利亚',
+                'Ecuador':'厄瓜多尔',
+                'Egypt':'埃及',
+                'Eritrea':'厄立特里亚',
+                'Spain':'西班牙',
+                'Estonia':'爱沙尼亚',
+                'Ethiopia':'埃塞俄比亚',
+                'Finland':'芬兰',
+                'Fiji':'斐济',
+                'Falkland Islands':'福克兰群岛',
+                'France':'法国',
+                'Gabon':'加蓬',
+                'United Kingdom':'英国',
+                'Georgia':'格鲁吉亚',
+                'Ghana':'加纳',
+                'Guinea':'几内亚',
+                'Gambia':'冈比亚',
+                'Guinea Bissau':'几内亚比绍',
+                'Equatorial Guinea':'赤道几内亚',
+                'Greece':'希腊',
+                'Greenland':'格陵兰',
+                'Guatemala':'危地马拉',
+                'French Guiana':'法属圭亚那',
+                'Guyana':'圭亚那',
+                'Honduras':'洪都拉斯',
+                'Croatia':'克罗地亚',
+                'Haiti':'海地',
+                'Hungary':'匈牙利',
+                'Indonesia':'印尼',
+                'India':'印度',
+                'Ireland':'爱尔兰',
+                'Iran':'伊朗',
+                'Iraq':'伊拉克',
+                'Iceland':'冰岛',
+                'Israel':'以色列',
+                'Italy':'意大利',
+                'Jamaica':'牙买加',
+                'Jordan':'约旦',
+                'Japan':'日本',
+                'Kazakhstan':'哈萨克斯坦',
+                'Kenya':'肯尼亚',
+                'Kyrgyzstan':'吉尔吉斯斯坦',
+                'Cambodia':'柬埔寨',
+                'South Korea':'韩国',
+                'Kosovo':'科索沃',
+                'Kuwait':'科威特',
+                'Laos':'老挝',
+                'Lebanon':'黎巴嫩',
+                'Liberia':'利比里亚',
+                'Libya':'利比亚',
+                'Sri Lanka':'斯里兰卡',
+                'Lesotho':'莱索托',
+                'Lithuania':'立陶宛',
+                'Luxembourg':'卢森堡',
+                'Latvia':'拉脱维亚',
+                'Morocco':'摩洛哥',
+                'Moldova':'摩尔多瓦',
+                'Madagascar':'马达加斯加',
+                'Mexico':'墨西哥',
+                'Macedonia':'马其顿',
+                'Mali':'马里',
+                'Myanmar':'缅甸',
+                'Montenegro':'黑山',
+                'Mongolia':'蒙古',
+                'Mozambique':'莫桑比克',
+                'Mauritania':'毛里塔尼亚',
+                'Malawi':'马拉维',
+                'Malaysia':'马来西亚',
+                'Namibia':'纳米比亚',
+                'New Caledonia':'新喀里多尼亚',
+                'Niger':'尼日尔',
+                'Nigeria':'尼日利亚',
+                'Nicaragua':'尼加拉瓜',
+                'Netherlands':'荷兰',
+                'Norway':'挪威',
+                'Nepal':'尼泊尔',
+                'New Zealand':'新西兰',
+                'Oman':'阿曼',
+                'Pakistan':'巴基斯坦',
+                'Panama':'巴拿马',
+                'Peru':'秘鲁',
+                'Philippines':'菲律宾',
+                'Papua New Guinea':'巴布亚新几内亚',
+                'Poland':'波兰',
+                'Puerto Rico':'波多黎各',
+                'North Korea':'北朝鲜',
+                'Portugal':'葡萄牙',
+                'Paraguay':'巴拉圭',
+                'Qatar':'卡塔尔',
+                'Romania':'罗马尼亚',
+                'Russia':'俄罗斯',
+                'Rwanda':'卢旺达',
+                'Western Sahara':'西撒哈拉',
+                'Saudi Arabia':'沙特阿拉伯',
+                'Sudan':'苏丹',
+                'South Sudan':'南苏丹',
+                'Senegal':'塞内加尔',
+                'Solomon Islands':'所罗门群岛',
+                'Sierra Leone':'塞拉利昂',
+                'El Salvador':'萨尔瓦多',
+                'Somaliland':'索马里兰',
+                'Somalia':'索马里',
+                'Republic of Serbia':'塞尔维亚共和国',
+                'Suriname':'苏里南',
+                'Slovakia':'斯洛伐克',
+                'Slovenia':'斯洛文尼亚',
+                'Sweden':'瑞典',
+                'Swaziland':'斯威士兰',
+                'Syria':'叙利亚',
+                'Chad':'乍得',
+                'Togo':'多哥',
+                'Thailand':'泰国',
+                'Tajikistan':'塔吉克斯坦',
+                'Turkmenistan':'土库曼斯坦',
+                'East Timor':'东帝汶',
+                'Trinidad and Tobago':'特里尼达和多巴哥',
+                'Tunisia':'突尼斯',
+                'Turkey':'土耳其',
+                'United Republic of Tanzania':'坦桑尼亚联合共和国',
+                'Uganda':'乌干达',
+                'Ukraine':'乌克兰',
+                'Uruguay':'乌拉圭',
+                'United States of America':'美国',
+                'Uzbekistan':'乌兹别克斯坦',
+                'Venezuela':'委内瑞拉',
+                'Vietnam':'越南',
+                'Vanuatu':'瓦努阿图',
+                'West Bank':'西岸',
+                'Yemen':'也门',
+                'South Africa':'南非',
+                'Zambia':'赞比亚',
+                'Zimbabwe':'津巴布韦'
+            },
+            data:countrydata
+        }
+    ]
+};
+country.setOption(world);
+city.setOption(cityoption);
+system.setOption(soption);
+mycharts.setOption(option);
+</script>									

@@ -1,0 +1,127 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+{notempty name="adv"}
+	<div class="panel-head"><strong class="text-blue">修改广告</strong></div>
+{else /}
+	<div class="panel-head"><strong class="text-blue">添加广告</strong></div>
+{/notempty}
+	<div class="body-content">
+		<div class="x12">
+			<div class="x3"></div>
+			<div class="x6">
+				<form method="post" action="{:url('Cpanel/saveadv')}" target="ajax" class="form-x">
+					{notempty name="adv"}
+						<input type="hidden" name="id" value="{$adv[0]['id']|@}">
+					{/notempty}
+					<div class="form-group">
+						<div class="label"><strong>广告名称</strong></div>
+						<div class="field">
+							<input type="text" class="input" name="data[advname]" value="{$adv[0]['advname']|@}">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>广告备注</strong></div>
+						<div class="field">
+							<input type="text" class="input" name="data[advremark]" value="{$adv[0]['advremark']|@}">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>广告链接</strong></div>
+						<div class="field">
+							<input type="text" class="input" name="data[advlink]" value="{$adv[0]['advlink']|@}">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>广告排序</strong></div>
+						<div class="field">
+							<input type="text" class="input" name="data[advsort]" value="{$adv[0]['advsort']|@}">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>开始时间</strong></div>
+						<div class="field">
+							<input type="text" class="input" name="data[begintime]" value="{$adv[0]['begintime']|@}">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>结束时间</strong></div>
+						<div class="field">
+							<input type="text" class="input" name="data[endtime]" value="{$adv[0]['endtime']|@}">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>广告图片</strong></div>
+						<div class="field">
+							<input type="text" id="url1" name="data[advimg]" class="input tips" style="width:25%; float:left;" value="{$adv[0]['advimg']|@}" data-toggle="hover" data-place="right" data-image="{$adv[0]['advimg']|default='/Public/static/images/y.jpg'}"  />
+						  <a class="button input-file bg-blue margin-left" href="javascript:void(0);">+ 浏览上传
+							<input size="100" id="file" data-validate="regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" type="file" />
+						</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>打开方式</strong></div>
+						<div class="field">
+							<input type="radio" class="radio" name="data[advmethod]" value="0" id="method0" {eq name="@$adv[0]['advmethod']" value="0"}checked{/eq}{empty name="adv"}checked{/empty}> <label for="method0">默认</label>
+							<input type="radio" class="radio" name="data[advmethod]" value="1" id="method1" {eq name="@$adv[0]['advmethod']" value="1"}checked{/eq}> <label for="method1">新窗口</label>
+							<input type="radio" class="radio" name="data[advmethod]" value="2" id="method2" {eq name="@$adv[0]['advmethod']" value="2"}checked{/eq}> <label for="method2">调取APP Store</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label"><strong>启用</strong></div>
+						<div class="field">
+							<input type="radio" class="radio" name="data[state]" value="0" id="state0" {eq name="@$adv[0]['state']" value="0"}checked{/eq}{empty name="adv"}checked{/empty}> <label for="state0">启用</label>
+							<input type="radio" class="radio" name="data[state]" value="1" id="state1" {eq name="@$adv[0]['state']" value="1"}checked{/eq}> <label for="state1">禁用</label>
+						</div>
+					</div>
+					  <div class="form-group">
+						<div class="label">
+						  <label></label>
+						</div>
+						<div class="field">
+						  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+						</div>
+					  </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	$("#url1").change(function(){
+		var src = $(this).val();
+		src != '' ? $(this).attr("data-image",src) : '';
+	})
+	$('#file').change(function(){
+		var xhr = new XMLHttpRequest();
+		var file = $(this)[0].files;
+		var data = new FormData();
+		data.append("attr",file[0]);
+		$(this).val('');
+		xhr.open("POST","{:url('Attach/upload')}",true);
+		xhr.onreadystatechange = function(){
+		console.info(xhr.status);
+			if(xhr.readyState == 4 && xhr.status==200){
+				var xml = xhr.responseXML;
+				var savepath = xml.getElementsByTagName("savepath");
+				savepath = savepath[0].firstChild.nodeValue;
+				var upcode = xml.getElementsByTagName("code");
+				upcode = upcode[0].firstChild.nodeValue;
+				var savename = xml.getElementsByTagName("savename");
+				savename = savename[0].firstChild.nodeValue;
+				if(upcode == 1){
+					$("#url1").val(savepath+savename);
+					$("#url1").attr("data-image",savepath+savename);
+				}else{
+					var uperr = xml.getElementsByTagName("err");
+					uperr = uperr[0].firstChild.nodeValue;
+					updateAlert(uperr,"alert-error");
+				}
+			}
+		};
+		xhr.send(data);
+	});
+});
+</script>
+{include file="public:footer" /}

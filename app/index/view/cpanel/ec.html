@@ -1,0 +1,105 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">基本设置</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="form-group bg-blue-light">
+				<div class="x12">
+					<div class="label">
+						<strong class="text-blue">技巧提示</strong>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong></strong>
+					</div>
+					<div class="x7">
+						<small class="text-gray">
+							电子商务参数配置项统一使用数据库 <code class="text-red">`setting`</code> 表<br>
+							前台继承公共方法控制器类 <code class="text-red">CommonController</code><br>
+							参数查询方式为 <code class="text-red">$setting.key</code><br>
+							现金积分兑换比例,查询关键字（ <code class="text-red">ec_ratio</code>）<br>
+							单次购买最小积分数额,查询关键字（ <code class="text-red">ec_mincredits</code>）<br>
+							单次购买最大积分数额,查询关键字（ <code class="text-red">ec_maxcredits</code>）<br>
+							每月购买最大积分数额,查询关键字（ <code class="text-red">ec_maxcreditspermonth</code>）<br>
+						</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>现金/积分兑换比例</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[ec_ratio]" value="{$setting.ec_ratio}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">设置真实货币现金(以人民币元为单位)与站点交易积分间的兑换比率，例如设置为 10，则 1 元人民币可以兑换 10 个单位的交易积分。本功能需开启交易积分，并成功进行财付通、支付宝收款账号的相关设置后方可使用，如果禁止使用现金与交易积分的兑换功能，请设置为 0</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>单次购买最小积分数额</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[ec_mincredits]" value="{$setting.ec_mincredits}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">设置用户一次支付所购买的交易积分的最小数额，单位为交易积分的单位，0 为不限制</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>单次购买最大积分数额</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[ec_maxcredits]" value="{$setting.ec_maxcredits}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">设置用户一次支付所购买的交易积分的最大数额，单位为交易积分的单位，0 为不限制</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>每月购买最大积分数额</strong>
+					</div>
+					<div class="x3">
+						<div class="field">
+							<input type="text" class="input" name="data[ec_maxcreditspermonth]" value="{$setting.ec_maxcreditspermonth}">
+						</div>
+					</div>
+					<div class="x7">
+						<small class="text-gray">设置用户每月能够通过在线支付方式购买的交易积分的最大数额，单位为交易积分的单位，0 为不限制
+提交</small>
+					</div>
+				</div>
+			</div>
+			<div class="form-group margin-large-top">
+				<div class="x12">
+					<div class="label">
+					  <label></label>
+					</div>
+					<div class="field">
+					  <button class="button bg-main" type="submit">提交</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}

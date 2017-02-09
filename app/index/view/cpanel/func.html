@@ -1,0 +1,486 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong>站点功能</strong></div>
+	<div class="padding-left padding-top">
+		<a href="{:url('Cpanel/func',array('model'=>'1'))}" class="{eq name='model' value='1'>button bg-red<else />text-big</eq}">功能模块</a>
+		<a href="{:url('Cpanel/func',array('model'=>'2'))}" class="{eq name='model' value='2'>button bg-red<else />text-big</eq}">管理相关</a>
+		<a href="{:url('Cpanel/func',array('model'=>'3'))}" class="{eq name='model' value='3'>button bg-red<else />text-big</eq}">主题热度</a>
+		<a href="{:url('Cpanel/func',array('model'=>'4'))}" class="{eq name='model' value='4'>button bg-red<else />text-big</eq}">主题评价</a>
+		<a href="{:url('Cpanel/func',array('model'=>'5'))}" class="{eq name='model' value='5'>button bg-red<else />text-big</eq}">导读设置</a>
+	</div>
+	<div class="body-content">
+		<div class="padding-left padding-right model" id="model1" style="display:none">
+			<div class="x12">
+				<div class="x6">
+					<table class="table table-striped table-hover border">
+						<tr>
+							<td class="x2">门户</td>
+							<td class="x8">通过门户，网站可以将最热门的帖子、文章、活动等信息展现给用户</td>
+							<td class="x1"><span class="icon-check text-sub"></span></td>
+							<td class="x1"><a href="" class="text-main">关闭</a></td>
+						</tr>
+						<tr>
+							<td class="x2">群组</td>
+							<td class="x8">志同道合者的聚集地，更加专业更加隐秘的交流乐园</td>
+							<td class="x1"><span class="icon-times text-red"></span></td>
+							<td class="x1"><a href="" class="text-main">开启</a></td>
+						</tr>
+						<tr>
+							<td class="x2">广播</td>
+							<td class="x8">	收听感兴趣的人，分享有趣的事儿，信息快速传播的利器</td>
+							<td class="x1"><span class="icon-times text-red"></span></td>
+							<td class="x1"><a href="" class="text-main">开启</a></td>
+						</tr>
+						<tr>
+							<td class="x2">淘帖</td>
+							<td class="x8">网站优质内容的收集与分类，网站内容运营必不可少的好帮手</td>
+							<td class="x1"><span class="icon-check text-sub"></span></td>
+							<td class="x1"><a href="" class="text-main">关闭</a></td>
+						</tr>
+						<tr>
+							<td class="x2">导读</td>
+							<td class="x8">自动聚合网站最具争议、最热门、最精华、最新发布等“最”主题</td>
+							<td class="x1"><span class="icon-times text-red"></span></td>
+							<td class="x1"><a href="" class="text-main">开启</a></td>
+						</tr>
+						<tr>
+							<td class="x2">动态</td>
+							<td class="x8">了解网站关注好友网站动向的直接渠道，让用户不再感觉孤独</td>
+							<td class="x1"><span class="icon-check text-sub"></span></td>
+							<td class="x1"><a href="" class="text-main">关闭</a></td>
+						</tr>
+						<tr>
+							<td class="x2">日志</td>
+							<td class="x8">记录每日见闻，分享人生感悟，用户感情宣泄的家园</td>
+							<td class="x1"><span class="icon-check text-sub"></span></td>
+							<td class="x1"><a href="" class="text-main">关闭</a></td>
+						</tr>
+						<tr>
+							<td class="x2">相册</td>
+							<td class="x8">	自己的美丽容颜，祖国的大好河山，各种美图的影像档案</td>
+							<td class="x1"><span class="icon-times text-red"></span></td>
+							<td class="x1"><a href="" class="text-main">开启</a></td>
+						</tr>
+						<tr>
+							<td class="x2">分享</td>
+							<td class="x8">	将网站精华内容推荐给其他网友，形成良好的共享氛围</td>
+							<td class="x1"><span class="icon-times text-red"></span></td>
+							<td class="x1"><a href="" class="text-main">开启</a></td>
+						</tr>
+						<tr>
+							<td class="x2">记录</td>
+							<td class="x8">分享灵感，表达心情，记录随时想到的人和事儿	</td>
+							<td class="x1"><span class="icon-check text-sub"></span></td>
+							<td class="x1"><a href="" class="text-main">关闭</a></td>
+						</tr>
+						<tr>
+							<td class="x2">留言板</td>
+							<td class="x8">通过留言，可以让其他用户不会错过你的互动	</td>
+							<td class="x1"><span class="icon-times text-red"></span></td>
+							<td class="x1"><a href="" class="text-main">开启</a></td>
+						</tr>
+						<tr>
+							<td class="x2">排行榜</td>
+							<td class="x8">通过排行榜，可以查看本站的相关排行内容	</td>
+							<td class="x1"><span class="icon-check text-sub"></span></td>
+							<td class="x1"><a href="" class="text-main">关闭</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="model" id="model2" style="display:none">
+			<form method="post" class="form-auto">
+				<table class="table table-striped">
+					<tr>
+						<td cols="2">
+							<strong class="text-red">技巧提示</strong>
+							<p class="text-yellow">以红色虚线标示的选项，表示该选项和系统效率、负载能力与资源消耗有关(提高效率、或降低效率)，建议依据自身服务器情况进行调整。</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red">开启站点趋势统计</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="radio" class="radio" name="data[updatestat]" value="1" {eq name="setting['updatestat']" value="1">checked</eq}> 是
+									  <input type="radio" class="radio" name="data[updatestat]" value="0" {eq name="setting['updatestat']" value="0">checked</eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">站点趋势统计可以使站长了解到站点的运作状况。注意: 本功能会轻微加重系统负担</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red">开启网站管理工作统计</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="radio" class="radio" name="data[modworkstatus]" value="1" {eq name="setting['modworkstatus']" value="1">checked</eq}> 是
+									  <input type="radio" class="radio" name="data[modworkstatus]" value="0" {eq name="setting['modworkstatus']" value="0">checked</eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">网站工作统计可以管理员了解站点管理人员的工作状况。注意: 本功能会轻微加重系统负担</small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red">管理记录保留时间(月)：</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[maxmodworksmonths]" value="{@$setting.maxmodworksmonths}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">系统中保留管理记录的时间，默认为 3 个月，建议在 3～6 个月的范围内取值</small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>管理操作理由选项：</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <textarea type="text" class="input" name="data[modreasons]">{@$setting.modreasons}</textarea>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">本设定将在用户执行部分管理操作时显示，每个理由一行，如果空行则显示一行分隔符“--------”，用户可选择本设定中预置的理由选项或自行输入</small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>用户评分理由选项:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <textarea type="text" class="input" name="data[userreasons]">{@$setting.userreasons}</textarea>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">本设定将在用户执行评分时显示，每个理由一行，如果空行则显示一行分隔符“--------”，用户可选择本设定中预置的理由选项或自行输入</small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>用户被警告多少次自动禁言:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[warninglimit]" value="{@$setting.warninglimit}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">警告有效期结束自动解除禁言</small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>警告有效期(天):</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[warningexpiration]" value="{@$setting.warningexpiration}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">默认为 30 天</small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red"></strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="padding-left padding-right model" id="model3" style="display:none">
+			<form method="post" class="form-auto">
+				<table class="table table-striped">
+					<tr>
+						<td cols="2">
+							<strong class="text-red">技巧提示</strong>
+							<p class="text-yellow">主题热度将按参与人次计算，包括回帖，点评，收藏，分享，评分，推荐</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>用户热度值周期(天):</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[perido]" value="{@$setting.perido}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">以天为单位，一个周期内某用户多次参与主题，只加一次热度。0代表不设置周期，只要参与一次，热度就加1。为避免用户刷热度，建议不要设置为0。(回复、点评、评论、收藏、分享等都算作参与主题的动作)</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>热门主题显示级别:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[iconlevels]" value="{@$setting.iconlevels}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置主题列表页主题图标每一级别对应的热度指数，默认为 3 个级别，请用逗号分隔，如：“50,100,200”表示当主题的热度大于 50 时为 1 级，大于 100 时为 2 级，大于 200 时为 3 级。留空表示不显示图标</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red"></strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="padding-left padding-right model" id="model4" style="display:none">
+			<form method="post" class="form-auto">
+				<table class="table table-striped">
+					<tr>
+						<td cols="2">
+							<strong class="text-red">技巧提示</strong>
+							<p class="text-yellow">不同用户组会员的主题评价影响值不同，您可以在”用户组”设置的“帖子相关”中设置。</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>启用主题评价: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="radio" class="radio" name="data[recommendthreadstatus]" value="1" {eq name="setting['recommendthreadstatus']" value="1">checked</eq}> 是
+									  <input type="radio" class="radio" name="data[recommendthreadstatus]" value="0" {eq name="setting['recommendthreadstatus']" value="0">checked</eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">主题评价是让用户参与主题热度的重要指标，您可以设定用户在每天允许执行的评价次数</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>加分操作文字:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[addtext]" value="{@$setting.addtext}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置评价加分的文字，不宜过长。建议使用“顶”、“支持”</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>减分操作文字:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[subtracttext]" value="{@$setting.subtracttext}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置评价减分的文字，不宜过长。建议使用“踩”、“反对”</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>每 24 小时评价主题次数:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <input type="text" class="input" name="data[daycount]" value="{@$setting.daycount}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置用户每 24 小时可以评价多少篇主题，0 或留空为不限制</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>是否允许评价自己的帖子:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">									
+									  <input type="radio" class="radio" name="data[ownthread]" value="1" {eq name="setting['ownthread']" value="1">checked</eq}> 是
+									  <input type="radio" class="radio" name="data[ownthread]" value="0" {eq name="setting['ownthread']" value="0">checked</eq}> 否
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置是否允许评价自己的主题。评价自己的主题无积分奖励</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>评价图标显示级别:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">									
+									  <input type="text" class="input" name="data[reviewiconlevels]" value="{@$setting.reviewiconlevels}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">设置主题列表页评价图标每一级别对应的评价指数。建议为 3 个级别，请用逗号分隔，如：“0,100,200”表示当主题的评价指数大于 0 时为 1 级，大于 100 时为 2 级，大于 200 时为 3 级。1 级及以上级别的主题会在主题列表页“查看好评主题”中列出。留空或者 0 表示不显示图标</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red"></strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="padding-left padding-right model" id="model5" style="display:none">
+			<form method="post" class="form-auto">
+				<table class="table table-striped">
+					<tr>
+						<td>
+							<strong>热度值聚合下限:</strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+										<input type="text" class="input" name="data[guidelimit]" value="{@$setting.guidelimit}">
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray">导读功能中收集热门主题时的热度值下限,默认值“3”</small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>热帖聚合时间范围: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <select name="data[hotdt]" class="input">
+										<option value="0" {eq name="@$setting.hotdt" value="0"}selected{/eq}>一周</option>
+										<option value="1" {eq name="@$setting.hotdt" value="1"}selected{/eq}>两周</option>
+										<option value="2" {eq name="@$setting.hotdt" value="2"}selected{/eq}>一个月</option>
+										<option value="3" {eq name="@$setting.hotdt" value="3"}selected{/eq}>三个月</option>
+									  </select>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>精华聚合时间范围: </strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <select name="data[digestdt]" class="input">
+										<option value="0" {eq name="@$setting.digestdt" value="0"}selected{/eq}>一周</option>
+										<option value="1" {eq name="@$setting.digestdt" value="1"}selected{/eq}>两周</option>
+										<option value="2" {eq name="@$setting.digestdt" value="2"}selected{/eq}>一个月</option>
+										<option value="3" {eq name="@$setting.digestdt" value="3"}selected{/eq}>三个月</option>
+									  </select>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								</div>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong style="border-bottom:1px dashed red"></strong>
+							<p>
+								<div class="x3">
+									<div class="field">
+									  <button class="button bg-main icon-check-square-o" type="submit">提交</button>
+									</div>
+								</div>
+								<div class="x9 padding-left">
+									<small class="text-gray"></small>
+								  </div>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".model").hide();
+	$("#model{$model}").show();
+})
+</script>
+{include file="public:footer" /}

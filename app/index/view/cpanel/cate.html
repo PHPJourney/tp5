@@ -1,0 +1,120 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">添加分类</strong></div>
+	<div class="body-content">
+		<form method="post" target="ajax" action="{:url('Cpanel/cate')}" class="form-x">
+			{notempty name="article"}
+				<input type="hidden" name="id" value="{$article.id}">
+			{/notempty}
+			<div class="x12">
+				<div class="form-group">
+					<div class="label">
+						<strong class="text-blue">分类名称</strong>
+					</div>
+					<div class="x5">
+						<div class="field">
+							<input type="text" class="input" name="data[name]" value="{$article['name']|@}">
+						</div>
+					</div>
+					<div class="x4">
+						<small class="text-gray">请填写分类名称</small>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="label">
+						<strong>上级分类</strong>
+					</div>
+					<div class="x5 selector">
+						<div class="field">
+							<select name="data[pid]" data-index="1" class="input w50">
+								<option value="0">顶级分类</option>
+								{volist name="sort" id="vo"}
+									<option value="{$vo.id}" {eq name="@$article.pid" value="$vo['id']"}selected{/eq}>{$vo.name}</option>
+								{/volist}
+							</select>
+						</div>
+					</div>
+					<div class="x4">
+						<small class="text-gray">请选择该分类的上级分类</small>
+					</div>
+				</div>
+				 <div class="form-group">
+					<div class="label">
+					  <label></label>
+					</div>
+					<div class="field">
+					  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+					</div>
+				  </div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}
+<script type="text/javascript">
+$(function(){
+	$("select").change(function(){
+		var index = $(this).data("index");
+		var selector;
+		var html;
+		var newtarget = index + 1;
+		var pid = $(this).val();
+		$.get("{:url('cpanel/getcate')}?pid="+pid,function(result){
+			$("select").each(function(i){
+				if($(this).data("index") == newtarget){
+					selector = 1;
+				}else{
+					if($(this).data("index") > index){
+						$("select[data-index='"+ $(this).data('index') +"']").remove();
+					}
+				}
+			})
+			if(selector==1){
+				for(var i=0;i< result.length;i++){
+					html += "<option value='"+ result[i].id +"'>"+result[i].name+"</option>";
+				}
+				$("select[data-index='"+ newtarget +"']").html(html);
+			}else{
+				html = "<div class='field'><select name='data[pid]' onchange='selector($(this));' class='input w50' data-index='"+ newtarget +"'>";
+				for(var i=0;i< result.length;i++){
+					html += "<option value='"+ result[i].id +"'>"+result[i].name+"</option>";
+				}
+				html = html+"</select></div>";
+				$(".selector").append(html);
+			}
+		})
+	})
+})
+
+	function selector(e){
+		var index = e.data("index");
+		var selector;
+		var html;
+		var newtarget = index + 1;
+		var pid = e.val();
+		$.get("{:url('cpanel/getcate')}?pid="+pid,function(result){
+			$("select").each(function(i){
+				if($(this).data("index") == newtarget){
+					selector = 1;
+				}else{
+					if($(this).data("index") > index){
+						$(this).html('');
+					}
+				}
+			})
+			if(selector==1){
+				for(var i=0;i< result.length;i++){
+					html += "<option value='"+ result[i].id +"'>"+result[i].name+"</option>";
+				}
+				$("select[data-index='"+ newtarget +"']").html(html);
+			}else{
+				html = "<div class='field'><select name='data[pid]' class='input w50' data-index='"+ newtarget +"'>";
+				for(var i=0;i< result.length;i++){
+					html += "<option value='"+ result[i].id +"'>"+result[i].name+"</option>";
+				}
+				html = html+"</select></div>";
+				$(".selector").append(html);
+			}
+		})
+	}
+</script>

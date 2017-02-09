@@ -1,0 +1,47 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head">
+		<strong class="text-blue">计划任务</strong>
+	</div>
+	<div class="body-content">
+		<table class="table table-hover table-bordered table-striped text-center">
+			<thead>
+				<tr>
+					<th></th>
+					<th>任务名称</th>
+					<th>可用</th>
+					<th>类型</th>
+					<th>时间</th>
+					<th>上次执行时间</th>
+					<th>下次执行时间</th>
+					<th></th>
+				</tr>
+			</thead>
+			{volist name="plan" id="vo"}
+				<tr>
+					<td><input type="checkbox" class="checkbox" name="delete[]" value="{$vo.id}" <eq name="vo.cate" value="0">disabled</eq>></td>
+					<td><input type="text" class="input" name="name" value="{$vo.name}"><br><b class="text-blue">{$vo.script}</b></td>
+					<td><input type="checkbox" class="checkbox" name="availablenew[{$vo.id}]" value="1" <eq name="vo.availablenew" value="1">checked</eq>></td>
+					<td>{eq name="vo.cate" value="0"}内置{else /}自定义{/eq}</td>
+					<td>{$vo.runtime}</td>
+					<td>{$vo.pretime}</td>
+					<td>{$vo.lasttime}</td>
+					<td><a href="{:url('Cpanel/task_edit?id='.$vo['id'])}" class="text-green">编辑</a> | <a href="{:url('Cpanel/task_del?id='.$vo['id'])}" class="text-red">删除</a></td>
+				</tr>
+			{/volist}
+				<tr>
+					<td>新增</td>
+					<td colspan="7"><input type="text" name="newname" value="" size="20" class="input w50"></td>
+				</tr>
+		</table>
+		<div class="x12 margin-top">
+			<div class="x1">
+				<input type="checkbox" id="selectall" class="checkbox"> 删?
+			</div>
+			<div class="x9 text-left">
+				<input type="submit" class="button bg-blue" value="提交">
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

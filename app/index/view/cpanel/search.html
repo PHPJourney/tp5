@@ -1,0 +1,74 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">搜索设置</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="form-group bg-blue-light">
+				<div class="label">
+					<strong class="text-blue">开启搜索</strong>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="x8">
+						<table class="table table-bordered table-hover table-striped">
+							<tr>
+								<th>开启</th>
+								<th>搜索项目</th>
+								<th>搜索时间限制（秒）</th>
+								<th>60秒最大搜索次数</th>
+								<th>最大搜索结果</th>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="data[search_article_status]" class="checkbox" value="1" {eq name="setting.search_article_status" value="1"}checked{/eq}></td>
+								<td>搜索文章</td>
+								<td><input type="text" name="data[search_article_searchctrl]" class="input" value="{$setting.search_article_searchctrl}"></td>
+								<td><input type="text" name="data[search_article_maxspm]" class="input" value="{$setting.search_article_maxspm}"></td>
+								<td><input type="text" name="data[search_article_maxsearchresults]" class="input" value="{$setting.search_article_maxsearchresults}"></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="data[search_log_status]" class="checkbox" value="1" {eq name="setting.search_log_status" value="1"}checked{/eq}></td>
+								<td>搜索日志</td>
+								<td><input type="text" name="data[search_log_searchctrl]" class="input" value="{$setting.search_log_searchctrl}"></td>
+								<td><input type="text" name="data[search_log_maxspm]" class="input" value="{$setting.search_log_maxspm}"></td>
+								<td><input type="text" name="data[search_log_maxsearchresults]" class="input" value="{$setting.search_log_maxsearchresults}"></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="data[search_album_status]" class="checkbox" value="1" {eq name="setting.search_album_status" value="1"}checked{/eq}></td>
+								<td>搜索相册</td>
+								<td><input type="text" name="data[search_album_searchctrl]" class="input" value="{$setting.search_album_searchctrl}"></td>
+								<td><input type="text" name="data[search_album_maxspm]" class="input" value="{$setting.search_album_maxspm}"></td>
+								<td><input type="text" name="data[search_album_maxsearchresults]" class="input" value="{$setting.search_album_maxsearchresults}"></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="data[search_group_status]" class="checkbox" value="1" {eq name="setting.search_group_status" value="1"}checked{/eq}></td>
+								<td>搜索群组</td>
+								<td><input type="text" name="data[search_group_searchctrl]" class="input" value="{$setting.search_group_searchctrl}"></td>
+								<td><input type="text" name="data[search_group_maxspm]" class="input" value="{$setting.search_group_maxspm}"></td>
+								<td><input type="text" name="data[search_group_maxsearchresults]" class="input" value="{$setting.search_group_maxsearchresults}"></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="data[search_special_status]" class="checkbox" value="1" {eq name="setting.search_special_status" value="1"}checked{/eq}></td>
+								<td>搜索专辑</td>
+								<td><input type="text" name="data[search_special_searchctrl]" class="input" value="{$setting.search_special_searchctrl}"></td>
+								<td><input type="text" name="data[search_special_maxspm]" class="input" value="{$setting.search_special_maxspm}"></td>
+								<td><input type="text" name="data[search_special_maxsearchresults]" class="input" value="{$setting.search_special_maxsearchresults}"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="form-group margin-large-top">
+						<div class="x12">
+							<div class="label">
+							  <label></label>
+							</div>
+							<div class="field">
+							  <button class="button bg-main" type="submit">提交</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

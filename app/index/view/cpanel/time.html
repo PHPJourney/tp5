@@ -1,0 +1,153 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head text-blue"><strong>时间设置</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="x12">
+				<div class="form-group bg-blue-light">
+					<div class="label">
+						<strong class="text-blue">日期和时间格式</strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+							<strong>默认日期格式</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+								<input type="text" class="input" name="data[time_format_default]" value="{$setting.time_format_default}">
+							</div>
+						</div>
+						<div class="7">
+							<small class="text-gray padding-left">使用 yyyy(yy) 表示年，mm 表示月，dd 表示天。如 yyyy-mm-dd 表示 2000-1-1</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>默认时间格式</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							  <input type="radio" class="radio" name="data[timeformat]" value="0" <?php if(in_array(0,explode(",",$setting['timeformat']))){ echo "checked"; }?>>24 小时制
+							</div>
+							<div class="field">
+								<input type="radio" class="radio" name="data[timeformat]" value="1" <?php if(in_array(1,explode(",",$setting['timeformat']))){ echo "checked"; }?>>12 小时制
+							</div>
+						</div>
+						<div class="x9 padding-left">
+							<small class="text-gray"></small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>人性化时间格式</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							  <input type="radio" class="radio" name="data[dateconvert]" value="0" <?php if(in_array(0,explode(",",$setting['dateconvert']))){ echo "checked"; }?>>是
+							</div>
+							<div class="field">
+								<input type="radio" class="radio" name="data[dateconvert]" value="1" <?php if(in_array(1,explode(",",$setting['dateconvert']))){ echo "checked"; }?>>否
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">选择“是”，站点中的时间将显示以“n分钟前”、“昨天”、“n天前”等形式显示</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>默认时差</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <select name="data[global_timeoffset]" class="input" onchange="if(this.value !== '')$('#timeoffset').val(this.value);">
+								<option value="">选择公共时区</option>
+								{volist name="globalTimeoffset" id="timeoff"}
+								<option value="{$timeoff.timeoffset}" {eq name="setting['global_timeoffset']" value='$timeoff.timeoffset'}selected{/eq}>{$timeoff.name}</option>
+								{/volist}
+							 </select>
+							</div>
+							<div class="field">
+								<input type="text" class="input" id="timeoffset" name="data[timeoffset]" value="{$setting.timeoffset}">
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">当地时间与 GMT 的时差。遇夏制时的情况也可以手动输入，如：-7.5</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group bg-blue-light">
+					<div class="label">
+						<strong class="text-blue">时间段设置</strong>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>禁止访问时间段</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <textarea class="input" name="data[visitbanperiods]">{$setting.visitbanperiods}</textarea>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">	每天该时间段内用户不能访问站点，请使用 24 小时时段格式，每个时间段一行，如需要也可跨越零点，留空为不限制。例如:<br>
+每日晚 11:25 到次日早 5:05 可设置为: 23:25-5:05<br>
+每日早 9:00 到当日下午 2:30 可设置为: 9:00-14:30<br>
+注意: 格式不正确将可能导致意想不到的问题，用户组中如开启“不受时间段限制”的选项，则该组可不被任何时间段设置约束。所有时间段设置均以站点系统默认时区为准，不受用户自定义时区的影响</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>禁止下载附件时间段</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <textarea class="input" name="data[attachbanperiods]">{$setting.attachbanperiods}</textarea>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">每天该时间段内用户不能下载附件，格式和用法同上</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="x12">
+						<div class="label">
+						  <strong>禁止全文搜索时间段</strong>
+						</div>
+						<div class="x3">
+							<div class="field">
+							 <textarea class="input" name="data[searchbanperiods]">{$setting.searchbanperiods}</textarea>
+							</div>
+						</div>
+						<div class="x7 padding-left">
+							<small class="text-gray">每天该时间段内用户不能使用全文搜索，格式和用法同上</small>
+						</div>
+					</div>
+				</div>
+				<div class="form-group margin-large-top">
+					<div class="x12">
+						<div class="label">
+						  <label></label>
+						</div>
+						<div class="field">
+						  <button class="button bg-main" type="submit">提交</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}

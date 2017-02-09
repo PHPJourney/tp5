@@ -1,0 +1,84 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">添加用户</strong></div>
+	<div class="body-content">
+		<form method="post" class="form-x">
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>用户名</strong>
+					</div>
+					<div class="x3">
+						<input type="text" class="input" name="data[username]" value="">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>密码</strong>
+					</div>
+					<div class="x3">
+						<input type="password" class="input" name="data[pwd]" value="">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>用户名</strong>
+					</div>
+					<div class="x3">
+						<input type="email" class="input" name="data[email]" value="">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="x12">
+					<div class="label">
+						<strong>用户组</strong>
+					</div>
+					<div class="x3">
+						<select class="input" name="data[gid]">
+							<optgroup label="管理组">
+								<option value="0">管理员</option>
+								<option value="1">门户编辑</option>
+								<option value="2">财务</option>
+								<option value="3">事业部</option>
+								<option value="4">技术部</option>
+							</optgroup>
+							<optgroup label="用户组">
+								<option value="5">普通用户</option>
+								<option value="6">认证用户</option>
+								<option value="7">待审核用户</option>
+								<option value="8">禁止发言</option>
+								<option value="9">禁止访问</option>
+								<option value="10">等待验证</option>
+							</optgroup>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="label">
+					<strong>发送通知到上述地址</strong>
+				</div>
+				<div class="field">
+					<input type="radio" name="data[emailnotify]" value="1"> 是
+					<input type="radio" name="data[emailnotify]" value="0" checked> 否
+				</div>
+			</div>
+			<div class="form-group margin-large-top">
+				<div class="x12">
+					<div class="label">
+					  <label></label>
+					</div>
+					<div class="field">
+					  <button class="button bg-main" type="submit"> 提交</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}

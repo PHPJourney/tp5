@@ -1,0 +1,87 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">广告管理</strong></div>
+	<div class="body-content">
+		<div class="panel-body">
+			<a href="{:url('Cpanel/saveadv')}" class="button bg-blue">添加</a>
+		</div>
+		<table class="table table-hover table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>广告名称</th>
+					<th>广告图片</th>
+					<th>广告排序</th>
+					<th>打开方式</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="adv.list" id="vo"}
+					<tr>
+						<td>{$vo.id}</td>
+						<td>{$vo.advname}</td>
+						<td><img src="{$vo.advimg}" class="preview" height="20"></td>
+						<td>{$vo.advsort}</td>
+						<td>
+							{eq name="vo.advmethod" value="0"}默认{/eq}
+							{eq name="vo.advmethod" value="1"}新窗口{/eq}
+							{eq name="vo.advmethod" value="2"}调取App Store{/eq}
+						</td>
+						<td>
+							<a class="text-blue" href="{:url('Cpanel/saveadv?id='.$vo['id'])}">编辑</a>
+							<a class="text-red" href="{:url('Cpanel/deleteadv?id='.$vo['id'])}">删除</a>
+						</td>
+					</tr>
+				{/volist}
+			</tbody>
+		</table>
+		<div class="pageation">{$adv.page}</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	
+	$(".preview").on("mouseover mouseout",function(event){
+		 if(event.type == "mouseover"){
+		  //鼠标悬浮
+			$(this).css({height: '90px'});
+		 }else if(event.type == "mouseout"){
+		  //鼠标离开
+			$(this).css({height: "20px"});
+		 }
+	})
+	
+	$("#url1").change(function(){
+		var src = $(this).val();
+		src != '' ? $(this).attr("data-image",src) : '';
+	})
+	$('#file').change(function(){
+		var xhr = new XMLHttpRequest();
+		var file = $(this)[0].files;
+		var data = new FormData();
+		data.append("attr",file[0]);
+		$(this).val('');
+		xhr.open("POST","{:url('Attach/upload')}",true);
+		xhr.onreadystatechange = function(){
+		console.info(xhr.status);
+			if(xhr.readyState == 4 && xhr.status==200){
+				var xml = xhr.responseXML;
+				var savepath = xml.getElementsByTagName("savepath");
+				savepath = savepath[0].firstChild.nodeValue;
+				var savename = xml.getElementsByTagName("savename");
+				savename = savename[0].firstChild.nodeValue;
+				console.log(savepath);
+				console.log(savename);
+				<!-- if(xml.status == 1){ -->
+					$("#url1").val(savepath+savename);
+					$("#url1").attr("data-image",savepath+savename);
+				<!-- } -->
+			}
+		};
+		xhr.send(data);
+	});
+});
+</script>
+{include file="public:footer" /}

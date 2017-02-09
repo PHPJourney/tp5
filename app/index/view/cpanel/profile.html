@@ -1,0 +1,436 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="body-content">
+		<strong class="text-blue">用户栏目</strong>
+		<a href="{:U('Cpanel/profile')}" class="button <eq name='cate' value='group'>border<else />bg</eq>-blue">栏目列表</a>
+		<a href="{:U('Cpanel/profile?cate=group')}" class="button <eq name='cate' value='group'>bg<else />border</eq>-blue">栏目分组</a>
+		<div class="panel-body">
+			<eq name='cate' value='group'>
+				<form method="post" class="form-x">
+					<div class="form-group bg-blue-light">
+						<div class="label">
+							<strong class="text-blue">技巧提示</strong>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="field">
+							<p>用户栏目分组至少必须启用一项，如果都不启用，默认为全部启用</p>
+						</div>
+					</div>
+					<div class="form-group bg-blue-light">
+						<div class="label">
+							<strong class="text-blue">用户栏目分组设置</strong>
+						</div>
+					</div>
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th>显示</th>
+								<th>显示顺序</th>
+								<th>栏目分组名称</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox" class="checkbox" value="0"></td>
+								<td><input type="text" class="input" value="0"></td>
+								<td><input type="text" class="input" value="基本资料"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" value="0"></td>
+								<td><input type="text" class="input" value="0"></td>
+								<td><input type="text" class="input" value="联系方式"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" value="0"></td>
+								<td><input type="text" class="input" value="0"></td>
+								<td><input type="text" class="input" value="教育情况"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" value="0"></td>
+								<td><input type="text" class="input" value="0"></td>
+								<td><input type="text" class="input" value="工作情况"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" value="0"></td>
+								<td><input type="text" class="input" value="0"></td>
+								<td><input type="text" class="input" value="个人信息"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td colspan="4"><input type="submit" class="button bg-blue" value="提交"></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			<else />
+				<form method="post" class="form-x">
+					<div class="form-group bg-blue-light">
+						<div class="label">
+							<strong class="text-blue">技巧提示</strong>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="field">
+							<p>增加或隐藏用户扩展资料</p>
+							<p>设置结果可以扩充现有的用户资料</p>
+						</div>
+					</div>
+					<div class="form-group bg-blue-light">
+						<div class="label">
+							<strong class="text-blue">用户栏目</strong>
+						</div>
+					</div>
+					<table class="table table-hover border table-striped">
+						<thead>
+							<tr>
+								<th>栏目名称</th>
+								<th>显示顺序</th>
+								<th>是否启用</th>
+								<th>资料页显示</th>
+								<th>名片中显示</th>
+								<th>注册页显示</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>真实姓名</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>性别</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>生日</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>星座</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>生肖</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>固定电话</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>手机</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>证件号</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>邮寄地址</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>邮编</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>出生地</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>居住地</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>毕业学校</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>学历</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>公司</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>职业</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>职位</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>年收入</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>情感状态</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>交友目的</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>血型</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>支付宝</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>QQ</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>MSN</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>Facebook</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>Twitter</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>个人主页</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>自我介绍</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>兴趣爱好</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>主打游戏</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>入驻公会</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>昵称</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>国籍</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>房间</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>身高</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td>体重</td>
+								<td><input type="text" class="input" name="data[order]" value="0"></td>
+								<td><input type="checkbox" class="checkbox" name="used[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="profile[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="namecard[5]" value="1"></td>
+								<td><input type="checkbox" class="checkbox" name="regpage[5]" value="1"></td>
+								<td><a href="" class="text-blue">编辑</a></td>
+							</tr>
+							<tr>
+								<td colspan="7"><input type="submit" class="button bg-blue" value="提交"></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</eq>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

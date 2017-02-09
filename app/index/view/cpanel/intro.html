@@ -1,0 +1,32 @@
+{include file="public:head" /}
+<div class="body-content">
+	 <div class="panel">
+		<div class="panel-head"><strong>系统信息</strong></div>
+		<table class="table table-hover table-bordered table-striped">
+			<tr><th colspan="4">项目开源</th></tr>
+			<tr><td width="115" align="right">Github</td><td colspan="3"><a href="https://github.com/PHPJourney/gccms.git" target="_blank" class="text-blue">https://github.com/PHPJourney/gccms.git</a></td></tr>
+			<tr><th colspan="2">服务器信息</th><th colspan="2">站点相关数据</th></tr>
+			<tr><td width="115" align="right">网站状态：</td><td><?=@$setting['stated']==0? '正常' : '维护或升级';?></td><td width="115" align='right'>内存占用：</td><td>{:convert(memory_get_usage(true))}</td></tr>
+			<tr><td align="right">操作系统：</td><td><?=PHP_OS;?></td><td align="right">系统开发：</td><td>ThinkPHP {$Think.version}</td></tr>
+			<tr><td align="right">Web服务器：</td><td>{$_SERVER['SERVER_SOFTWARE']}</td><td align="right">主页：</td><td><a href="http://{$_SERVER['HTTP_HOST']}" target="_blank">http://{$_SERVER['HTTP_HOST']}</a></td></tr>
+			<tr><td align="right">程序语言：</td><td>PHP</td><td align="right">系统语言：</td><td>{$_SERVER['HTTP_ACCEPT_LANGUAGE']}</td></tr>
+			<tr><td align="right">数据库：</td><td>{:config('database.type')}</td><td align="right">端口号：</td><td>{$_SERVER['SERVER_PORT'] }</td></tr>
+			<tr><td align="right">项目版本号：</td><td>{:REDSNOW_VERSION}</td><td align="right">开发团队：</td><td>{:COMPANY_NAME}</td></tr>
+			<tr><th colspan="2">网站安全配置</th><th colspan="2">网站运行环境</th></tr>
+			<tr><td align="right">DEBUG模式：</td><td><?=false !== config("app_debug") ? '<font color="red">开启，正式运营建议关闭</font>' : '关闭';?></td><td align="right">子域名：</td><td><?=false !== config('APP_SUB_DOMAIN_DEPLOY') ? '开启' : '关闭'; ?></td></tr>
+			<tr><td align="right">页面Trace：</td><td><?=false!== config('SHOW_PAGE_TRACE') ? '开启': '关闭';?></td><td align="right">伪静态：</td><td><?php switch(config('URL_MODEL')){ case 0: echo '普通模式'; break; case 1: echo 'PATHINFO 模式'; break; case 2: echo "REWRITE 模式"; break; case 3: echo "兼容模式"; break; }?></td></tr>
+			<tr><td align="right">大小写：</td><td><?=false !== config('urlRL_configASE_INSENSITIVE') ? '区分' : '不区分' ;?></td><td align="right">URL路由：</td><td><?=false !== config('urlRL_ROurlTER_ON') ? '开启' : '关闭' ; ?></td></tr>
+			<tr><td align="right">语言包列表：</td><td><?php echo implode(",",config('lang_list')); ?></td><td align="right">语言包：</td><td><?=false !== config('LANG_SWITCH_ON') ? '启用' : '未启用';?></td></tr>
+			<tr><td align="right">错误定向页：</td><td>{:config('dispatch_error_tmpl')}</td><td align="right">显示错误信息：</td><td><?=false!== config('SHOW_ERROR_MSG') ? '开启': '关闭';?></td></tr>
+			<tr><th colspan="4">生产环境函数支持情况</th></tr>
+			<tr><td align="right">curl：</td><td><?=function_exists('curl_init') ? '√' : '×'; ?></td><td align="right">fopen：</td><td><?=function_exists('fopen') ? '√' : '×'; ?></td></tr>
+			<tr><td align="right">GD库支持：</td><td><?php if(extension_loaded('gd')) {
+			$PHP_GD = '';
+	if(function_exists('imagepng')) $PHP_GD .= 'PNG';
+	if(function_exists('imagejpeg')) $PHP_GD .= ' JPG';
+	if(function_exists('imagegif')) $PHP_GD .= ' GIF';
+} echo $PHP_GD; ?></td><td align="right">fsockopen：</td><td><?=function_exists('fsockopen') ? '√' : '×'; ?></td></tr>
+		</table>
+	</div>
+</div>
+{include file="public:footer" /}

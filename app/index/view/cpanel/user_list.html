@@ -1,0 +1,214 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">用户列表</strong></div>
+	<div class="body-content">
+		<div class="tab">
+		<div class="tab-head">
+			<ul class="tab-nav">
+				<li class="active"><a href="#tab-start">搜索</a> </li>
+				<li><a href="#tab-clear">清理</a> </li>
+			</ul>
+		</div>
+		<div class="tab-body">
+			<div class="tab-panel active" id="tab-start">
+				<form method="post" class="form-x">
+					<div class="form-group bg-blue-light">
+						<div class="label">
+							<strong class="text-blue bg-blue-light">技巧提示</strong>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="field">
+							<p>通过用户管理，您可以进行编辑会员资料、用户组、权限、积分，授予会员勋章以及删除会员等操作；</p>
+							<p>请先根据条件搜索用户，然后选择相应的操作。</p>
+							<p>输入框可使用通配符 *，多个值之间用半角逗号 "," 隔开。</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>用户表</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<select class="input" name="tablename">
+										<option value="0">主表</option>
+										<option value="1">存档表</option>
+									</select>
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray">更新用户数据时，存档表中的用户相关数据不会更新</small>
+							</div>
+						</div>	
+					</div>
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>用户名</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<input type="text" class="input" name="username">
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray">可使用通配符 *，多个用户名用半角逗号 "," 隔开</small>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>用户 UID</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<input type="text" class="input" name="uid">
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray"></small>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>主用户组</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<select class="input" name="gid[]" colspan="10" size="10" multiple="multiple">
+										<optgroup label="管理组">
+											<option value="0">管理员</option>
+											<option value="1">门户编辑</option>
+											<option value="2">财务</option>
+											<option value="3">事业部</option>
+											<option value="4">技术部</option>
+										</optgroup>
+										<optgroup label="用户组">
+											<option value="5">普通用户</option>
+											<option value="6">认证用户</option>
+											<option value="7">待审核用户</option>
+											<option value="8">禁止发言</option>
+											<option value="9">禁止访问</option>
+											<option value="10">等待验证</option>
+										</optgroup>
+									</select>
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray">设置允许参与搜索的用户组，可以按住 CTRL 多选</small>
+							</div>
+						</div>
+					</div>
+					<div class="form-group margin-large-top">
+						<div class="x12">
+							<div class="label">
+							  <label></label>
+							</div>
+							<div class="field">
+							  <button class="button bg-main icon-check-square-o" type="submit"> 搜索</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="tab-panel" id="tab-clear">
+				<form method="post" class="form-x">
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>用户表</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<select class="input" name="tablename">
+										<option value="0">主表</option>
+										<option value="1">存档表</option>
+									</select>
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray">更新用户数据时，存档表中的用户相关数据不会更新</small>
+							</div>
+						</div>	
+					</div>
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>用户名</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<input type="text" class="input" name="username">
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray">可使用通配符 *，多个用户名用半角逗号 "," 隔开</small>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>用户 UID</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<input type="text" class="input" name="uid">
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray"></small>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="x12">
+							<div class="label">
+								<strong>主用户组</strong>
+							</div>
+							<div class="x3">
+								<div class="field">
+									<select class="input" name="gid[]" colspan="10" size="10" multiple="multiple">
+										<optgroup label="管理组">
+											<option value="0">管理员</option>
+											<option value="1">门户编辑</option>
+											<option value="2">财务</option>
+											<option value="3">事业部</option>
+											<option value="4">技术部</option>
+										</optgroup>
+										<optgroup label="用户组">
+											<option value="5">普通用户</option>
+											<option value="6">认证用户</option>
+											<option value="7">待审核用户</option>
+											<option value="8">禁止发言</option>
+											<option value="9">禁止访问</option>
+											<option value="10">等待验证</option>
+										</optgroup>
+									</select>
+								</div>
+							</div>
+							<div class="x7">
+								<small class="text-gray">设置允许参与搜索的用户组，可以按住 CTRL 多选</small>
+							</div>
+						</div>
+					</div>
+					<div class="form-group margin-large-top">
+						<div class="x12">
+							<div class="label">
+							  <label></label>
+							</div>
+							<div class="field">
+							  <button class="button bg-main icon-check-square-o" type="submit"> 搜索</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public:footer" /}

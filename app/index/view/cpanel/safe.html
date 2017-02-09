@@ -1,0 +1,26 @@
+{include file="public:head" /}
+<div class="panel admin-panel">
+	<div class="panel-head"><strong class="text-blue">站点安全</strong></div>
+	<div class="body-content">
+		<form method="post" action="{:url('Safe/change')}" target="ajax" class="form-x">
+			<div class="x12">
+				<div class="form-group">
+					<label class="label"><strong>后台访问目录</strong></label>
+					<div class="x5">
+						<div class="input-inline clearfix">
+							<div class="field">
+								<input type="text" name="modulename" class="input w50" value="{:request()->module()}">
+								<input type="password" name="secpwd" class="input w50" placeholder="请输入二级安全密码">
+								<input type="submit" class="button bg-blue" value="更新">
+							</div>
+						</div>
+					</div>
+					<div class="x5">
+						<address class="text-gray">请注意：一旦修改后台访问目录，那么在之后需要访问后台时，请使用新的配置目录</address>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer" /}
