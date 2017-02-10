@@ -17,11 +17,12 @@ class Attach extends Controller{
 	
 	public function upload_thumb(){
 		$up = request()->file('attr');
+		$savepath = "public" . DS . "static" . DS . "uploads/";
 		$info = $up->validate(["size"=>1567800,"ext"=>'jpg,gif,png,jpeg'])->rule('uniqid')->move(ROOT_PATH .  "public" . DS . "static" . DS . "uploads");
 
 		if($info){
 			$setting = model("Setting")->read();
-			$image = \think\Image::open($info->getSavepath());
+			$image = \think\Image::open($info->getPathname());
 			$width = $image->width();
 			$height = $image->height();
 			$type = $image->type();
@@ -38,24 +39,28 @@ class Attach extends Controller{
 				$watertext = $setting['watermarktext_article'];
 				switch($watertype){
 					case 0:
-						$image->water("./Attachment/water/watermark.gif",$water,$wateropa)->save(".".$info->getSavepath().$info->getFilename());
-						$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());
+						$image->water(ROOT_PATH."public/Attachment/water/watermark.gif",$water,$wateropa)->save(ROOT_PATH.$savepath.$info->getfileName());
+						$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());
 					break;
 					case 1:
-						$image->water("./Attachment/water/watermark.png",$water,$wateropa)->save(".".$info->getSavepath().$info->getFilename());
-						$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());
+						$image->water(ROOT_PATH."public/Attachment/water/watermark.png",$water,$wateropa)->save(".".$savepath.$info->getfileName());
+						$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());
 					break;
 					case 2:
-						$image->text($watertext,"./Public/attach/fonts/".$setting['watermarktext_fontpath_article'],$setting['watermarktext_size_article'],$setting['watermarktext_color_article'],$water)->save(".".$info->getSavepath().$info->getFilename());
-						$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());
+						$image->text($watertext,ROOT_PATH."public/attach/fonts/".$setting['watermarktext_fontpath_article'],$setting['watermarktext_size_article'],$setting['watermarktext_color_article'],$water)->save(ROOT_PATH.$savepath.$info->getfileName());
+						$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());
 					break;
 				}
 				
 			}else{
-				$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());//生成缩略图
+				$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());//生成缩略图
 			}
-			$info['thumbimg'] = $info->getSavepath()."thumb_".$info->getFilename();
-			return xml($info);
+			
+			$data['savepath'] = "/".$savepath;
+			$data['savename'] = $info->getfileName();
+			$data['thumbimg'] = $savepath."thumb_".$info->getfileName();
+			
+			return xml($data);
 		}else{
 			return xml($up->getError());
 		}
@@ -115,52 +120,53 @@ class Attach extends Controller{
 		}
 		else{//标准表单式上传
 			$up = request()->file('filedata');
+			$savepath = "public" . DS . "static" . DS . "uploads/";
 			$info = $up->validate(["size"=>1567800,"ext"=>$upExt])->rule('uniqid')->move(ROOT_PATH.$attachDir);
 			if($info){
 				$setting = model("Setting")->read();
-				$image = \think\Image::open($info->getSavepath());
-				$width = $image->width();
-				$height = $image->height();
-				$type = $image->type();
-				$mime = $image->mime();
-				$size = $image->size();
-				$savew = $width / 100 * $setting['thumbquality'];
-				$saveh = $height / 100 * $setting['thumbquality'];
-				$water = $setting['watermarkstatus_article'];
-				$waterminwidth = $setting['watermarkminwidth_article'];
-				$waterminheight = $setting['watermarkminheight_article'];
-				if($water != 0 && $width >= $waterminwidth && $height >= $waterminheight ){
-					$watertype = $setting['watermarktype_article'];
-					$wateropa = $type == "gif" ? $setting['watermarktrans_article'] : $setting['watermarkquality_article'];
-					$watertext = $setting['watermarktext_article'];
-					switch($watertype){
-						case 0:
-							$image->water("./Attachment/water/watermark.gif",$water,$wateropa)->save(".".$info->getSavepath().$info->getFilename());
-							$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());
-						break;
-						case 1:
-							$image->water("./Attachment/water/watermark.png",$water,$wateropa)->save(".".$info->getSavepath().$info->getFilename());
-							$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());
-						break;
-						case 2:
-							$image->text($watertext,"./Public/attach/fonts/".$setting['watermarktext_fontpath_article'],$setting['watermarktext_size_article'],$setting['watermarktext_color_article'],$water)->save(".".$info->getSavepath().$info->getFilename());
-							$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());
-						break;
-					}
-					
-				}else{
-					$image->thumb($savew,$saveh)->save(".".$info->getSavepath()."thumb_".$info->getFilename());//生成缩略图
+			$image = \think\Image::open($info->getPathname());
+			$width = $image->width();
+			$height = $image->height();
+			$type = $image->type();
+			$mime = $image->mime();
+			$size = $image->size();
+			$savew = $width / 100 * $setting['thumbquality'];
+			$saveh = $height / 100 * $setting['thumbquality'];
+			$water = $setting['watermarkstatus_article'];
+			$waterminwidth = $setting['watermarkminwidth_article'];
+			$waterminheight = $setting['watermarkminheight_article'];
+			if($water != 0 && $width >= $waterminwidth && $height >= $waterminheight ){
+				$watertype = $setting['watermarktype_article'];
+				$wateropa = $type == "gif" ? $setting['watermarktrans_article'] : $setting['watermarkquality_article'];
+				$watertext = $setting['watermarktext_article'];
+				switch($watertype){
+					case 0:
+						$image->water(ROOT_PATH."public/Attachment/water/watermark.gif",$water,$wateropa)->save(ROOT_PATH.$savepath.$info->getfileName());
+						$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());
+					break;
+					case 1:
+						$image->water(ROOT_PATH."public/Attachment/water/watermark.png",$water,$wateropa)->save(".".$savepath.$info->getfileName());
+						$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());
+					break;
+					case 2:
+						$image->text($watertext,ROOT_PATH."public/attach/fonts/".$setting['watermarktext_fontpath_article'],$setting['watermarktext_size_article'],$setting['watermarktext_color_article'],$water)->save(ROOT_PATH.$savepath.$info->getfileName());
+						$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());
+					break;
 				}
-				$info['thumbimg'] = $info->getSavepath()."thumb_".$info->getFilename();
+				
+			}else{
+				$image->thumb($savew,$saveh)->save(ROOT_PATH.$savepath."thumb_".$info->getfileName());//生成缩略图
+			}
+			
+				$data['savepath'] = "/".$savepath;
+				$data['localName'] = $info->getfileName();
+				$data['thumbimg'] = $savepath."thumb_".$info->getfileName();
 				//成功
-				$info['url'] = $info['savepath'].$info['savename'];
-				$info["localName"] = $info['savename'];
-				$info['id'] = 1;
+				$data['id'] = 1;
 				
 				//失败
 				
-				
-				return $info;
+				return $data;
 			}else{
 				$callback = array("err"=>$up->getError(),'msg'=>$msg);
 				return xml($up->getError());
