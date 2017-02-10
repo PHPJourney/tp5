@@ -22,15 +22,14 @@ class Article extends \Think\Model{
 		return $data;
 	}
 	
-	public function updated($data){
+	public function updated($data,$map=array()){
 		$m = db("article");
 		unset($data["__hash__"]);
-		$sort = $m->where($data)->find();
-		$up = empty($sort) ? $m->insert($data) : $m->save($data);
+		$up = empty($map) ? $m->insert($data) : $m->$map->save($data);
 		$sql[]	= $m->getlastsql();
 		$sql['remark'] = "更新网站文章";
 		$sql['_group'] = "Admin";
-		$up[] = model("OperationLog")->updated($sql);
+		model("OperationLog")->updated($sql);
 		return $up;
 	}
 }
