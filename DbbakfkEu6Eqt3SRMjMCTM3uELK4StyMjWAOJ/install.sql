@@ -19,9 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `root`
 --
-CREATE DATABASE IF NOT EXISTS `root` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `root`;
-
+--CREATE DATABASE IF NOT EXISTS `root` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+--USE `root`;
+--CREATE DATABASE Query sql
 -- --------------------------------------------------------
 
 --
@@ -645,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `visitor_url` (
 --
 DROP TABLE IF EXISTS `visitor_area`;
 
-CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_area` AS select count(`tp5_visitor`.`area`) AS `area_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`area` order by `tp5_visitor`.`id` desc;
+CREATE ALGORITHM=TEMPTABLE SQL SECURITY DEFINER VIEW `visitor_area` AS select count(`tp5_visitor`.`area`) AS `area_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`area` order by `tp5_visitor`.`id` desc;
 
 -- --------------------------------------------------------
 
@@ -654,7 +654,7 @@ CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_core`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_core` AS select count(`tp5_visitor`.`core`) AS `core_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`core`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `visitor_core` AS select count(`tp5_visitor`.`core`) AS `core_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`core`;
 
 -- --------------------------------------------------------
 
@@ -663,7 +663,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_country`;
 
-CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_country` AS select count(`tp5_visitor`.`country`) AS `country_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`country` order by `tp5_visitor`.`id` desc;
+CREATE ALGORITHM=TEMPTABLE SQL SECURITY DEFINER VIEW `visitor_country` AS select count(`tp5_visitor`.`country`) AS `country_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`country` order by `tp5_visitor`.`id` desc;
 
 -- --------------------------------------------------------
 
@@ -672,7 +672,7 @@ CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_explorer`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_explorer` AS select count(`tp5_visitor`.`explorer`) AS `explorer_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`explorer`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `visitor_explorer` AS select count(`tp5_visitor`.`explorer`) AS `explorer_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`explorer`;
 
 -- --------------------------------------------------------
 
@@ -681,7 +681,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_ip`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_ip` AS select count(`tp5_visitor`.`ip`) AS `ip_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`ip`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `visitor_ip` AS select count(`tp5_visitor`.`ip`) AS `ip_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`ip`;
 
 -- --------------------------------------------------------
 
@@ -690,7 +690,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_method`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_method` AS select count(`tp5_visitor`.`method`) AS `method_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`method`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `visitor_method` AS select count(`tp5_visitor`.`method`) AS `method_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`method`;
 
 -- --------------------------------------------------------
 
@@ -699,7 +699,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_protocol`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_protocol` AS select count(`tp5_visitor`.`protocol`) AS `protocol_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`protocol`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `visitor_protocol` AS select count(`tp5_visitor`.`protocol`) AS `protocol_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`protocol`;
 
 -- --------------------------------------------------------
 
@@ -708,7 +708,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_state`;
 
-CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_state` AS select count(`tp5_visitor`.`state`) AS `state_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`state` order by `tp5_visitor`.`id` desc;
+CREATE ALGORITHM=TEMPTABLE SQL SECURITY DEFINER VIEW `visitor_state` AS select count(`tp5_visitor`.`state`) AS `state_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`state` order by `tp5_visitor`.`id` desc;
 
 -- --------------------------------------------------------
 
@@ -717,7 +717,7 @@ CREATE ALGORITHM=TEMPTABLE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_sysyem`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_sysyem` AS select count(`tp5_visitor`.`system`) AS `system_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`system`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `visitor_sysyem` AS select count(`tp5_visitor`.`system`) AS `system_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`system`;
 
 -- --------------------------------------------------------
 
@@ -726,26 +726,26 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `visitor_url`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `visitor_url` AS select count(`tp5_visitor`.`url`) AS `url_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`url`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `visitor_url` AS select count(`tp5_visitor`.`url`) AS `url_sum`,`tp5_visitor`.`id` AS `id`,`tp5_visitor`.`path` AS `path`,`tp5_visitor`.`ip` AS `ip`,`tp5_visitor`.`method` AS `method`,`tp5_visitor`.`protocol` AS `protocol`,`tp5_visitor`.`url` AS `url`,`tp5_visitor`.`status` AS `status`,`tp5_visitor`.`explorer` AS `explorer`,`tp5_visitor`.`system` AS `system`,`tp5_visitor`.`core` AS `core`,`tp5_visitor`.`version` AS `version`,`tp5_visitor`.`country` AS `country`,`tp5_visitor`.`state` AS `state`,`tp5_visitor`.`area` AS `area`,`tp5_visitor`.`time` AS `time` from `tp5_visitor` group by `tp5_visitor`.`url`;
 
 DELIMITER $$
 --
 -- 事件
 --
 DROP EVENT `update_secauth`$$
-CREATE DEFINER=`root`@`localhost` EVENT `update_secauth` ON SCHEDULE EVERY 1 MINUTE STARTS '2016-12-20 00:00:00' ENDS '2031-10-20 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '更新随机码' DO UPDATE `gccms_admin` SET `secauth`=ceiling(rand() * 999999)$$
+CREATE EVENT `update_secauth` ON SCHEDULE EVERY 1 MINUTE STARTS '2016-12-20 00:00:00' ENDS '2031-10-20 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '更新随机码' DO UPDATE `gccms_admin` SET `secauth`=ceiling(rand() * 999999)$$
 
 DROP EVENT `clean_session`$$
-CREATE DEFINER=`root`@`localhost` EVENT `clean_session` ON SCHEDULE EVERY 1 MINUTE STARTS '2016-12-23 00:00:00' ENDS '2036-12-23 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '删除超过1800秒的缓存' DO delete from gccms_session where unix_timestamp(now()) - `time`  > 1800$$
+CREATE EVENT `clean_session` ON SCHEDULE EVERY 1 MINUTE STARTS '2016-12-23 00:00:00' ENDS '2036-12-23 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '删除超过1800秒的缓存' DO delete from gccms_session where unix_timestamp(now()) - `time`  > 1800$$
 
 DROP EVENT `event_track`$$
-CREATE DEFINER=`root`@`localhost` EVENT `event_track` ON SCHEDULE EVERY 1 MINUTE STARTS '2016-12-20 00:00:00' ENDS '2031-12-20 00:00:00' ON COMPLETION PRESERVE ENABLE DO insert into gccms_event_track(`category`,`time`) values ('update_secauth',now())$$
+CREATE EVENT `event_track` ON SCHEDULE EVERY 1 MINUTE STARTS '2016-12-20 00:00:00' ENDS '2031-12-20 00:00:00' ON COMPLETION PRESERVE ENABLE DO insert into gccms_event_track(`category`,`time`) values ('update_secauth',now())$$
 
 DROP EVENT `change_recharge_status`$$
-CREATE DEFINER=`root`@`localhost` EVENT `change_recharge_status` ON SCHEDULE EVERY 30 MINUTE STARTS '2017-01-04 00:00:00' ENDS '2038-01-04 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '更新状态未到账并且充值时间大于1800秒的订单为已取消' DO update gccms_recharge set `status`=2 where unix_timestamp(`time`) < unix_timestamp(now()) - 1800$$
+CREATE EVENT `change_recharge_status` ON SCHEDULE EVERY 30 MINUTE STARTS '2017-01-04 00:00:00' ENDS '2038-01-04 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '更新状态未到账并且充值时间大于1800秒的订单为已取消' DO update gccms_recharge set `status`=2 where unix_timestamp(`time`) < unix_timestamp(now()) - 1800$$
 
 DROP EVENT `event_track1`$$
-CREATE DEFINER=`root`@`localhost` EVENT `event_track1` ON SCHEDULE EVERY 30 MINUTE STARTS '2017-01-04 00:00:00' ENDS '2038-01-04 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '运行充值记录状态更新监听事件' DO insert into gccms_event_track(`category`,`time`) values ('change_recharge',now())$$
+CREATE EVENT `event_track1` ON SCHEDULE EVERY 30 MINUTE STARTS '2017-01-04 00:00:00' ENDS '2038-01-04 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT '运行充值记录状态更新监听事件' DO insert into gccms_event_track(`category`,`time`) values ('change_recharge',now())$$
 
 DELIMITER ;
 
