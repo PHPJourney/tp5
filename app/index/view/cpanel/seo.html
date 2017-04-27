@@ -7,6 +7,7 @@
 				<ul class="tab-nav">
 					<li class="active"><a href="#seo1">伪静态优化</a> </li>
 					<li><a href="#seo2">页面优化</a> </li>
+					<li><a href="#seo3">辅助标签设置</a> </li>
 				</ul>
 			</div>
 			<div class="tab-body">
@@ -264,6 +265,1148 @@
 							<tr>
 								<td>
 									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label></label>
+											</div>
+											<div class="field">
+											  <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="tab-panel" id="seo3">
+					<form method="post" class="form-x">
+						<table class="table table-striped">
+							<tr>
+								<td cols="2">
+									<strong class="text-red">技巧提示</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>
+										<ul class="text-blue">
+											<li>在网站优化中，辅助标签Meta是HTML语言head区的一个非常重要功能</li>
+											<li>我们在这里提供了许多管理项，从关键词到浏览器再到设备兼容，请通过表单的描述和网站的实际情况来配置</li>
+										</ul>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">全局配置</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>网页编码</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_charset]" class="input w50">
+												<option value="utf-8" {eq name="@$setting['seo_head_charset']" value="utf-8"}selected{/eq}>UTF-8</option>
+												<option value="gbk" {eq name="@$setting['seo_head_charset']" value="gbk"}selected{/eq}>GBK</option>
+												<option value="gb2312" {eq name="@$setting['seo_head_charset']" value="gb2312"}selected{/eq}>GB2312</option>
+											  </select>
+												<small class="padding-left text-gray">请选择网页模板编码</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>搜索引擎开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_robots_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_robots_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_robots_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否开启搜索引擎</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>网页搜索引擎方式</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_head_robots]" value="{$setting.seo_head_robots|@}">
+												<small class="padding-left text-gray">定义网页搜索引擎索引方式，robotterms 是一组使用英文逗号「,」分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow。</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>响应式布局开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_viewport_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_viewport_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_viewport_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否开启响应式布局</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>响应式布局</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_head_viewport]" value="{$setting.seo_head_viewport|@}">
+											</div>
+											<div class="field padding-left text-gray">
+												<p>如果你的网站不是响应式的，请不要使用 initial-scale 或者禁用缩放。</p>
+												<p>width=device-width,user-scalable=yes</p>
+												<p>width=device-width, initial-scale=1, minimal-ui|initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no</p>
+												<p>minimal-ui iOS 7.1 beta 2 中新增属性（注意：iOS8 中已经删除），可以在页面加载时最小化上下状态栏。这是一个布尔值</p>
+												<p>viewport 可以让布局在移动浏览器上显示的更好。</p>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>百度手机转码</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_cacheControl]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_cacheControl']" value="1"}selected{/eq}>禁用</option>
+												<option value="0" {eq name="@$setting['seo_head_cacheControl']" value="0"}selected{/eq}>启用</option>
+											  </select>
+												<small class="padding-left text-gray">禁用百度手机转码</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">Apple 设备优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>APP智能广告开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_itunes_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_itunes_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_itunes_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否开启APP智能广告</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>APPLE应用ID</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_head_itunes_appid]" value="{$setting.seo_head_itunes_appid|@}">
+												<small class="padding-left text-gray">Apple 应用ID，app-id</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>APPLE 分销联盟参数</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_head_itunes_affiliate]" value="{$setting.seo_head_itunes_affiliate|@}">
+												<small class="padding-left text-gray">Apple 应用affiliate-data</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>APPLE 智能广告URL</label>
+											</div>
+											<div class="field">
+											  <input type="text" class="input w50" name="data[seo_head_itunes_argument]" value="{$setting.seo_head_itunes_argument|@}">
+												<small class="padding-left text-gray">Apple 应用app-argument</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>电话号码识别开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_telphone_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_telphone_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_telphone_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">自动识别所有数字为电话号码</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>电话号码识别模式</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_telphone]" class="input w50">
+												<option value="yes" {eq name="@$setting['seo_head_telphone']" value="yes"}selected{/eq}>识别</option>
+												<option value="no" {eq name="@$setting['seo_head_telphone']" value="no"}selected{/eq}>不识别</option>
+											  </select>
+												<small class="padding-left text-gray">自动识别所有数字为电话号码</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>全屏模式开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_webappcapable_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_webappcapable_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_webappcapable_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">启用WebApp全屏模式开关</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>全屏模式</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_webappcapable]" class="input w50">
+												<option value="yes" {eq name="@$setting['seo_head_webappcapable']" value="yes"}selected{/eq}>启用</option>
+												<option value="no" {eq name="@$setting['seo_head_webappcapable']" value="no"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">启用WebApp全屏模式</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>背景颜色开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_webappsbs_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_webappsbs_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_webappsbs_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">添加到主屏后设置状态栏的背景颜色，webapp全屏模式</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>背景颜色</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_webappsbs]" value="{$setting.seo_head_webappsbs|@}">
+												<small class="padding-left text-gray">添加到主屏后设置状态栏的背景颜色，webapp全屏模式</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>标题</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_amwat]" value="{$setting.seo_head_amwat|@}">
+												<small class="padding-left text-gray">添加到主屏后的标题</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>touch icon</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_touch_icon]" value="{$setting.seo_head_touch_icon|@}">
+												<small class="padding-left text-gray">APPLE TOUCH ICON图标</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>touch icon precomposed</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_touch_precomposed_icon]" value="{$setting.seo_head_touch_precomposed_icon|@}">
+												<small class="padding-left text-gray">APPLE TOUCH precomposed ICON图标,在iPhone/iPod Touch上将网页"添加至主屏幕"时，去掉icon上那恶心的透明层．</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>touch icon</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_touch_57_icon]" value="{$setting.seo_head_touch_57_icon|@}">
+												<small class="padding-left text-gray">APPLE TOUCH ICON图标（57*57）</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>touch icon</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_touch_72_icon]" value="{$setting.seo_head_touch_72_icon|@}">
+												<small class="padding-left text-gray">APPLE TOUCH ICON图标（72*72）</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>touch icon</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_touch_114_icon]" value="{$setting.seo_head_touch_114_icon|@}">
+												<small class="padding-left text-gray">APPLE TOUCH ICON图标（114*114）</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>touch icon</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_touch_144_icon]" value="{$setting.seo_head_touch_144_icon|@}">
+												<small class="padding-left text-gray">APPLE TOUCH ICON图标（144*144）</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>启动画面</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_touch_startup]" value="{$setting.seo_head_touch_startup|@}">
+												<small class="padding-left text-gray">启动画面 Ipad不包含状态栏 Iphone和iPod touch包含状态栏</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>深度链接开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_alternate_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_alternate_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_alternate_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否开启IOS深度链接配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>IOS深度链接</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_alternate]" value="{$setting.seo_head_alternate|@}">
+												<small class="padding-left text-gray">IOS应用深度链接,如：ios-app://APP-ID/http/url-sample.com</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">Apple safari浏览器优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>SVG开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_svg_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_svg_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_svg_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否开启SVG FAVICONS配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>SVG FAVICONS</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_svg_favicons]" value="{$setting.seo_head_svg_favicons|@}">
+												<small class="padding-left text-gray">Apple Safari 浏览器 SVG favicons</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>SVG 颜色</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_svg_favicons_color]" value="{$setting.seo_head_svg_favicons_color|@}">
+												<small class="padding-left text-gray">Apple Safari 浏览器 SVG favicons</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">UC浏览器优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>夜间模式开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_nightmode_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_uc_nightmode_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_uc_nightmode_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用夜间模式配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>夜间模式</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_nightmode]" class="input w50">
+												<option value="enable" {eq name="@$setting['seo_head_uc_nightmode']" value="enable"}selected{/eq}>允许</option>
+												<option value="disable" {eq name="@$setting['seo_head_uc_nightmode']" value="disable"}selected{/eq}>禁止</option>
+											  </select>
+												<small class="padding-left text-gray">UC浏览器夜间模式，对页面内的iframe/frame无效</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>图片强制显示</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_imagemode_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_uc_imagemode_tap']" value="1"}selected{/eq}>开启</option>
+												<option value="0" {eq name="@$setting['seo_head_uc_imagemode_tap']" value="0"}selected{/eq}>关闭</option>
+											  </select>
+											</div>
+											<div class="field">
+												<small class="padding-left text-gray">
+												<p>整页图片强制显示，为了节省流量及加快速度，UC 为用户提供了无图模式，在实际使用中存在页面中的图片是不可缺少的，例如验证码，地图等。</p>
+												 <p>通过强制图片显示的功能可以保证图片显示不受用户的设置影响。**注意：整页图片强制显示仅对当前页面生效，对页面内的 frame/iframe 不生效，也不影响前进后退的页面</p>
+												</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>开启应用模式</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_browsermode_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_uc_browsermode_tap']" value="1"}selected{/eq}>开启</option>
+												<option value="0" {eq name="@$setting['seo_head_uc_browsermode_tap']" value="0"}selected{/eq}>关闭</option>
+											  </select>
+											</div>
+											<div class="field">
+												<small class="padding-left text-gray">
+													<p>应用模式是为方便 Web </p>
+													<p>应用及游戏开发者设置的综合开关，通过meta标签进行指示打开，当进入应用模式时，浏览器将自动调整以下参数:</p>
+												</small>
+											</div>
+										</div>
+									</div>
+									<table class="table-bordered table-hover table-striped">
+										<thead>
+											<tr>
+												<th>参数</th>
+												<th>状态</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>全屏</td>
+												<td>生效</td>
+												<td>可通过 meta 或 JS API 调用退出全屏</td>
+											</tr>
+											<tr>
+												<td>长按菜单</td>
+												<td>失效</td>
+												<td>可通过 JS API 调用重新生效</td>
+											</tr>
+											<tr>
+												<td>浏览器默认手势</td>
+												<td>失效</td>
+												<td>可通过 JS API 调用重新生效</td>
+											</tr>
+											<tr>
+												<td>排版模式</td>
+												<td>标准模式</td>
+												<td>可通过 meta 或 JS API 调用设置其他排版模式</td>
+											</tr>
+											<tr>
+												<td>强制图片显示</td>
+												<td>生效</td>
+												<td>/</td>
+											</tr>
+											<tr>
+												<td>夜间模式</td>
+												<td>失效</td>
+												<td>可通过 meta 或 JS API 调用启用夜间模式</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>字体缩放</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_font_scale_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_uc_font_scale_tap']" value="1"}selected{/eq}>允许</option>
+												<option value="0" {eq name="@$setting['seo_head_uc_font_scale_tap']" value="0"}selected{/eq}>禁止</option>
+											  </select>
+												<small class="padding-left text-gray">禁用UC浏览器字体缩放</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>屏幕方向</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_pscreen]" class="input w50">
+												<option value="portrait" {eq name="@$setting['seo_head_uc_pscreen']" value="portrait"}selected{/eq}>横屏</option>
+												<option value="landscape" {eq name="@$setting['seo_head_uc_pscreen']" value="landscape"}selected{/eq}>竖屏</option>
+											  </select>
+												<small class="padding-left text-gray">UC浏览器屏幕方向portrait 为横屏，landscape 为竖屏。</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>全屏开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_full_screen_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_uc_full_screen_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_uc_full_screen_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用UC浏览器全屏配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>UC浏览器全屏</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_full_screen]" class="input w50">
+												<option value="yes" {eq name="@$setting['seo_head_uc_full_screen']" value="yes"}selected{/eq}>启用</option>
+												<option value="no" {eq name="@$setting['seo_head_uc_full_screen']" value="no"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">UC浏览器设置全屏。</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>缩放开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_firstscreen_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_uc_firstscreen_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_uc_firstscreen_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用UC浏览器适屏缩放配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>屏幕缩放</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_firstscreen]" class="input w50">
+												<option value="yes" {eq name="@$setting['seo_head_uc_firstscreen']" value="yes"}selected{/eq}>启用</option>
+												<option value="no" {eq name="@$setting['seo_head_uc_firstscreen']" value="no"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">UC浏览器适屏模式放大图文元素，但不放大屏幕宽度，保持不出现水平（横向）滚动条。</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>模式选择开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_layoutmode_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_uc_layoutmode_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_uc_layoutmode_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用UC浏览器排版模式选择配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>屏幕缩放</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_uc_layoutmode]" class="input w50">
+												<option value="fitscreen" {eq name="@$setting['seo_head_uc_layoutmode']" value="fitscreen"}selected{/eq}>适屏模式</option>
+												<option value="standard" {eq name="@$setting['seo_head_uc_layoutmode']" value="standard"}selected{/eq}>标准模式</option>
+											  </select>
+												<small class="padding-left text-gray">浏览器提供两种排版模式，分别是适屏模式（fitscreen）及标准模式（standard），其中适屏模式简化了一些页面的处理，使得页面内容更适合进行页面阅读、节省流量及响应更快，而标准模式则能按照标准规范对页面进行排版及渲染</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">Android 优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>主题标签开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_android_theme_color_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_android_theme_color_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_android_theme_color_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用Google Android原生浏览器主题颜色标签配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>主题颜色</label>
+											</div>
+											<div class="field">
+											  <input type="text" name="data[seo_head_android_theme_color]" class="input w50" value="{$setting['seo_head_android_theme_color']|@}">
+												<small class="padding-left text-gray">Google Android原生浏览器主题颜色标签</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>添加主屏开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_android_mwac_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_android_mwac_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_android_mwac_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用添加到主屏配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>深度链接开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_android_aadl_gpa_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_android_aadl_gpa_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_android_aadl_gpa_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用安卓应用深度链接配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>深度链接</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_android_aadl_gpa]" value="{$setting['seo_head_android_aadl_gpa']|@}">
+												<small class="padding-left text-gray">安卓应用深度链接,格式：android-app://package-name/http/url-sample.com</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">Google 浏览器优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>自动翻译开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_android_google_translate_tap]" class="input w50">
+												<option value="0" {eq name="@$setting['seo_head_android_google_translate_tap']" value="0"}selected{/eq}>启用</option>
+												<option value="1" {eq name="@$setting['seo_head_android_google_translate_tap']" value="1"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">禁用谷歌浏览器自动翻译提示</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>插件直达开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_android_chrome_store_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_android_chrome_store_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_android_chrome_store_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用Google 浏览器插件安装直达配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>插件地址</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_android_chrome_store]" value="{$setting['seo_head_android_chrome_store']|@}">
+												<small class="padding-left text-gray">Google 浏览器插件安装直达,格式：https://chrome.google.com/webstore/detail/APP_ID</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>应用缓存开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_web_manifest_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_web_manifest_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_web_manifest_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用manifest应用缓存配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>manifest地址</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_web_manifest]" value="{$setting['seo_head_web_manifest']|@}">
+												<small class="padding-left text-gray">Google 浏览器插件安装直达,格式：manifest.json</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>Web应用开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_web_app_capable_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_web_app_capable_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_web_app_capable_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">是否启用Web应用配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">IE浏览器渲染优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>渲染模式开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_ie_compatible_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_ie_compatible_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_ie_compatible_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">
+												IE8以下以IE7标准模式呈现网页，而IE9则以IE9的标准模式呈现网页
+												<p>如果安装了GCF，则使用GCF来渲染页面（"chrome=1"），如果没有安装GCF，则使用最高版本的IE内核进行渲染（"IE=edge"）</p></small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">QQ浏览器X5内核优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>锁屏开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_qqx5_orientation_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_qqx5_orientation_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_qqx5_orientation_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">
+												设置锁定横屏、竖屏显示模式，portrait（横屏），landscape（竖屏）</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>显示模式</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_qqx5_orientation]" class="input w50">
+												<option value="portrait" {eq name="@$setting['seo_head_qqx5_orientation']" value="portrait"}selected{/eq}>横屏</option>
+												<option value="landscape" {eq name="@$setting['seo_head_qqx5_orientation']" value="landscape"}selected{/eq}>竖屏</option>
+											  </select>
+												<small class="padding-left text-gray">
+												设置锁定横屏、竖屏显示模式，portrait（横屏），landscape（竖屏）</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>全屏显示</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_qqx5_full_screen_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_qqx5_full_screen_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_qqx5_full_screen_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">
+												设置全屏显示页面</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>应用模式</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_qqx5_appmode_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_qqx5_appmode_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_qqx5_appmode_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">
+												开启页面以应用模式显示（全屏显示等），QQ浏览器X5内核 适用于QQ微信等第三方应用开发</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong class="text-red">360浏览器渲染优化</strong>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>渲染模式开关</label>
+											</div>
+											<div class="field">
+											  <select name="data[seo_head_360_renderer_tap]" class="input w50">
+												<option value="1" {eq name="@$setting['seo_head_360_renderer_tap']" value="1"}selected{/eq}>启用</option>
+												<option value="0" {eq name="@$setting['seo_head_360_renderer_tap']" value="0"}selected{/eq}>禁用</option>
+											  </select>
+												<small class="padding-left text-gray">
+												开启360浏览器渲染模式配置</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group">
+										<div class="x12">
+											<div class="label">
+											  <label>渲染模式</label>
+											</div>
+											<div class="field">
+												<input type="text" class="input w50" name="data[seo_head_360_renderer]" value="{$setting['seo_head_360_renderer']|@}">
+												<small class="padding-left text-gray">360浏览器渲染模式，webkit 极速内核，ie-comp为ie兼容内核，ie-stand为ie标准内核</small>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="form-group margin-large-top">
 										<div class="x12">
 											<div class="label">
 											  <label></label>
