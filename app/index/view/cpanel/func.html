@@ -2,11 +2,11 @@
 <div class="panel admin-panel">
 	<div class="panel-head"><strong>站点功能</strong></div>
 	<div class="padding-left padding-top">
-		<a href="{:url('Cpanel/func',array('model'=>'1'))}" class="{eq name='model' value='1'>button bg-red<else />text-big</eq}">功能模块</a>
-		<a href="{:url('Cpanel/func',array('model'=>'2'))}" class="{eq name='model' value='2'>button bg-red<else />text-big</eq}">管理相关</a>
-		<a href="{:url('Cpanel/func',array('model'=>'3'))}" class="{eq name='model' value='3'>button bg-red<else />text-big</eq}">主题热度</a>
-		<a href="{:url('Cpanel/func',array('model'=>'4'))}" class="{eq name='model' value='4'>button bg-red<else />text-big</eq}">主题评价</a>
-		<a href="{:url('Cpanel/func',array('model'=>'5'))}" class="{eq name='model' value='5'>button bg-red<else />text-big</eq}">导读设置</a>
+		<a href="{:url('Cpanel/func',array('model'=>'1'))}" class="{eq name='model' value='1'}button bg-red{else /}text-big{/eq}">功能模块</a>
+		<a href="{:url('Cpanel/func',array('model'=>'2'))}" class="{eq name='model' value='2'}button bg-red{else /}text-big{/eq}">管理相关</a>
+		<a href="{:url('Cpanel/func',array('model'=>'3'))}" class="{eq name='model' value='3'}button bg-red{else /}text-big{/eq}">主题热度</a>
+		<a href="{:url('Cpanel/func',array('model'=>'4'))}" class="{eq name='model' value='4'}button bg-red{else /}text-big{/eq}">主题评价</a>
+		<a href="{:url('Cpanel/func',array('model'=>'5'))}" class="{eq name='model' value='5'}button bg-red{else /}text-big{/eq}">导读设置</a>
 	</div>
 	<div class="body-content">
 		<div class="padding-left padding-right model" id="model1" style="display:none">
@@ -104,8 +104,8 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="radio" class="radio" name="data[updatestat]" value="1" {eq name="setting['updatestat']" value="1">checked</eq}> 是
-									  <input type="radio" class="radio" name="data[updatestat]" value="0" {eq name="setting['updatestat']" value="0">checked</eq}> 否
+									  <input type="radio" class="radio" name="data[updatestat]" value="1" {eq name="@$setting['updatestat']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[updatestat]" value="0" {eq name="@$setting['updatestat']" value="0"}checked{/eq}> 否
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -120,8 +120,8 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="radio" class="radio" name="data[modworkstatus]" value="1" {eq name="setting['modworkstatus']" value="1">checked</eq}> 是
-									  <input type="radio" class="radio" name="data[modworkstatus]" value="0" {eq name="setting['modworkstatus']" value="0">checked</eq}> 否
+									  <input type="radio" class="radio" name="data[modworkstatus]" value="1" {eq name="@$setting['modworkstatus']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[modworkstatus]" value="0" {eq name="@$setting['modworkstatus']" value="0"}checked{/eq}> 否
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -136,7 +136,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[maxmodworksmonths]" value="{@$setting.maxmodworksmonths}">
+									  <input type="text" class="input" name="data[maxmodworksmonths]" value="{$setting.maxmodworksmonths|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -151,7 +151,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <textarea type="text" class="input" name="data[modreasons]">{@$setting.modreasons}</textarea>
+									  <textarea type="text" class="input" name="data[modreasons]">{$setting.modreasons|@}</textarea>
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -166,7 +166,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <textarea type="text" class="input" name="data[userreasons]">{@$setting.userreasons}</textarea>
+									  <textarea type="text" class="input" name="data[userreasons]">{$setting.userreasons|@}</textarea>
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -181,7 +181,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[warninglimit]" value="{@$setting.warninglimit}">
+									  <input type="text" class="input" name="data[warninglimit]" value="{$setting.warninglimit|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -196,7 +196,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[warningexpiration]" value="{@$setting.warningexpiration}">
+									  <input type="text" class="input" name="data[warningexpiration]" value="{$setting.warningexpiration|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -238,7 +238,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[perido]" value="{@$setting.perido}">
+									  <input type="text" class="input" name="data[perido]" value="{$setting.perido|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -253,7 +253,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[iconlevels]" value="{@$setting.iconlevels}">
+									  <input type="text" class="input" name="data[iconlevels]" value="{$setting.iconlevels|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -295,8 +295,8 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="radio" class="radio" name="data[recommendthreadstatus]" value="1" {eq name="setting['recommendthreadstatus']" value="1">checked</eq}> 是
-									  <input type="radio" class="radio" name="data[recommendthreadstatus]" value="0" {eq name="setting['recommendthreadstatus']" value="0">checked</eq}> 否
+									  <input type="radio" class="radio" name="data[recommendthreadstatus]" value="1" {eq name="@$setting['recommendthreadstatus']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[recommendthreadstatus]" value="0" {eq name="@$setting['recommendthreadstatus']" value="0"}checked{/eq}> 否
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -311,7 +311,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[addtext]" value="{@$setting.addtext}">
+									  <input type="text" class="input" name="data[addtext]" value="{$setting.addtext|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -326,7 +326,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[subtracttext]" value="{@$setting.subtracttext}">
+									  <input type="text" class="input" name="data[subtracttext]" value="{$setting.subtracttext|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -341,7 +341,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-									  <input type="text" class="input" name="data[daycount]" value="{@$setting.daycount}">
+									  <input type="text" class="input" name="data[daycount]" value="{$setting.daycount|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -356,8 +356,8 @@
 							<p>
 								<div class="x3">
 									<div class="field">									
-									  <input type="radio" class="radio" name="data[ownthread]" value="1" {eq name="setting['ownthread']" value="1">checked</eq}> 是
-									  <input type="radio" class="radio" name="data[ownthread]" value="0" {eq name="setting['ownthread']" value="0">checked</eq}> 否
+									  <input type="radio" class="radio" name="data[ownthread]" value="1" {eq name="@$setting['ownthread']" value="1"}checked{/eq}> 是
+									  <input type="radio" class="radio" name="data[ownthread]" value="0" {eq name="@$setting['ownthread']" value="0"}checked{/eq}> 否
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -372,7 +372,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">									
-									  <input type="text" class="input" name="data[reviewiconlevels]" value="{@$setting.reviewiconlevels}">
+									  <input type="text" class="input" name="data[reviewiconlevels]" value="{$setting.reviewiconlevels|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
@@ -408,7 +408,7 @@
 							<p>
 								<div class="x3">
 									<div class="field">
-										<input type="text" class="input" name="data[guidelimit]" value="{@$setting.guidelimit}">
+										<input type="text" class="input" name="data[guidelimit]" value="{$setting.guidelimit|@}">
 									</div>
 								</div>
 								<div class="x9 padding-left">
