@@ -58,7 +58,7 @@ function format_bytes($size, $delimiter = '')
 function getfiles($path){
 	switch($path){
 		case "fonts":
-			$path = "./public/attach/fonts/";
+			$path = ROOT_PATH."/public/attach/fonts/";
 		break;
 	}
 	foreach(scandir($path) as $afile){
