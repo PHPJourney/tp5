@@ -476,7 +476,7 @@
 					<div class="field">
 						<select name="data[watermarktext_fontpath_article]" class="input">
 							<volist name="fontpath" id="path">
-								<option value="{$path}" <eq name="setting.watermarktext_fontpath_article" value="$path">selected</eq>>{$path}</option>
+								<option value="{$path}" {eq name="setting.watermarktext_fontpath_article" value="$path"}selected{/eq}>{$path}</option>
 							</volist>
 						</select>
 					</div>
@@ -806,9 +806,9 @@
 				<div class="x3">
 					<div class="field">
 						<select name="data[watermarktext_fontpath_website]" class="input">
-							<volist name="fontpath" id="path">
-								<option value="{$path}" <eq name="setting.watermarktext_fontpath_website" value="$path">selected</eq>>{$path}</option>
-							</volist>
+							{volist name="fontpath" id="path"}
+								<option value="{$path}" {eq name="setting.watermarktext_fontpath_website" value="$path"}selected{/eq}>{$path}</option>
+							{/volist}
 						</select>
 					</div>
 				</div>
