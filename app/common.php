@@ -198,9 +198,9 @@ function getBrowserVer(){
 		$agent = $_SERVER['HTTP_USER_AGENT'];
 		$os = false;
 		preg_match("/\(.*?\)/is",$agent,$system);
-		$os = str_replace(array(")","("),array("",""),$system[0]);
+		@$os = str_replace(array(")","("),array("",""),$system[0]);
 		preg_match("/\).*?\(/is",$agent,$core);
-		$core = str_replace(array(")","("),array("",""),$core[0]);
+		@$core = str_replace(array(")","("),array("",""),$core[0]);
 		$os = $cate == 0 ? $os : $core;
 		return $os;
 	}
